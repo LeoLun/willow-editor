@@ -1,1 +1,0 @@
-The online text editor
