@@ -1,0 +1,5815 @@
+/* stylelint-disable selector-class-pattern */
+.monaco-tree-row .default_folder::before {
+  content: url("@/assets/file-icons/default_folder.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .default_folder::before {
+  content: url("@/assets/file-icons/default_folder_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.default_file::before {
+  content: url("@/assets/file-icons/default_file.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_access::before {
+  content: url("@/assets/file-icons/file_type_access.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_access2::before {
+  content: url("@/assets/file-icons/file_type_access2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_actionscript::before {
+  content: url("@/assets/file-icons/file_type_actionscript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_actionscript2::before {
+  content: url("@/assets/file-icons/file_type_actionscript2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ada::before {
+  content: url("@/assets/file-icons/file_type_ada.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_advpl::before {
+  content: url("@/assets/file-icons/file_type_advpl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_affectscript::before {
+  content: url("@/assets/file-icons/file_type_affectscript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_affinitydesigner::before {
+  content: url("@/assets/file-icons/file_type_affinitydesigner.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_affinityphoto::before {
+  content: url("@/assets/file-icons/file_type_affinityphoto.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_affinitypublisher::before {
+  content: url("@/assets/file-icons/file_type_affinitypublisher.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ai::before {
+  content: url("@/assets/file-icons/file_type_ai.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ai2::before {
+  content: url("@/assets/file-icons/file_type_ai2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_al::before {
+  content: url("@/assets/file-icons/file_type_al.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_allcontributors::before {
+  content: url("@/assets/file-icons/file_type_allcontributors.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_angular::before {
+  content: url("@/assets/file-icons/file_type_angular.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ansible::before {
+  content: url("@/assets/file-icons/file_type_ansible.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_antlr::before {
+  content: url("@/assets/file-icons/file_type_antlr.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_anyscript::before {
+  content: url("@/assets/file-icons/file_type_anyscript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_apache::before {
+  content: url("@/assets/file-icons/file_type_apache.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_apex::before {
+  content: url("@/assets/file-icons/file_type_apex.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_api_extractor::before {
+  content: url("@/assets/file-icons/file_type_api_extractor.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_apib::before {
+  content: url("@/assets/file-icons/file_type_apib.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_apib2::before {
+  content: url("@/assets/file-icons/file_type_apib2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_apl::before {
+  content: url("@/assets/file-icons/file_type_apl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_applescript::before {
+  content: url("@/assets/file-icons/file_type_applescript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_appscript::before {
+  content: url("@/assets/file-icons/file_type_appscript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_appsemble::before {
+  content: url("@/assets/file-icons/file_type_appsemble.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_appveyor::before {
+  content: url("@/assets/file-icons/file_type_appveyor.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_arduino::before {
+  content: url("@/assets/file-icons/file_type_arduino.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_asciidoc::before {
+  content: url("@/assets/file-icons/file_type_asciidoc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_asp::before {
+  content: url("@/assets/file-icons/file_type_asp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_aspx::before {
+  content: url("@/assets/file-icons/file_type_aspx.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_assembly::before {
+  content: url("@/assets/file-icons/file_type_assembly.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_astro::before {
+  content: url("@/assets/file-icons/file_type_astro.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_astroconfig::before {
+  content: url("@/assets/file-icons/file_type_astroconfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ats::before {
+  content: url("@/assets/file-icons/file_type_ats.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_audio::before {
+  content: url("@/assets/file-icons/file_type_audio.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_aurelia::before {
+  content: url("@/assets/file-icons/file_type_aurelia.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_autohotkey::before {
+  content: url("@/assets/file-icons/file_type_autohotkey.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_autoit::before {
+  content: url("@/assets/file-icons/file_type_autoit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_avif::before {
+  content: url("@/assets/file-icons/file_type_avif.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_avro::before {
+  content: url("@/assets/file-icons/file_type_avro.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_awk::before {
+  content: url("@/assets/file-icons/file_type_awk.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_aws::before {
+  content: url("@/assets/file-icons/file_type_aws.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_azure::before {
+  content: url("@/assets/file-icons/file_type_azure.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_azurepipelines::before {
+  content: url("@/assets/file-icons/file_type_azurepipelines.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_babel::before {
+  content: url("@/assets/file-icons/file_type_babel.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_babel2::before {
+  content: url("@/assets/file-icons/file_type_babel2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ballerina::before {
+  content: url("@/assets/file-icons/file_type_ballerina.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bat::before {
+  content: url("@/assets/file-icons/file_type_bat.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bats::before {
+  content: url("@/assets/file-icons/file_type_bats.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bazaar::before {
+  content: url("@/assets/file-icons/file_type_bazaar.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bazel::before {
+  content: url("@/assets/file-icons/file_type_bazel.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_befunge::before {
+  content: url("@/assets/file-icons/file_type_befunge.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bicep::before {
+  content: url("@/assets/file-icons/file_type_bicep.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_biml::before {
+  content: url("@/assets/file-icons/file_type_biml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_binary::before {
+  content: url("@/assets/file-icons/file_type_binary.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bitbucketpipeline::before {
+  content: url("@/assets/file-icons/file_type_bitbucketpipeline.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bithound::before {
+  content: url("@/assets/file-icons/file_type_bithound.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_blade::before {
+  content: url("@/assets/file-icons/file_type_blade.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_blitzbasic::before {
+  content: url("@/assets/file-icons/file_type_blitzbasic.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bolt::before {
+  content: url("@/assets/file-icons/file_type_bolt.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bosque::before {
+  content: url("@/assets/file-icons/file_type_bosque.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bower::before {
+  content: url("@/assets/file-icons/file_type_bower.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bower2::before {
+  content: url("@/assets/file-icons/file_type_bower2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_browserslist::before {
+  content: url("@/assets/file-icons/file_type_browserslist.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_buckbuild::before {
+  content: url("@/assets/file-icons/file_type_buckbuild.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bun::before {
+  content: url("@/assets/file-icons/file_type_bun.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bundler::before {
+  content: url("@/assets/file-icons/file_type_bundler.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_bunfig::before {
+  content: url("@/assets/file-icons/file_type_bunfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_c::before {
+  content: url("@/assets/file-icons/file_type_c.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_c2::before {
+  content: url("@/assets/file-icons/file_type_c2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_c3::before {
+  content: url("@/assets/file-icons/file_type_c3.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_c_al::before {
+  content: url("@/assets/file-icons/file_type_c_al.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cabal::before {
+  content: url("@/assets/file-icons/file_type_cabal.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_caddy::before {
+  content: url("@/assets/file-icons/file_type_caddy.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cake::before {
+  content: url("@/assets/file-icons/file_type_cake.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cakephp::before {
+  content: url("@/assets/file-icons/file_type_cakephp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_capacitor::before {
+  content: url("@/assets/file-icons/file_type_capacitor.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cargo::before {
+  content: url("@/assets/file-icons/file_type_cargo.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_casc::before {
+  content: url("@/assets/file-icons/file_type_casc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cddl::before {
+  content: url("@/assets/file-icons/file_type_cddl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cert::before {
+  content: url("@/assets/file-icons/file_type_cert.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ceylon::before {
+  content: url("@/assets/file-icons/file_type_ceylon.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cf::before {
+  content: url("@/assets/file-icons/file_type_cf.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cf2::before {
+  content: url("@/assets/file-icons/file_type_cf2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cfc::before {
+  content: url("@/assets/file-icons/file_type_cfc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cfc2::before {
+  content: url("@/assets/file-icons/file_type_cfc2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cfm::before {
+  content: url("@/assets/file-icons/file_type_cfm.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cfm2::before {
+  content: url("@/assets/file-icons/file_type_cfm2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cheader::before {
+  content: url("@/assets/file-icons/file_type_cheader.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_chef::before {
+  content: url("@/assets/file-icons/file_type_chef.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_chef_cookbook::before {
+  content: url("@/assets/file-icons/file_type_chef_cookbook.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_circleci::before {
+  content: url("@/assets/file-icons/file_type_circleci.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_class::before {
+  content: url("@/assets/file-icons/file_type_class.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_clojure::before {
+  content: url("@/assets/file-icons/file_type_clojure.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_clojurescript::before {
+  content: url("@/assets/file-icons/file_type_clojurescript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cloudfoundry::before {
+  content: url("@/assets/file-icons/file_type_cloudfoundry.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cmake::before {
+  content: url("@/assets/file-icons/file_type_cmake.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cobol::before {
+  content: url("@/assets/file-icons/file_type_cobol.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_codacy::before {
+  content: url("@/assets/file-icons/file_type_codacy.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_codeclimate::before {
+  content: url("@/assets/file-icons/file_type_codeclimate.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_codecov::before {
+  content: url("@/assets/file-icons/file_type_codecov.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_codekit::before {
+  content: url("@/assets/file-icons/file_type_codekit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_codeowners::before {
+  content: url("@/assets/file-icons/file_type_codeowners.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_codeql::before {
+  content: url("@/assets/file-icons/file_type_codeql.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_coffeelint::before {
+  content: url("@/assets/file-icons/file_type_coffeelint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_coffeescript::before {
+  content: url("@/assets/file-icons/file_type_coffeescript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_commitizen::before {
+  content: url("@/assets/file-icons/file_type_commitizen.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_commitlint::before {
+  content: url("@/assets/file-icons/file_type_commitlint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_compass::before {
+  content: url("@/assets/file-icons/file_type_compass.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_composer::before {
+  content: url("@/assets/file-icons/file_type_composer.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_conan::before {
+  content: url("@/assets/file-icons/file_type_conan.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_conda::before {
+  content: url("@/assets/file-icons/file_type_conda.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_config::before {
+  content: url("@/assets/file-icons/file_type_config.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_confluence::before {
+  content: url("@/assets/file-icons/file_type_confluence.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_coveralls::before {
+  content: url("@/assets/file-icons/file_type_coveralls.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cpp::before {
+  content: url("@/assets/file-icons/file_type_cpp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cpp2::before {
+  content: url("@/assets/file-icons/file_type_cpp2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cpp3::before {
+  content: url("@/assets/file-icons/file_type_cpp3.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cppheader::before {
+  content: url("@/assets/file-icons/file_type_cppheader.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_crowdin::before {
+  content: url("@/assets/file-icons/file_type_crowdin.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_crystal::before {
+  content: url("@/assets/file-icons/file_type_crystal.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_csharp::before {
+  content: url("@/assets/file-icons/file_type_csharp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_csharp2::before {
+  content: url("@/assets/file-icons/file_type_csharp2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cspell::before {
+  content: url("@/assets/file-icons/file_type_cspell.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_csproj::before {
+  content: url("@/assets/file-icons/file_type_csproj.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_css::before {
+  content: url("@/assets/file-icons/file_type_css.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_csscomb::before {
+  content: url("@/assets/file-icons/file_type_csscomb.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_csslint::before {
+  content: url("@/assets/file-icons/file_type_csslint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cssmap::before {
+  content: url("@/assets/file-icons/file_type_cssmap.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cucumber::before {
+  content: url("@/assets/file-icons/file_type_cucumber.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cuda::before {
+  content: url("@/assets/file-icons/file_type_cuda.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cvs::before {
+  content: url("@/assets/file-icons/file_type_cvs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cypress::before {
+  content: url("@/assets/file-icons/file_type_cypress.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cypress_spec::before {
+  content: url("@/assets/file-icons/file_type_cypress_spec.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_cython::before {
+  content: url("@/assets/file-icons/file_type_cython.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dal::before {
+  content: url("@/assets/file-icons/file_type_dal.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_darcs::before {
+  content: url("@/assets/file-icons/file_type_darcs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dartlang::before {
+  content: url("@/assets/file-icons/file_type_dartlang.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dartlang_generated::before {
+  content: url("@/assets/file-icons/file_type_dartlang_generated.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dartlang_ignore::before {
+  content: url("@/assets/file-icons/file_type_dartlang_ignore.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_db::before {
+  content: url("@/assets/file-icons/file_type_db.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_delphi::before {
+  content: url("@/assets/file-icons/file_type_delphi.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_deno::before {
+  content: url("@/assets/file-icons/file_type_deno.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dependabot::before {
+  content: url("@/assets/file-icons/file_type_dependabot.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dependencies::before {
+  content: url("@/assets/file-icons/file_type_dependencies.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_devcontainer::before {
+  content: url("@/assets/file-icons/file_type_devcontainer.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dhall::before {
+  content: url("@/assets/file-icons/file_type_dhall.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_diff::before {
+  content: url("@/assets/file-icons/file_type_diff.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_django::before {
+  content: url("@/assets/file-icons/file_type_django.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dlang::before {
+  content: url("@/assets/file-icons/file_type_dlang.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_docker::before {
+  content: url("@/assets/file-icons/file_type_docker.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_docker2::before {
+  content: url("@/assets/file-icons/file_type_docker2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dockertest::before {
+  content: url("@/assets/file-icons/file_type_dockertest.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dockertest2::before {
+  content: url("@/assets/file-icons/file_type_dockertest2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_docpad::before {
+  content: url("@/assets/file-icons/file_type_docpad.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_docz::before {
+  content: url("@/assets/file-icons/file_type_docz.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dojo::before {
+  content: url("@/assets/file-icons/file_type_dojo.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_doppler::before {
+  content: url("@/assets/file-icons/file_type_doppler.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dotjs::before {
+  content: url("@/assets/file-icons/file_type_dotjs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_doxygen::before {
+  content: url("@/assets/file-icons/file_type_doxygen.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_drawio::before {
+  content: url("@/assets/file-icons/file_type_drawio.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_drone::before {
+  content: url("@/assets/file-icons/file_type_drone.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_drools::before {
+  content: url("@/assets/file-icons/file_type_drools.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dustjs::before {
+  content: url("@/assets/file-icons/file_type_dustjs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dvc::before {
+  content: url("@/assets/file-icons/file_type_dvc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_dylan::before {
+  content: url("@/assets/file-icons/file_type_dylan.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_earthly::before {
+  content: url("@/assets/file-icons/file_type_earthly.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_eas-metadata::before {
+  content: url("@/assets/file-icons/file_type_eas-metadata.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_edge::before {
+  content: url("@/assets/file-icons/file_type_edge.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_edge2::before {
+  content: url("@/assets/file-icons/file_type_edge2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_editorconfig::before {
+  content: url("@/assets/file-icons/file_type_editorconfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_eex::before {
+  content: url("@/assets/file-icons/file_type_eex.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ejs::before {
+  content: url("@/assets/file-icons/file_type_ejs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_elastic::before {
+  content: url("@/assets/file-icons/file_type_elastic.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_elasticbeanstalk::before {
+  content: url("@/assets/file-icons/file_type_elasticbeanstalk.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_elixir::before {
+  content: url("@/assets/file-icons/file_type_elixir.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_elm::before {
+  content: url("@/assets/file-icons/file_type_elm.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_elm2::before {
+  content: url("@/assets/file-icons/file_type_elm2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_emacs::before {
+  content: url("@/assets/file-icons/file_type_emacs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ember::before {
+  content: url("@/assets/file-icons/file_type_ember.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ensime::before {
+  content: url("@/assets/file-icons/file_type_ensime.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_eps::before {
+  content: url("@/assets/file-icons/file_type_eps.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_erb::before {
+  content: url("@/assets/file-icons/file_type_erb.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_erlang::before {
+  content: url("@/assets/file-icons/file_type_erlang.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_erlang2::before {
+  content: url("@/assets/file-icons/file_type_erlang2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_esbuild::before {
+  content: url("@/assets/file-icons/file_type_esbuild.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_eslint::before {
+  content: url("@/assets/file-icons/file_type_eslint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_eslint2::before {
+  content: url("@/assets/file-icons/file_type_eslint2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_excel::before {
+  content: url("@/assets/file-icons/file_type_excel.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_excel2::before {
+  content: url("@/assets/file-icons/file_type_excel2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_expo::before {
+  content: url("@/assets/file-icons/file_type_expo.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_falcon::before {
+  content: url("@/assets/file-icons/file_type_falcon.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fantasticon::before {
+  content: url("@/assets/file-icons/file_type_fantasticon.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fauna::before {
+  content: url("@/assets/file-icons/file_type_fauna.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_favicon::before {
+  content: url("@/assets/file-icons/file_type_favicon.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fbx::before {
+  content: url("@/assets/file-icons/file_type_fbx.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_firebase::before {
+  content: url("@/assets/file-icons/file_type_firebase.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_firebasehosting::before {
+  content: url("@/assets/file-icons/file_type_firebasehosting.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_firestore::before {
+  content: url("@/assets/file-icons/file_type_firestore.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fitbit::before {
+  content: url("@/assets/file-icons/file_type_fitbit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fla::before {
+  content: url("@/assets/file-icons/file_type_fla.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_flareact::before {
+  content: url("@/assets/file-icons/file_type_flareact.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_flash::before {
+  content: url("@/assets/file-icons/file_type_flash.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_floobits::before {
+  content: url("@/assets/file-icons/file_type_floobits.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_flow::before {
+  content: url("@/assets/file-icons/file_type_flow.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_flutter::before {
+  content: url("@/assets/file-icons/file_type_flutter.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_flutter_package::before {
+  content: url("@/assets/file-icons/file_type_flutter_package.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_font::before {
+  content: url("@/assets/file-icons/file_type_font.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_formkit::before {
+  content: url("@/assets/file-icons/file_type_formkit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fortran::before {
+  content: url("@/assets/file-icons/file_type_fortran.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fossa::before {
+  content: url("@/assets/file-icons/file_type_fossa.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fossil::before {
+  content: url("@/assets/file-icons/file_type_fossil.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_freemarker::before {
+  content: url("@/assets/file-icons/file_type_freemarker.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fsharp::before {
+  content: url("@/assets/file-icons/file_type_fsharp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fsharp2::before {
+  content: url("@/assets/file-icons/file_type_fsharp2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fsproj::before {
+  content: url("@/assets/file-icons/file_type_fsproj.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fthtml::before {
+  content: url("@/assets/file-icons/file_type_fthtml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_funding::before {
+  content: url("@/assets/file-icons/file_type_funding.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_fusebox::before {
+  content: url("@/assets/file-icons/file_type_fusebox.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_galen::before {
+  content: url("@/assets/file-icons/file_type_galen.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_galen2::before {
+  content: url("@/assets/file-icons/file_type_galen2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gamemaker::before {
+  content: url("@/assets/file-icons/file_type_gamemaker.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gamemaker2::before {
+  content: url("@/assets/file-icons/file_type_gamemaker2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gamemaker81::before {
+  content: url("@/assets/file-icons/file_type_gamemaker81.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gatsby::before {
+  content: url("@/assets/file-icons/file_type_gatsby.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gcloud::before {
+  content: url("@/assets/file-icons/file_type_gcloud.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gcode::before {
+  content: url("@/assets/file-icons/file_type_gcode.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_genstat::before {
+  content: url("@/assets/file-icons/file_type_genstat.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_git::before {
+  content: url("@/assets/file-icons/file_type_git.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_git2::before {
+  content: url("@/assets/file-icons/file_type_git2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gitlab::before {
+  content: url("@/assets/file-icons/file_type_gitlab.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gitpod::before {
+  content: url("@/assets/file-icons/file_type_gitpod.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_glide::before {
+  content: url("@/assets/file-icons/file_type_glide.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_glitter::before {
+  content: url("@/assets/file-icons/file_type_glitter.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_glsl::before {
+  content: url("@/assets/file-icons/file_type_glsl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_glyphs::before {
+  content: url("@/assets/file-icons/file_type_glyphs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gnuplot::before {
+  content: url("@/assets/file-icons/file_type_gnuplot.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_go::before {
+  content: url("@/assets/file-icons/file_type_go.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_go_aqua::before {
+  content: url("@/assets/file-icons/file_type_go_aqua.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_go_black::before {
+  content: url("@/assets/file-icons/file_type_go_black.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_go_fuchsia::before {
+  content: url("@/assets/file-icons/file_type_go_fuchsia.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_go_gopher::before {
+  content: url("@/assets/file-icons/file_type_go_gopher.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_go_lightblue::before {
+  content: url("@/assets/file-icons/file_type_go_lightblue.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_go_package::before {
+  content: url("@/assets/file-icons/file_type_go_package.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_go_white::before {
+  content: url("@/assets/file-icons/file_type_go_white.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_go_work::before {
+  content: url("@/assets/file-icons/file_type_go_work.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_go_yellow::before {
+  content: url("@/assets/file-icons/file_type_go_yellow.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_goctl::before {
+  content: url("@/assets/file-icons/file_type_goctl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_godot::before {
+  content: url("@/assets/file-icons/file_type_godot.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gradle::before {
+  content: url("@/assets/file-icons/file_type_gradle.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gradle2::before {
+  content: url("@/assets/file-icons/file_type_gradle2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_graphql::before {
+  content: url("@/assets/file-icons/file_type_graphql.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_graphql_config::before {
+  content: url("@/assets/file-icons/file_type_graphql_config.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_graphviz::before {
+  content: url("@/assets/file-icons/file_type_graphviz.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_greenkeeper::before {
+  content: url("@/assets/file-icons/file_type_greenkeeper.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gridsome::before {
+  content: url("@/assets/file-icons/file_type_gridsome.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_groovy::before {
+  content: url("@/assets/file-icons/file_type_groovy.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_groovy2::before {
+  content: url("@/assets/file-icons/file_type_groovy2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_grunt::before {
+  content: url("@/assets/file-icons/file_type_grunt.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_gulp::before {
+  content: url("@/assets/file-icons/file_type_gulp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_haml::before {
+  content: url("@/assets/file-icons/file_type_haml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_handlebars::before {
+  content: url("@/assets/file-icons/file_type_handlebars.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_handlebars2::before {
+  content: url("@/assets/file-icons/file_type_handlebars2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_harbour::before {
+  content: url("@/assets/file-icons/file_type_harbour.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_hardhat::before {
+  content: url("@/assets/file-icons/file_type_hardhat.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_haskell::before {
+  content: url("@/assets/file-icons/file_type_haskell.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_haskell2::before {
+  content: url("@/assets/file-icons/file_type_haskell2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_haxe::before {
+  content: url("@/assets/file-icons/file_type_haxe.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_haxecheckstyle::before {
+  content: url("@/assets/file-icons/file_type_haxecheckstyle.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_haxedevelop::before {
+  content: url("@/assets/file-icons/file_type_haxedevelop.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_helix::before {
+  content: url("@/assets/file-icons/file_type_helix.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_helm::before {
+  content: url("@/assets/file-icons/file_type_helm.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_hjson::before {
+  content: url("@/assets/file-icons/file_type_hjson.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_hlsl::before {
+  content: url("@/assets/file-icons/file_type_hlsl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_homeassistant::before {
+  content: url("@/assets/file-icons/file_type_homeassistant.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_horusec::before {
+  content: url("@/assets/file-icons/file_type_horusec.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_host::before {
+  content: url("@/assets/file-icons/file_type_host.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_html::before {
+  content: url("@/assets/file-icons/file_type_html.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_htmlhint::before {
+  content: url("@/assets/file-icons/file_type_htmlhint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_http::before {
+  content: url("@/assets/file-icons/file_type_http.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_hunspell::before {
+  content: url("@/assets/file-icons/file_type_hunspell.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_husky::before {
+  content: url("@/assets/file-icons/file_type_husky.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_hy::before {
+  content: url("@/assets/file-icons/file_type_hy.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_hygen::before {
+  content: url("@/assets/file-icons/file_type_hygen.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_hypr::before {
+  content: url("@/assets/file-icons/file_type_hypr.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_icl::before {
+  content: url("@/assets/file-icons/file_type_icl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_idris::before {
+  content: url("@/assets/file-icons/file_type_idris.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_idrisbin::before {
+  content: url("@/assets/file-icons/file_type_idrisbin.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_idrispkg::before {
+  content: url("@/assets/file-icons/file_type_idrispkg.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_image::before {
+  content: url("@/assets/file-icons/file_type_image.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_imba::before {
+  content: url("@/assets/file-icons/file_type_imba.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_inc::before {
+  content: url("@/assets/file-icons/file_type_inc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_infopath::before {
+  content: url("@/assets/file-icons/file_type_infopath.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_informix::before {
+  content: url("@/assets/file-icons/file_type_informix.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ini::before {
+  content: url("@/assets/file-icons/file_type_ini.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ink::before {
+  content: url("@/assets/file-icons/file_type_ink.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_innosetup::before {
+  content: url("@/assets/file-icons/file_type_innosetup.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_io::before {
+  content: url("@/assets/file-icons/file_type_io.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_iodine::before {
+  content: url("@/assets/file-icons/file_type_iodine.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ionic::before {
+  content: url("@/assets/file-icons/file_type_ionic.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jake::before {
+  content: url("@/assets/file-icons/file_type_jake.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_janet::before {
+  content: url("@/assets/file-icons/file_type_janet.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jar::before {
+  content: url("@/assets/file-icons/file_type_jar.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jasmine::before {
+  content: url("@/assets/file-icons/file_type_jasmine.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_java::before {
+  content: url("@/assets/file-icons/file_type_java.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jbuilder::before {
+  content: url("@/assets/file-icons/file_type_jbuilder.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jekyll::before {
+  content: url("@/assets/file-icons/file_type_jekyll.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jenkins::before {
+  content: url("@/assets/file-icons/file_type_jenkins.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jest::before {
+  content: url("@/assets/file-icons/file_type_jest.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jest_snapshot::before {
+  content: url("@/assets/file-icons/file_type_jest_snapshot.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jinja::before {
+  content: url("@/assets/file-icons/file_type_jinja.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jpm::before {
+  content: url("@/assets/file-icons/file_type_jpm.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_js::before {
+  content: url("@/assets/file-icons/file_type_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_js_official::before {
+  content: url("@/assets/file-icons/file_type_js_official.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jsbeautify::before {
+  content: url("@/assets/file-icons/file_type_jsbeautify.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jsconfig::before {
+  content: url("@/assets/file-icons/file_type_jsconfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jscpd::before {
+  content: url("@/assets/file-icons/file_type_jscpd.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jshint::before {
+  content: url("@/assets/file-icons/file_type_jshint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jsmap::before {
+  content: url("@/assets/file-icons/file_type_jsmap.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_json::before {
+  content: url("@/assets/file-icons/file_type_json.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_json2::before {
+  content: url("@/assets/file-icons/file_type_json2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_json5::before {
+  content: url("@/assets/file-icons/file_type_json5.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_json_official::before {
+  content: url("@/assets/file-icons/file_type_json_official.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jsonld::before {
+  content: url("@/assets/file-icons/file_type_jsonld.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jsonnet::before {
+  content: url("@/assets/file-icons/file_type_jsonnet.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jsp::before {
+  content: url("@/assets/file-icons/file_type_jsp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jss::before {
+  content: url("@/assets/file-icons/file_type_jss.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_julia::before {
+  content: url("@/assets/file-icons/file_type_julia.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_julia2::before {
+  content: url("@/assets/file-icons/file_type_julia2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_jupyter::before {
+  content: url("@/assets/file-icons/file_type_jupyter.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_k::before {
+  content: url("@/assets/file-icons/file_type_k.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_karma::before {
+  content: url("@/assets/file-icons/file_type_karma.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_key::before {
+  content: url("@/assets/file-icons/file_type_key.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_kitchenci::before {
+  content: url("@/assets/file-icons/file_type_kitchenci.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_kite::before {
+  content: url("@/assets/file-icons/file_type_kite.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_kivy::before {
+  content: url("@/assets/file-icons/file_type_kivy.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_kos::before {
+  content: url("@/assets/file-icons/file_type_kos.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_kotlin::before {
+  content: url("@/assets/file-icons/file_type_kotlin.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_kusto::before {
+  content: url("@/assets/file-icons/file_type_kusto.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_latino::before {
+  content: url("@/assets/file-icons/file_type_latino.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_layout::before {
+  content: url("@/assets/file-icons/file_type_layout.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lerna::before {
+  content: url("@/assets/file-icons/file_type_lerna.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_less::before {
+  content: url("@/assets/file-icons/file_type_less.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lex::before {
+  content: url("@/assets/file-icons/file_type_lex.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_license::before {
+  content: url("@/assets/file-icons/file_type_license.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_licensebat::before {
+  content: url("@/assets/file-icons/file_type_licensebat.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_actionscript2::before {
+  content: url("@/assets/file-icons/file_type_light_actionscript2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_ada::before {
+  content: url("@/assets/file-icons/file_type_light_ada.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_apl::before {
+  content: url("@/assets/file-icons/file_type_light_apl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_babel::before {
+  content: url("@/assets/file-icons/file_type_light_babel.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_babel2::before {
+  content: url("@/assets/file-icons/file_type_light_babel2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_cabal::before {
+  content: url("@/assets/file-icons/file_type_light_cabal.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_circleci::before {
+  content: url("@/assets/file-icons/file_type_light_circleci.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_cloudfoundry::before {
+  content: url("@/assets/file-icons/file_type_light_cloudfoundry.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_codacy::before {
+  content: url("@/assets/file-icons/file_type_light_codacy.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_codeclimate::before {
+  content: url("@/assets/file-icons/file_type_light_codeclimate.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_codeowners::before {
+  content: url("@/assets/file-icons/file_type_light_codeowners.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_config::before {
+  content: url("@/assets/file-icons/file_type_light_config.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_crystal::before {
+  content: url("@/assets/file-icons/file_type_light_crystal.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_cypress::before {
+  content: url("@/assets/file-icons/file_type_light_cypress.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_cypress_spec::before {
+  content: url("@/assets/file-icons/file_type_light_cypress_spec.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_db::before {
+  content: url("@/assets/file-icons/file_type_light_db.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_deno::before {
+  content: url("@/assets/file-icons/file_type_light_deno.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_dhall::before {
+  content: url("@/assets/file-icons/file_type_light_dhall.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_docpad::before {
+  content: url("@/assets/file-icons/file_type_light_docpad.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_drone::before {
+  content: url("@/assets/file-icons/file_type_light_drone.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_eas-metadata::before {
+  content: url("@/assets/file-icons/file_type_light_eas-metadata.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_expo::before {
+  content: url("@/assets/file-icons/file_type_light_expo.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_firebasehosting::before {
+  content: url("@/assets/file-icons/file_type_light_firebasehosting.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_fla::before {
+  content: url("@/assets/file-icons/file_type_light_fla.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_font::before {
+  content: url("@/assets/file-icons/file_type_light_font.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_gamemaker2::before {
+  content: url("@/assets/file-icons/file_type_light_gamemaker2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_gradle::before {
+  content: url("@/assets/file-icons/file_type_light_gradle.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_hjson::before {
+  content: url("@/assets/file-icons/file_type_light_hjson.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_ini::before {
+  content: url("@/assets/file-icons/file_type_light_ini.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_io::before {
+  content: url("@/assets/file-icons/file_type_light_io.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_js::before {
+  content: url("@/assets/file-icons/file_type_light_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_jsconfig::before {
+  content: url("@/assets/file-icons/file_type_light_jsconfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_jsmap::before {
+  content: url("@/assets/file-icons/file_type_light_jsmap.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_json::before {
+  content: url("@/assets/file-icons/file_type_light_json.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_json5::before {
+  content: url("@/assets/file-icons/file_type_light_json5.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_jsonld::before {
+  content: url("@/assets/file-icons/file_type_light_jsonld.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_kite::before {
+  content: url("@/assets/file-icons/file_type_light_kite.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_lerna::before {
+  content: url("@/assets/file-icons/file_type_light_lerna.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_mdx::before {
+  content: url("@/assets/file-icons/file_type_light_mdx.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_mlang::before {
+  content: url("@/assets/file-icons/file_type_light_mlang.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_mustache::before {
+  content: url("@/assets/file-icons/file_type_light_mustache.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_next::before {
+  content: url("@/assets/file-icons/file_type_light_next.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_nim::before {
+  content: url("@/assets/file-icons/file_type_light_nim.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_nx::before {
+  content: url("@/assets/file-icons/file_type_light_nx.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_objidconfig::before {
+  content: url("@/assets/file-icons/file_type_light_objidconfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_openHAB::before {
+  content: url("@/assets/file-icons/file_type_light_openHAB.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_pcl::before {
+  content: url("@/assets/file-icons/file_type_light_pcl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_pnpm::before {
+  content: url("@/assets/file-icons/file_type_light_pnpm.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_prettier::before {
+  content: url("@/assets/file-icons/file_type_light_prettier.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_prisma::before {
+  content: url("@/assets/file-icons/file_type_light_prisma.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_purescript::before {
+  content: url("@/assets/file-icons/file_type_light_purescript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_quasar::before {
+  content: url("@/assets/file-icons/file_type_light_quasar.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_razzle::before {
+  content: url("@/assets/file-icons/file_type_light_razzle.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_rehype::before {
+  content: url("@/assets/file-icons/file_type_light_rehype.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_remark::before {
+  content: url("@/assets/file-icons/file_type_light_remark.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_replit::before {
+  content: url("@/assets/file-icons/file_type_light_replit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_retext::before {
+  content: url("@/assets/file-icons/file_type_light_retext.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_rubocop::before {
+  content: url("@/assets/file-icons/file_type_light_rubocop.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_rust::before {
+  content: url("@/assets/file-icons/file_type_light_rust.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_rust_toolchain::before {
+  content: url("@/assets/file-icons/file_type_light_rust_toolchain.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_shaderlab::before {
+  content: url("@/assets/file-icons/file_type_light_shaderlab.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_solidity::before {
+  content: url("@/assets/file-icons/file_type_light_solidity.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_stylelint::before {
+  content: url("@/assets/file-icons/file_type_light_stylelint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_stylus::before {
+  content: url("@/assets/file-icons/file_type_light_stylus.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_symfony::before {
+  content: url("@/assets/file-icons/file_type_light_symfony.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_systemd::before {
+  content: url("@/assets/file-icons/file_type_light_systemd.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_systemverilog::before {
+  content: url("@/assets/file-icons/file_type_light_systemverilog.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_testcafe::before {
+  content: url("@/assets/file-icons/file_type_light_testcafe.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_testjs::before {
+  content: url("@/assets/file-icons/file_type_light_testjs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_tex::before {
+  content: url("@/assets/file-icons/file_type_light_tex.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_todo::before {
+  content: url("@/assets/file-icons/file_type_light_todo.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_toit::before {
+  content: url("@/assets/file-icons/file_type_light_toit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_toml::before {
+  content: url("@/assets/file-icons/file_type_light_toml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_turbo::before {
+  content: url("@/assets/file-icons/file_type_light_turbo.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_unibeautify::before {
+  content: url("@/assets/file-icons/file_type_light_unibeautify.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_vash::before {
+  content: url("@/assets/file-icons/file_type_light_vash.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_vsix::before {
+  content: url("@/assets/file-icons/file_type_light_vsix.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_vsixmanifest::before {
+  content: url("@/assets/file-icons/file_type_light_vsixmanifest.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_xfl::before {
+  content: url("@/assets/file-icons/file_type_light_xfl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_yaml::before {
+  content: url("@/assets/file-icons/file_type_light_yaml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_light_zeit::before {
+  content: url("@/assets/file-icons/file_type_light_zeit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lighthouse::before {
+  content: url("@/assets/file-icons/file_type_lighthouse.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lilypond::before {
+  content: url("@/assets/file-icons/file_type_lilypond.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lime::before {
+  content: url("@/assets/file-icons/file_type_lime.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lintstagedrc::before {
+  content: url("@/assets/file-icons/file_type_lintstagedrc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_liquid::before {
+  content: url("@/assets/file-icons/file_type_liquid.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lisp::before {
+  content: url("@/assets/file-icons/file_type_lisp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_livescript::before {
+  content: url("@/assets/file-icons/file_type_livescript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lnk::before {
+  content: url("@/assets/file-icons/file_type_lnk.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_locale::before {
+  content: url("@/assets/file-icons/file_type_locale.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_log::before {
+  content: url("@/assets/file-icons/file_type_log.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lolcode::before {
+  content: url("@/assets/file-icons/file_type_lolcode.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lsl::before {
+  content: url("@/assets/file-icons/file_type_lsl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lua::before {
+  content: url("@/assets/file-icons/file_type_lua.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_luau::before {
+  content: url("@/assets/file-icons/file_type_luau.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_lync::before {
+  content: url("@/assets/file-icons/file_type_lync.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_makefile::before {
+  content: url("@/assets/file-icons/file_type_makefile.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_manifest::before {
+  content: url("@/assets/file-icons/file_type_manifest.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_manifest_bak::before {
+  content: url("@/assets/file-icons/file_type_manifest_bak.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_manifest_skip::before {
+  content: url("@/assets/file-icons/file_type_manifest_skip.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_map::before {
+  content: url("@/assets/file-icons/file_type_map.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mariadb::before {
+  content: url("@/assets/file-icons/file_type_mariadb.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_markdown::before {
+  content: url("@/assets/file-icons/file_type_markdown.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_markdownlint::before {
+  content: url("@/assets/file-icons/file_type_markdownlint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_markdownlint_ignore::before {
+  content: url("@/assets/file-icons/file_type_markdownlint_ignore.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_marko::before {
+  content: url("@/assets/file-icons/file_type_marko.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_markojs::before {
+  content: url("@/assets/file-icons/file_type_markojs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_matlab::before {
+  content: url("@/assets/file-icons/file_type_matlab.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_maven::before {
+  content: url("@/assets/file-icons/file_type_maven.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_maxscript::before {
+  content: url("@/assets/file-icons/file_type_maxscript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_maya::before {
+  content: url("@/assets/file-icons/file_type_maya.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mdx::before {
+  content: url("@/assets/file-icons/file_type_mdx.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mediawiki::before {
+  content: url("@/assets/file-icons/file_type_mediawiki.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mercurial::before {
+  content: url("@/assets/file-icons/file_type_mercurial.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_meson::before {
+  content: url("@/assets/file-icons/file_type_meson.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_meteor::before {
+  content: url("@/assets/file-icons/file_type_meteor.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mjml::before {
+  content: url("@/assets/file-icons/file_type_mjml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mlang::before {
+  content: url("@/assets/file-icons/file_type_mlang.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mocha::before {
+  content: url("@/assets/file-icons/file_type_mocha.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_modernizr::before {
+  content: url("@/assets/file-icons/file_type_modernizr.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mojolicious::before {
+  content: url("@/assets/file-icons/file_type_mojolicious.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_moleculer::before {
+  content: url("@/assets/file-icons/file_type_moleculer.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mongo::before {
+  content: url("@/assets/file-icons/file_type_mongo.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_monotone::before {
+  content: url("@/assets/file-icons/file_type_monotone.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mson::before {
+  content: url("@/assets/file-icons/file_type_mson.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mustache::before {
+  content: url("@/assets/file-icons/file_type_mustache.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_mysql::before {
+  content: url("@/assets/file-icons/file_type_mysql.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ndst::before {
+  content: url("@/assets/file-icons/file_type_ndst.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nearly::before {
+  content: url("@/assets/file-icons/file_type_nearly.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_adapter_js::before {
+  content: url("@/assets/file-icons/file_type_nest_adapter_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_adapter_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_adapter_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_controller_js::before {
+  content: url("@/assets/file-icons/file_type_nest_controller_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_controller_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_controller_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_decorator_js::before {
+  content: url("@/assets/file-icons/file_type_nest_decorator_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_decorator_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_decorator_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_filter_js::before {
+  content: url("@/assets/file-icons/file_type_nest_filter_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_filter_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_filter_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_gateway_js::before {
+  content: url("@/assets/file-icons/file_type_nest_gateway_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_gateway_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_gateway_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_guard_js::before {
+  content: url("@/assets/file-icons/file_type_nest_guard_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_guard_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_guard_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_interceptor_js::before {
+  content: url("@/assets/file-icons/file_type_nest_interceptor_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_interceptor_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_interceptor_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_middleware_js::before {
+  content: url("@/assets/file-icons/file_type_nest_middleware_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_middleware_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_middleware_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_module_js::before {
+  content: url("@/assets/file-icons/file_type_nest_module_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_module_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_module_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_pipe_js::before {
+  content: url("@/assets/file-icons/file_type_nest_pipe_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_pipe_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_pipe_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_service_js::before {
+  content: url("@/assets/file-icons/file_type_nest_service_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nest_service_ts::before {
+  content: url("@/assets/file-icons/file_type_nest_service_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nestjs::before {
+  content: url("@/assets/file-icons/file_type_nestjs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_netlify::before {
+  content: url("@/assets/file-icons/file_type_netlify.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_next::before {
+  content: url("@/assets/file-icons/file_type_next.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_component_css::before {
+  content: url("@/assets/file-icons/file_type_ng_component_css.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_component_dart::before {
+  content: url("@/assets/file-icons/file_type_ng_component_dart.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_component_html::before {
+  content: url("@/assets/file-icons/file_type_ng_component_html.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_component_js::before {
+  content: url("@/assets/file-icons/file_type_ng_component_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_component_js2::before {
+  content: url("@/assets/file-icons/file_type_ng_component_js2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_component_less::before {
+  content: url("@/assets/file-icons/file_type_ng_component_less.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_component_sass::before {
+  content: url("@/assets/file-icons/file_type_ng_component_sass.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_component_scss::before {
+  content: url("@/assets/file-icons/file_type_ng_component_scss.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_component_ts::before {
+  content: url("@/assets/file-icons/file_type_ng_component_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_component_ts2::before {
+  content: url("@/assets/file-icons/file_type_ng_component_ts2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_controller_js::before {
+  content: url("@/assets/file-icons/file_type_ng_controller_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_controller_ts::before {
+  content: url("@/assets/file-icons/file_type_ng_controller_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_directive_dart::before {
+  content: url("@/assets/file-icons/file_type_ng_directive_dart.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_directive_js::before {
+  content: url("@/assets/file-icons/file_type_ng_directive_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_directive_js2::before {
+  content: url("@/assets/file-icons/file_type_ng_directive_js2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_directive_ts::before {
+  content: url("@/assets/file-icons/file_type_ng_directive_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_directive_ts2::before {
+  content: url("@/assets/file-icons/file_type_ng_directive_ts2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_guard_dart::before {
+  content: url("@/assets/file-icons/file_type_ng_guard_dart.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_guard_js::before {
+  content: url("@/assets/file-icons/file_type_ng_guard_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_guard_ts::before {
+  content: url("@/assets/file-icons/file_type_ng_guard_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_interceptor_dart::before {
+  content: url("@/assets/file-icons/file_type_ng_interceptor_dart.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_interceptor_js::before {
+  content: url("@/assets/file-icons/file_type_ng_interceptor_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_interceptor_ts::before {
+  content: url("@/assets/file-icons/file_type_ng_interceptor_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_module_dart::before {
+  content: url("@/assets/file-icons/file_type_ng_module_dart.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_module_js::before {
+  content: url("@/assets/file-icons/file_type_ng_module_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_module_js2::before {
+  content: url("@/assets/file-icons/file_type_ng_module_js2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_module_ts::before {
+  content: url("@/assets/file-icons/file_type_ng_module_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_module_ts2::before {
+  content: url("@/assets/file-icons/file_type_ng_module_ts2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_pipe_dart::before {
+  content: url("@/assets/file-icons/file_type_ng_pipe_dart.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_pipe_js::before {
+  content: url("@/assets/file-icons/file_type_ng_pipe_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_pipe_js2::before {
+  content: url("@/assets/file-icons/file_type_ng_pipe_js2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_pipe_ts::before {
+  content: url("@/assets/file-icons/file_type_ng_pipe_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_pipe_ts2::before {
+  content: url("@/assets/file-icons/file_type_ng_pipe_ts2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_routing_dart::before {
+  content: url("@/assets/file-icons/file_type_ng_routing_dart.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_routing_js::before {
+  content: url("@/assets/file-icons/file_type_ng_routing_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_routing_js2::before {
+  content: url("@/assets/file-icons/file_type_ng_routing_js2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_routing_ts::before {
+  content: url("@/assets/file-icons/file_type_ng_routing_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_routing_ts2::before {
+  content: url("@/assets/file-icons/file_type_ng_routing_ts2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_service_dart::before {
+  content: url("@/assets/file-icons/file_type_ng_service_dart.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_service_js::before {
+  content: url("@/assets/file-icons/file_type_ng_service_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_service_js2::before {
+  content: url("@/assets/file-icons/file_type_ng_service_js2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_service_ts::before {
+  content: url("@/assets/file-icons/file_type_ng_service_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_service_ts2::before {
+  content: url("@/assets/file-icons/file_type_ng_service_ts2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_smart_component_dart::before {
+  content: url("@/assets/file-icons/file_type_ng_smart_component_dart.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_smart_component_js::before {
+  content: url("@/assets/file-icons/file_type_ng_smart_component_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_smart_component_js2::before {
+  content: url("@/assets/file-icons/file_type_ng_smart_component_js2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_smart_component_ts::before {
+  content: url("@/assets/file-icons/file_type_ng_smart_component_ts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_smart_component_ts2::before {
+  content: url("@/assets/file-icons/file_type_ng_smart_component_ts2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ng_tailwind::before {
+  content: url("@/assets/file-icons/file_type_ng_tailwind.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nginx::before {
+  content: url("@/assets/file-icons/file_type_nginx.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nim::before {
+  content: url("@/assets/file-icons/file_type_nim.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nimble::before {
+  content: url("@/assets/file-icons/file_type_nimble.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ninja::before {
+  content: url("@/assets/file-icons/file_type_ninja.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nix::before {
+  content: url("@/assets/file-icons/file_type_nix.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_njsproj::before {
+  content: url("@/assets/file-icons/file_type_njsproj.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_noc::before {
+  content: url("@/assets/file-icons/file_type_noc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_node::before {
+  content: url("@/assets/file-icons/file_type_node.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_node2::before {
+  content: url("@/assets/file-icons/file_type_node2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nodemon::before {
+  content: url("@/assets/file-icons/file_type_nodemon.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_npm::before {
+  content: url("@/assets/file-icons/file_type_npm.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nsi::before {
+  content: url("@/assets/file-icons/file_type_nsi.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nsri-integrity::before {
+  content: url("@/assets/file-icons/file_type_nsri-integrity.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nsri::before {
+  content: url("@/assets/file-icons/file_type_nsri.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nuget::before {
+  content: url("@/assets/file-icons/file_type_nuget.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_numpy::before {
+  content: url("@/assets/file-icons/file_type_numpy.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nunjucks::before {
+  content: url("@/assets/file-icons/file_type_nunjucks.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nuxt::before {
+  content: url("@/assets/file-icons/file_type_nuxt.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nx::before {
+  content: url("@/assets/file-icons/file_type_nx.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_nyc::before {
+  content: url("@/assets/file-icons/file_type_nyc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_objectivec::before {
+  content: url("@/assets/file-icons/file_type_objectivec.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_objectivecpp::before {
+  content: url("@/assets/file-icons/file_type_objectivecpp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_objidconfig::before {
+  content: url("@/assets/file-icons/file_type_objidconfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ocaml::before {
+  content: url("@/assets/file-icons/file_type_ocaml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ogone::before {
+  content: url("@/assets/file-icons/file_type_ogone.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_onenote::before {
+  content: url("@/assets/file-icons/file_type_onenote.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_openHAB::before {
+  content: url("@/assets/file-icons/file_type_openHAB.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_opencl::before {
+  content: url("@/assets/file-icons/file_type_opencl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_openscad::before {
+  content: url("@/assets/file-icons/file_type_openscad.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_org::before {
+  content: url("@/assets/file-icons/file_type_org.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_outlook::before {
+  content: url("@/assets/file-icons/file_type_outlook.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ovpn::before {
+  content: url("@/assets/file-icons/file_type_ovpn.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_package::before {
+  content: url("@/assets/file-icons/file_type_package.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_paket::before {
+  content: url("@/assets/file-icons/file_type_paket.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_patch::before {
+  content: url("@/assets/file-icons/file_type_patch.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pcl::before {
+  content: url("@/assets/file-icons/file_type_pcl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pddl::before {
+  content: url("@/assets/file-icons/file_type_pddl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pddl_happenings::before {
+  content: url("@/assets/file-icons/file_type_pddl_happenings.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pddl_plan::before {
+  content: url("@/assets/file-icons/file_type_pddl_plan.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pdf::before {
+  content: url("@/assets/file-icons/file_type_pdf.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pdf2::before {
+  content: url("@/assets/file-icons/file_type_pdf2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_peeky::before {
+  content: url("@/assets/file-icons/file_type_peeky.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_perl::before {
+  content: url("@/assets/file-icons/file_type_perl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_perl2::before {
+  content: url("@/assets/file-icons/file_type_perl2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_perl6::before {
+  content: url("@/assets/file-icons/file_type_perl6.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pgsql::before {
+  content: url("@/assets/file-icons/file_type_pgsql.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_photoshop::before {
+  content: url("@/assets/file-icons/file_type_photoshop.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_photoshop2::before {
+  content: url("@/assets/file-icons/file_type_photoshop2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_php::before {
+  content: url("@/assets/file-icons/file_type_php.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_php2::before {
+  content: url("@/assets/file-icons/file_type_php2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_php3::before {
+  content: url("@/assets/file-icons/file_type_php3.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_phpcsfixer::before {
+  content: url("@/assets/file-icons/file_type_phpcsfixer.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_phpstan::before {
+  content: url("@/assets/file-icons/file_type_phpstan.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_phpunit::before {
+  content: url("@/assets/file-icons/file_type_phpunit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_phraseapp::before {
+  content: url("@/assets/file-icons/file_type_phraseapp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pine::before {
+  content: url("@/assets/file-icons/file_type_pine.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pip::before {
+  content: url("@/assets/file-icons/file_type_pip.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pipeline::before {
+  content: url("@/assets/file-icons/file_type_pipeline.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_plantuml::before {
+  content: url("@/assets/file-icons/file_type_plantuml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_platformio::before {
+  content: url("@/assets/file-icons/file_type_platformio.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_playwright::before {
+  content: url("@/assets/file-icons/file_type_playwright.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_plsql::before {
+  content: url("@/assets/file-icons/file_type_plsql.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_plsql_package::before {
+  content: url("@/assets/file-icons/file_type_plsql_package.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_plsql_package_body::before {
+  content: url("@/assets/file-icons/file_type_plsql_package_body.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_plsql_package_header::before {
+  content: url("@/assets/file-icons/file_type_plsql_package_header.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_plsql_package_spec::before {
+  content: url("@/assets/file-icons/file_type_plsql_package_spec.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pm2::before {
+  content: url("@/assets/file-icons/file_type_pm2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pnpm::before {
+  content: url("@/assets/file-icons/file_type_pnpm.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_poedit::before {
+  content: url("@/assets/file-icons/file_type_poedit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_polymer::before {
+  content: url("@/assets/file-icons/file_type_polymer.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pony::before {
+  content: url("@/assets/file-icons/file_type_pony.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_postcss::before {
+  content: url("@/assets/file-icons/file_type_postcss.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_postcssconfig::before {
+  content: url("@/assets/file-icons/file_type_postcssconfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_powerpoint::before {
+  content: url("@/assets/file-icons/file_type_powerpoint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_powerpoint2::before {
+  content: url("@/assets/file-icons/file_type_powerpoint2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_powershell::before {
+  content: url("@/assets/file-icons/file_type_powershell.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_powershell2::before {
+  content: url("@/assets/file-icons/file_type_powershell2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_powershell_format::before {
+  content: url("@/assets/file-icons/file_type_powershell_format.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_powershell_psd::before {
+  content: url("@/assets/file-icons/file_type_powershell_psd.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_powershell_psd2::before {
+  content: url("@/assets/file-icons/file_type_powershell_psd2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_powershell_psm::before {
+  content: url("@/assets/file-icons/file_type_powershell_psm.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_powershell_psm2::before {
+  content: url("@/assets/file-icons/file_type_powershell_psm2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_powershell_types::before {
+  content: url("@/assets/file-icons/file_type_powershell_types.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_preact::before {
+  content: url("@/assets/file-icons/file_type_preact.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_precommit::before {
+  content: url("@/assets/file-icons/file_type_precommit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_prettier::before {
+  content: url("@/assets/file-icons/file_type_prettier.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_prisma::before {
+  content: url("@/assets/file-icons/file_type_prisma.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_processinglang::before {
+  content: url("@/assets/file-icons/file_type_processinglang.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_procfile::before {
+  content: url("@/assets/file-icons/file_type_procfile.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_progress::before {
+  content: url("@/assets/file-icons/file_type_progress.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_prolog::before {
+  content: url("@/assets/file-icons/file_type_prolog.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_prometheus::before {
+  content: url("@/assets/file-icons/file_type_prometheus.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_protobuf::before {
+  content: url("@/assets/file-icons/file_type_protobuf.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_protractor::before {
+  content: url("@/assets/file-icons/file_type_protractor.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_publisher::before {
+  content: url("@/assets/file-icons/file_type_publisher.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pug::before {
+  content: url("@/assets/file-icons/file_type_pug.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pulumi::before {
+  content: url("@/assets/file-icons/file_type_pulumi.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_puppet::before {
+  content: url("@/assets/file-icons/file_type_puppet.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_purescript::before {
+  content: url("@/assets/file-icons/file_type_purescript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pyret::before {
+  content: url("@/assets/file-icons/file_type_pyret.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_python::before {
+  content: url("@/assets/file-icons/file_type_python.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pytyped::before {
+  content: url("@/assets/file-icons/file_type_pytyped.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_pyup::before {
+  content: url("@/assets/file-icons/file_type_pyup.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_q::before {
+  content: url("@/assets/file-icons/file_type_q.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_qbs::before {
+  content: url("@/assets/file-icons/file_type_qbs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_qlikview::before {
+  content: url("@/assets/file-icons/file_type_qlikview.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_qml::before {
+  content: url("@/assets/file-icons/file_type_qml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_qmldir::before {
+  content: url("@/assets/file-icons/file_type_qmldir.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_qsharp::before {
+  content: url("@/assets/file-icons/file_type_qsharp.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_quasar::before {
+  content: url("@/assets/file-icons/file_type_quasar.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_r::before {
+  content: url("@/assets/file-icons/file_type_r.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_racket::before {
+  content: url("@/assets/file-icons/file_type_racket.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rails::before {
+  content: url("@/assets/file-icons/file_type_rails.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rake::before {
+  content: url("@/assets/file-icons/file_type_rake.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_raml::before {
+  content: url("@/assets/file-icons/file_type_raml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_razor::before {
+  content: url("@/assets/file-icons/file_type_razor.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_razzle::before {
+  content: url("@/assets/file-icons/file_type_razzle.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_reactjs::before {
+  content: url("@/assets/file-icons/file_type_reactjs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_reacttemplate::before {
+  content: url("@/assets/file-icons/file_type_reacttemplate.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_reactts::before {
+  content: url("@/assets/file-icons/file_type_reactts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_reason::before {
+  content: url("@/assets/file-icons/file_type_reason.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_red::before {
+  content: url("@/assets/file-icons/file_type_red.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_registry::before {
+  content: url("@/assets/file-icons/file_type_registry.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rego::before {
+  content: url("@/assets/file-icons/file_type_rego.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rehype::before {
+  content: url("@/assets/file-icons/file_type_rehype.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_remark::before {
+  content: url("@/assets/file-icons/file_type_remark.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_renovate::before {
+  content: url("@/assets/file-icons/file_type_renovate.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_replit::before {
+  content: url("@/assets/file-icons/file_type_replit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rescript::before {
+  content: url("@/assets/file-icons/file_type_rescript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rest::before {
+  content: url("@/assets/file-icons/file_type_rest.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_retext::before {
+  content: url("@/assets/file-icons/file_type_retext.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rexx::before {
+  content: url("@/assets/file-icons/file_type_rexx.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_riot::before {
+  content: url("@/assets/file-icons/file_type_riot.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rmd::before {
+  content: url("@/assets/file-icons/file_type_rmd.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_robotframework::before {
+  content: url("@/assets/file-icons/file_type_robotframework.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_robots::before {
+  content: url("@/assets/file-icons/file_type_robots.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rollup::before {
+  content: url("@/assets/file-icons/file_type_rollup.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ron::before {
+  content: url("@/assets/file-icons/file_type_ron.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rproj::before {
+  content: url("@/assets/file-icons/file_type_rproj.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rspec::before {
+  content: url("@/assets/file-icons/file_type_rspec.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rubocop::before {
+  content: url("@/assets/file-icons/file_type_rubocop.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ruby::before {
+  content: url("@/assets/file-icons/file_type_ruby.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rust::before {
+  content: url("@/assets/file-icons/file_type_rust.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_rust_toolchain::before {
+  content: url("@/assets/file-icons/file_type_rust_toolchain.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sails::before {
+  content: url("@/assets/file-icons/file_type_sails.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_saltstack::before {
+  content: url("@/assets/file-icons/file_type_saltstack.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_san::before {
+  content: url("@/assets/file-icons/file_type_san.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sas::before {
+  content: url("@/assets/file-icons/file_type_sas.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sass::before {
+  content: url("@/assets/file-icons/file_type_sass.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sbt::before {
+  content: url("@/assets/file-icons/file_type_sbt.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_scala::before {
+  content: url("@/assets/file-icons/file_type_scala.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_scilab::before {
+  content: url("@/assets/file-icons/file_type_scilab.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_script::before {
+  content: url("@/assets/file-icons/file_type_script.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_scss::before {
+  content: url("@/assets/file-icons/file_type_scss.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_scss2::before {
+  content: url("@/assets/file-icons/file_type_scss2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sdlang::before {
+  content: url("@/assets/file-icons/file_type_sdlang.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sentry::before {
+  content: url("@/assets/file-icons/file_type_sentry.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sequelize::before {
+  content: url("@/assets/file-icons/file_type_sequelize.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_serverless::before {
+  content: url("@/assets/file-icons/file_type_serverless.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_shaderlab::before {
+  content: url("@/assets/file-icons/file_type_shaderlab.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_shell::before {
+  content: url("@/assets/file-icons/file_type_shell.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_silverstripe::before {
+  content: url("@/assets/file-icons/file_type_silverstripe.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_siyuan::before {
+  content: url("@/assets/file-icons/file_type_siyuan.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sketch::before {
+  content: url("@/assets/file-icons/file_type_sketch.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_skipper::before {
+  content: url("@/assets/file-icons/file_type_skipper.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_slang::before {
+  content: url("@/assets/file-icons/file_type_slang.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_slashup::before {
+  content: url("@/assets/file-icons/file_type_slashup.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_slice::before {
+  content: url("@/assets/file-icons/file_type_slice.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_slim::before {
+  content: url("@/assets/file-icons/file_type_slim.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sln::before {
+  content: url("@/assets/file-icons/file_type_sln.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sln2::before {
+  content: url("@/assets/file-icons/file_type_sln2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_smarty::before {
+  content: url("@/assets/file-icons/file_type_smarty.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_snapcraft::before {
+  content: url("@/assets/file-icons/file_type_snapcraft.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_snort::before {
+  content: url("@/assets/file-icons/file_type_snort.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_snyk::before {
+  content: url("@/assets/file-icons/file_type_snyk.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_solidarity::before {
+  content: url("@/assets/file-icons/file_type_solidarity.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_solidity::before {
+  content: url("@/assets/file-icons/file_type_solidity.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_source::before {
+  content: url("@/assets/file-icons/file_type_source.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_spacengine::before {
+  content: url("@/assets/file-icons/file_type_spacengine.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sparql::before {
+  content: url("@/assets/file-icons/file_type_sparql.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sqf::before {
+  content: url("@/assets/file-icons/file_type_sqf.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sql::before {
+  content: url("@/assets/file-icons/file_type_sql.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sqlite::before {
+  content: url("@/assets/file-icons/file_type_sqlite.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_squirrel::before {
+  content: url("@/assets/file-icons/file_type_squirrel.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_sss::before {
+  content: url("@/assets/file-icons/file_type_sss.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_stan::before {
+  content: url("@/assets/file-icons/file_type_stan.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_stata::before {
+  content: url("@/assets/file-icons/file_type_stata.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_stencil::before {
+  content: url("@/assets/file-icons/file_type_stencil.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_storyboard::before {
+  content: url("@/assets/file-icons/file_type_storyboard.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_storybook::before {
+  content: url("@/assets/file-icons/file_type_storybook.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_stryker::before {
+  content: url("@/assets/file-icons/file_type_stryker.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_stylable::before {
+  content: url("@/assets/file-icons/file_type_stylable.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_style::before {
+  content: url("@/assets/file-icons/file_type_style.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_styled::before {
+  content: url("@/assets/file-icons/file_type_styled.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_stylelint::before {
+  content: url("@/assets/file-icons/file_type_stylelint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_stylish_haskell::before {
+  content: url("@/assets/file-icons/file_type_stylish_haskell.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_stylus::before {
+  content: url("@/assets/file-icons/file_type_stylus.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_subversion::before {
+  content: url("@/assets/file-icons/file_type_subversion.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_svelte::before {
+  content: url("@/assets/file-icons/file_type_svelte.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_svg::before {
+  content: url("@/assets/file-icons/file_type_svg.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_swagger::before {
+  content: url("@/assets/file-icons/file_type_swagger.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_swift::before {
+  content: url("@/assets/file-icons/file_type_swift.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_swig::before {
+  content: url("@/assets/file-icons/file_type_swig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_symfony::before {
+  content: url("@/assets/file-icons/file_type_symfony.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_systemd::before {
+  content: url("@/assets/file-icons/file_type_systemd.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_systemverilog::before {
+  content: url("@/assets/file-icons/file_type_systemverilog.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_t4tt::before {
+  content: url("@/assets/file-icons/file_type_t4tt.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tailwind::before {
+  content: url("@/assets/file-icons/file_type_tailwind.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tauri::before {
+  content: url("@/assets/file-icons/file_type_tauri.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tcl::before {
+  content: url("@/assets/file-icons/file_type_tcl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_teal::before {
+  content: url("@/assets/file-icons/file_type_teal.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tera::before {
+  content: url("@/assets/file-icons/file_type_tera.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_terraform::before {
+  content: url("@/assets/file-icons/file_type_terraform.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_test::before {
+  content: url("@/assets/file-icons/file_type_test.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_testcafe::before {
+  content: url("@/assets/file-icons/file_type_testcafe.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_testjs::before {
+  content: url("@/assets/file-icons/file_type_testjs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_testts::before {
+  content: url("@/assets/file-icons/file_type_testts.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tex::before {
+  content: url("@/assets/file-icons/file_type_tex.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_text::before {
+  content: url("@/assets/file-icons/file_type_text.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_textile::before {
+  content: url("@/assets/file-icons/file_type_textile.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tfs::before {
+  content: url("@/assets/file-icons/file_type_tfs.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tiltfile::before {
+  content: url("@/assets/file-icons/file_type_tiltfile.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_todo::before {
+  content: url("@/assets/file-icons/file_type_todo.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_toit::before {
+  content: url("@/assets/file-icons/file_type_toit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_toml::before {
+  content: url("@/assets/file-icons/file_type_toml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tox::before {
+  content: url("@/assets/file-icons/file_type_tox.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_travis::before {
+  content: url("@/assets/file-icons/file_type_travis.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_trunk::before {
+  content: url("@/assets/file-icons/file_type_trunk.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tsconfig::before {
+  content: url("@/assets/file-icons/file_type_tsconfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tsconfig_official::before {
+  content: url("@/assets/file-icons/file_type_tsconfig_official.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tslint::before {
+  content: url("@/assets/file-icons/file_type_tslint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tt::before {
+  content: url("@/assets/file-icons/file_type_tt.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_ttcn::before {
+  content: url("@/assets/file-icons/file_type_ttcn.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_tuc::before {
+  content: url("@/assets/file-icons/file_type_tuc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_turbo::before {
+  content: url("@/assets/file-icons/file_type_turbo.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_twig::before {
+  content: url("@/assets/file-icons/file_type_twig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_typedoc::before {
+  content: url("@/assets/file-icons/file_type_typedoc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_typescript::before {
+  content: url("@/assets/file-icons/file_type_typescript.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_typescript_official::before {
+  content: url("@/assets/file-icons/file_type_typescript_official.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_typescriptdef::before {
+  content: url("@/assets/file-icons/file_type_typescriptdef.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_typescriptdef_official::before {
+  content: url("@/assets/file-icons/file_type_typescriptdef_official.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_typo3::before {
+  content: url("@/assets/file-icons/file_type_typo3.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_unibeautify::before {
+  content: url("@/assets/file-icons/file_type_unibeautify.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_unlicense::before {
+  content: url("@/assets/file-icons/file_type_unlicense.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vagrant::before {
+  content: url("@/assets/file-icons/file_type_vagrant.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vala::before {
+  content: url("@/assets/file-icons/file_type_vala.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vanilla_extract::before {
+  content: url("@/assets/file-icons/file_type_vanilla_extract.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vapi::before {
+  content: url("@/assets/file-icons/file_type_vapi.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vapor::before {
+  content: url("@/assets/file-icons/file_type_vapor.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vash::before {
+  content: url("@/assets/file-icons/file_type_vash.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vb::before {
+  content: url("@/assets/file-icons/file_type_vb.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vba::before {
+  content: url("@/assets/file-icons/file_type_vba.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vbhtml::before {
+  content: url("@/assets/file-icons/file_type_vbhtml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vbproj::before {
+  content: url("@/assets/file-icons/file_type_vbproj.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vcxproj::before {
+  content: url("@/assets/file-icons/file_type_vcxproj.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_velocity::before {
+  content: url("@/assets/file-icons/file_type_velocity.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_verilog::before {
+  content: url("@/assets/file-icons/file_type_verilog.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vhdl::before {
+  content: url("@/assets/file-icons/file_type_vhdl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_video::before {
+  content: url("@/assets/file-icons/file_type_video.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_view::before {
+  content: url("@/assets/file-icons/file_type_view.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vim::before {
+  content: url("@/assets/file-icons/file_type_vim.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vite::before {
+  content: url("@/assets/file-icons/file_type_vite.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vitest::before {
+  content: url("@/assets/file-icons/file_type_vitest.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vlang::before {
+  content: url("@/assets/file-icons/file_type_vlang.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_volt::before {
+  content: url("@/assets/file-icons/file_type_volt.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vscode-insiders::before {
+  content: url("@/assets/file-icons/file_type_vscode-insiders.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vscode::before {
+  content: url("@/assets/file-icons/file_type_vscode.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vscode2::before {
+  content: url("@/assets/file-icons/file_type_vscode2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vscode3::before {
+  content: url("@/assets/file-icons/file_type_vscode3.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vsix::before {
+  content: url("@/assets/file-icons/file_type_vsix.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vsixmanifest::before {
+  content: url("@/assets/file-icons/file_type_vsixmanifest.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vue::before {
+  content: url("@/assets/file-icons/file_type_vue.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_vueconfig::before {
+  content: url("@/assets/file-icons/file_type_vueconfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_wallaby::before {
+  content: url("@/assets/file-icons/file_type_wallaby.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_wasm::before {
+  content: url("@/assets/file-icons/file_type_wasm.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_watchmanconfig::before {
+  content: url("@/assets/file-icons/file_type_watchmanconfig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_webpack::before {
+  content: url("@/assets/file-icons/file_type_webpack.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_wenyan::before {
+  content: url("@/assets/file-icons/file_type_wenyan.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_wercker::before {
+  content: url("@/assets/file-icons/file_type_wercker.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_wikitext::before {
+  content: url("@/assets/file-icons/file_type_wikitext.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_windi::before {
+  content: url("@/assets/file-icons/file_type_windi.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_wolfram::before {
+  content: url("@/assets/file-icons/file_type_wolfram.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_word::before {
+  content: url("@/assets/file-icons/file_type_word.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_word2::before {
+  content: url("@/assets/file-icons/file_type_word2.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_wpml::before {
+  content: url("@/assets/file-icons/file_type_wpml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_wurst::before {
+  content: url("@/assets/file-icons/file_type_wurst.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_wxml::before {
+  content: url("@/assets/file-icons/file_type_wxml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_wxss::before {
+  content: url("@/assets/file-icons/file_type_wxss.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_xcode::before {
+  content: url("@/assets/file-icons/file_type_xcode.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_xfl::before {
+  content: url("@/assets/file-icons/file_type_xfl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_xib::before {
+  content: url("@/assets/file-icons/file_type_xib.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_xliff::before {
+  content: url("@/assets/file-icons/file_type_xliff.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_xmake::before {
+  content: url("@/assets/file-icons/file_type_xmake.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_xml::before {
+  content: url("@/assets/file-icons/file_type_xml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_xquery::before {
+  content: url("@/assets/file-icons/file_type_xquery.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_xsl::before {
+  content: url("@/assets/file-icons/file_type_xsl.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_yacc::before {
+  content: url("@/assets/file-icons/file_type_yacc.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_yaml::before {
+  content: url("@/assets/file-icons/file_type_yaml.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_yamllint::before {
+  content: url("@/assets/file-icons/file_type_yamllint.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_yandex::before {
+  content: url("@/assets/file-icons/file_type_yandex.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_yang::before {
+  content: url("@/assets/file-icons/file_type_yang.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_yarn::before {
+  content: url("@/assets/file-icons/file_type_yarn.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_yeoman::before {
+  content: url("@/assets/file-icons/file_type_yeoman.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_zeit::before {
+  content: url("@/assets/file-icons/file_type_zeit.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_zig::before {
+  content: url("@/assets/file-icons/file_type_zig.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_zip::before {
+  content: url("@/assets/file-icons/file_type_zip.svg") !important;
+  font-size: 150% !important;
+}
+
+.file_type_zip2::before {
+  content: url("@/assets/file-icons/file_type_zip2.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_android::before {
+  content: url("@/assets/file-icons/folder_type_android.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_android::before {
+  content: url("@/assets/file-icons/folder_type_android_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_api::before {
+  content: url("@/assets/file-icons/folder_type_api.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_api::before {
+  content: url("@/assets/file-icons/folder_type_api_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_app::before {
+  content: url("@/assets/file-icons/folder_type_app.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_app::before {
+  content: url("@/assets/file-icons/folder_type_app_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_arangodb::before {
+  content: url("@/assets/file-icons/folder_type_arangodb.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_arangodb::before {
+  content: url("@/assets/file-icons/folder_type_arangodb_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_asset::before {
+  content: url("@/assets/file-icons/folder_type_asset.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_asset::before {
+  content: url("@/assets/file-icons/folder_type_asset_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_audio::before {
+  content: url("@/assets/file-icons/folder_type_audio.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_audio::before {
+  content: url("@/assets/file-icons/folder_type_audio_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_aurelia::before {
+  content: url("@/assets/file-icons/folder_type_aurelia.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_aurelia::before {
+  content: url("@/assets/file-icons/folder_type_aurelia_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_aws::before {
+  content: url("@/assets/file-icons/folder_type_aws.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_aws::before {
+  content: url("@/assets/file-icons/folder_type_aws_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_azure::before {
+  content: url("@/assets/file-icons/folder_type_azure.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_azure::before {
+  content: url("@/assets/file-icons/folder_type_azure_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_azurepipelines::before {
+  content: url("@/assets/file-icons/folder_type_azurepipelines.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_azurepipelines::before {
+  content: url("@/assets/file-icons/folder_type_azurepipelines_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_binary::before {
+  content: url("@/assets/file-icons/folder_type_binary.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_binary::before {
+  content: url("@/assets/file-icons/folder_type_binary_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_bloc::before {
+  content: url("@/assets/file-icons/folder_type_bloc.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_bloc::before {
+  content: url("@/assets/file-icons/folder_type_bloc_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_blueprint::before {
+  content: url("@/assets/file-icons/folder_type_blueprint.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_blueprint::before {
+  content: url("@/assets/file-icons/folder_type_blueprint_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_bot::before {
+  content: url("@/assets/file-icons/folder_type_bot.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_bot::before {
+  content: url("@/assets/file-icons/folder_type_bot_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_bower::before {
+  content: url("@/assets/file-icons/folder_type_bower.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_bower::before {
+  content: url("@/assets/file-icons/folder_type_bower_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_buildkite::before {
+  content: url("@/assets/file-icons/folder_type_buildkite.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_buildkite::before {
+  content: url("@/assets/file-icons/folder_type_buildkite_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_cake::before {
+  content: url("@/assets/file-icons/folder_type_cake.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_cake::before {
+  content: url("@/assets/file-icons/folder_type_cake_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_certificate::before {
+  content: url("@/assets/file-icons/folder_type_certificate.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_certificate::before {
+  content: url("@/assets/file-icons/folder_type_certificate_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_chef::before {
+  content: url("@/assets/file-icons/folder_type_chef.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_chef::before {
+  content: url("@/assets/file-icons/folder_type_chef_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_circleci::before {
+  content: url("@/assets/file-icons/folder_type_circleci.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_circleci::before {
+  content: url("@/assets/file-icons/folder_type_circleci_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_cli::before {
+  content: url("@/assets/file-icons/folder_type_cli.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_cli::before {
+  content: url("@/assets/file-icons/folder_type_cli_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_client::before {
+  content: url("@/assets/file-icons/folder_type_client.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_client::before {
+  content: url("@/assets/file-icons/folder_type_client_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_cmake::before {
+  content: url("@/assets/file-icons/folder_type_cmake.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_cmake::before {
+  content: url("@/assets/file-icons/folder_type_cmake_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_common::before {
+  content: url("@/assets/file-icons/folder_type_common.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_common::before {
+  content: url("@/assets/file-icons/folder_type_common_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_component::before {
+  content: url("@/assets/file-icons/folder_type_component.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_component::before {
+  content: url("@/assets/file-icons/folder_type_component_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_composer::before {
+  content: url("@/assets/file-icons/folder_type_composer.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_composer::before {
+  content: url("@/assets/file-icons/folder_type_composer_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_config::before {
+  content: url("@/assets/file-icons/folder_type_config.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_config::before {
+  content: url("@/assets/file-icons/folder_type_config_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_controller::before {
+  content: url("@/assets/file-icons/folder_type_controller.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_controller::before {
+  content: url("@/assets/file-icons/folder_type_controller_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_coverage::before {
+  content: url("@/assets/file-icons/folder_type_coverage.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_coverage::before {
+  content: url("@/assets/file-icons/folder_type_coverage_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_css::before {
+  content: url("@/assets/file-icons/folder_type_css.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_css::before {
+  content: url("@/assets/file-icons/folder_type_css_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_cubit::before {
+  content: url("@/assets/file-icons/folder_type_cubit.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_cubit::before {
+  content: url("@/assets/file-icons/folder_type_cubit_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_cypress::before {
+  content: url("@/assets/file-icons/folder_type_cypress.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_cypress::before {
+  content: url("@/assets/file-icons/folder_type_cypress_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_dapr::before {
+  content: url("@/assets/file-icons/folder_type_dapr.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_dapr::before {
+  content: url("@/assets/file-icons/folder_type_dapr_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_db::before {
+  content: url("@/assets/file-icons/folder_type_db.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_db::before {
+  content: url("@/assets/file-icons/folder_type_db_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_debian::before {
+  content: url("@/assets/file-icons/folder_type_debian.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_debian::before {
+  content: url("@/assets/file-icons/folder_type_debian_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_dependabot::before {
+  content: url("@/assets/file-icons/folder_type_dependabot.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_dependabot::before {
+  content: url("@/assets/file-icons/folder_type_dependabot_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_devcontainer::before {
+  content: url("@/assets/file-icons/folder_type_devcontainer.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_devcontainer::before {
+  content: url("@/assets/file-icons/folder_type_devcontainer_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_dist::before {
+  content: url("@/assets/file-icons/folder_type_dist.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_dist::before {
+  content: url("@/assets/file-icons/folder_type_dist_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_docker::before {
+  content: url("@/assets/file-icons/folder_type_docker.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_docker::before {
+  content: url("@/assets/file-icons/folder_type_docker_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_docs::before {
+  content: url("@/assets/file-icons/folder_type_docs.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_docs::before {
+  content: url("@/assets/file-icons/folder_type_docs_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_e2e::before {
+  content: url("@/assets/file-icons/folder_type_e2e.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_e2e::before {
+  content: url("@/assets/file-icons/folder_type_e2e_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_elasticbeanstalk::before {
+  content: url("@/assets/file-icons/folder_type_elasticbeanstalk.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_elasticbeanstalk::before {
+  content: url("@/assets/file-icons/folder_type_elasticbeanstalk_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_electron::before {
+  content: url("@/assets/file-icons/folder_type_electron.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_electron::before {
+  content: url("@/assets/file-icons/folder_type_electron_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_expo::before {
+  content: url("@/assets/file-icons/folder_type_expo.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_expo::before {
+  content: url("@/assets/file-icons/folder_type_expo_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_favicon::before {
+  content: url("@/assets/file-icons/folder_type_favicon.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_favicon::before {
+  content: url("@/assets/file-icons/folder_type_favicon_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_flow::before {
+  content: url("@/assets/file-icons/folder_type_flow.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_flow::before {
+  content: url("@/assets/file-icons/folder_type_flow_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_fonts::before {
+  content: url("@/assets/file-icons/folder_type_fonts.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_fonts::before {
+  content: url("@/assets/file-icons/folder_type_fonts_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_gcp::before {
+  content: url("@/assets/file-icons/folder_type_gcp.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_gcp::before {
+  content: url("@/assets/file-icons/folder_type_gcp_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_git::before {
+  content: url("@/assets/file-icons/folder_type_git.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_git::before {
+  content: url("@/assets/file-icons/folder_type_git_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_github::before {
+  content: url("@/assets/file-icons/folder_type_github.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_github::before {
+  content: url("@/assets/file-icons/folder_type_github_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_gitlab::before {
+  content: url("@/assets/file-icons/folder_type_gitlab.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_gitlab::before {
+  content: url("@/assets/file-icons/folder_type_gitlab_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_gradle::before {
+  content: url("@/assets/file-icons/folder_type_gradle.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_gradle::before {
+  content: url("@/assets/file-icons/folder_type_gradle_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_graphql::before {
+  content: url("@/assets/file-icons/folder_type_graphql.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_graphql::before {
+  content: url("@/assets/file-icons/folder_type_graphql_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_grunt::before {
+  content: url("@/assets/file-icons/folder_type_grunt.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_grunt::before {
+  content: url("@/assets/file-icons/folder_type_grunt_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_gulp::before {
+  content: url("@/assets/file-icons/folder_type_gulp.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_gulp::before {
+  content: url("@/assets/file-icons/folder_type_gulp_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_haxelib::before {
+  content: url("@/assets/file-icons/folder_type_haxelib.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_haxelib::before {
+  content: url("@/assets/file-icons/folder_type_haxelib_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_helper::before {
+  content: url("@/assets/file-icons/folder_type_helper.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_helper::before {
+  content: url("@/assets/file-icons/folder_type_helper_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_hook::before {
+  content: url("@/assets/file-icons/folder_type_hook.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_hook::before {
+  content: url("@/assets/file-icons/folder_type_hook_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_husky::before {
+  content: url("@/assets/file-icons/folder_type_husky.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_husky::before {
+  content: url("@/assets/file-icons/folder_type_husky_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_idea::before {
+  content: url("@/assets/file-icons/folder_type_idea.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_idea::before {
+  content: url("@/assets/file-icons/folder_type_idea_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_images::before {
+  content: url("@/assets/file-icons/folder_type_images.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_images::before {
+  content: url("@/assets/file-icons/folder_type_images_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_include::before {
+  content: url("@/assets/file-icons/folder_type_include.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_include::before {
+  content: url("@/assets/file-icons/folder_type_include_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_interfaces::before {
+  content: url("@/assets/file-icons/folder_type_interfaces.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_interfaces::before {
+  content: url("@/assets/file-icons/folder_type_interfaces_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_ios::before {
+  content: url("@/assets/file-icons/folder_type_ios.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_ios::before {
+  content: url("@/assets/file-icons/folder_type_ios_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_js::before {
+  content: url("@/assets/file-icons/folder_type_js.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_js::before {
+  content: url("@/assets/file-icons/folder_type_js_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_json::before {
+  content: url("@/assets/file-icons/folder_type_json.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_json::before {
+  content: url("@/assets/file-icons/folder_type_json_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_json_official::before {
+  content: url("@/assets/file-icons/folder_type_json_official.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_json_official::before {
+  content: url("@/assets/file-icons/folder_type_json_official_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_kubernetes::before {
+  content: url("@/assets/file-icons/folder_type_kubernetes.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_kubernetes::before {
+  content: url("@/assets/file-icons/folder_type_kubernetes_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_less::before {
+  content: url("@/assets/file-icons/folder_type_less.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_less::before {
+  content: url("@/assets/file-icons/folder_type_less_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_library::before {
+  content: url("@/assets/file-icons/folder_type_library.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_library::before {
+  content: url("@/assets/file-icons/folder_type_library_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_light_cypress::before {
+  content: url("@/assets/file-icons/folder_type_light_cypress.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_light_cypress::before {
+  content: url("@/assets/file-icons/folder_type_light_cypress_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_light_electron::before {
+  content: url("@/assets/file-icons/folder_type_light_electron.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_light_electron::before {
+  content: url("@/assets/file-icons/folder_type_light_electron_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_light_expo::before {
+  content: url("@/assets/file-icons/folder_type_light_expo.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_light_expo::before {
+  content: url("@/assets/file-icons/folder_type_light_expo_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_light_fonts::before {
+  content: url("@/assets/file-icons/folder_type_light_fonts.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_light_fonts::before {
+  content: url("@/assets/file-icons/folder_type_light_fonts_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_light_gradle::before {
+  content: url("@/assets/file-icons/folder_type_light_gradle.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_light_gradle::before {
+  content: url("@/assets/file-icons/folder_type_light_gradle_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_light_meteor::before {
+  content: url("@/assets/file-icons/folder_type_light_meteor.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_light_meteor::before {
+  content: url("@/assets/file-icons/folder_type_light_meteor_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_light_mysql::before {
+  content: url("@/assets/file-icons/folder_type_light_mysql.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_light_mysql::before {
+  content: url("@/assets/file-icons/folder_type_light_mysql_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_light_node::before {
+  content: url("@/assets/file-icons/folder_type_light_node.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_light_node::before {
+  content: url("@/assets/file-icons/folder_type_light_node_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_light_redux::before {
+  content: url("@/assets/file-icons/folder_type_light_redux.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_light_redux::before {
+  content: url("@/assets/file-icons/folder_type_light_redux_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_light_sass::before {
+  content: url("@/assets/file-icons/folder_type_light_sass.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_light_sass::before {
+  content: url("@/assets/file-icons/folder_type_light_sass_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_linux::before {
+  content: url("@/assets/file-icons/folder_type_linux.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_linux::before {
+  content: url("@/assets/file-icons/folder_type_linux_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_locale::before {
+  content: url("@/assets/file-icons/folder_type_locale.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_locale::before {
+  content: url("@/assets/file-icons/folder_type_locale_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_log::before {
+  content: url("@/assets/file-icons/folder_type_log.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_log::before {
+  content: url("@/assets/file-icons/folder_type_log_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_macos::before {
+  content: url("@/assets/file-icons/folder_type_macos.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_macos::before {
+  content: url("@/assets/file-icons/folder_type_macos_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_mariadb::before {
+  content: url("@/assets/file-icons/folder_type_mariadb.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_mariadb::before {
+  content: url("@/assets/file-icons/folder_type_mariadb_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_maven::before {
+  content: url("@/assets/file-icons/folder_type_maven.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_maven::before {
+  content: url("@/assets/file-icons/folder_type_maven_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_memcached::before {
+  content: url("@/assets/file-icons/folder_type_memcached.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_memcached::before {
+  content: url("@/assets/file-icons/folder_type_memcached_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_meteor::before {
+  content: url("@/assets/file-icons/folder_type_meteor.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_meteor::before {
+  content: url("@/assets/file-icons/folder_type_meteor_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_middleware::before {
+  content: url("@/assets/file-icons/folder_type_middleware.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_middleware::before {
+  content: url("@/assets/file-icons/folder_type_middleware_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_minikube::before {
+  content: url("@/assets/file-icons/folder_type_minikube.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_minikube::before {
+  content: url("@/assets/file-icons/folder_type_minikube_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_mjml::before {
+  content: url("@/assets/file-icons/folder_type_mjml.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_mjml::before {
+  content: url("@/assets/file-icons/folder_type_mjml_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_mock::before {
+  content: url("@/assets/file-icons/folder_type_mock.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_mock::before {
+  content: url("@/assets/file-icons/folder_type_mock_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_model::before {
+  content: url("@/assets/file-icons/folder_type_model.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_model::before {
+  content: url("@/assets/file-icons/folder_type_model_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_module::before {
+  content: url("@/assets/file-icons/folder_type_module.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_module::before {
+  content: url("@/assets/file-icons/folder_type_module_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_mongodb::before {
+  content: url("@/assets/file-icons/folder_type_mongodb.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_mongodb::before {
+  content: url("@/assets/file-icons/folder_type_mongodb_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_mysql::before {
+  content: url("@/assets/file-icons/folder_type_mysql.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_mysql::before {
+  content: url("@/assets/file-icons/folder_type_mysql_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_next::before {
+  content: url("@/assets/file-icons/folder_type_next.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_next::before {
+  content: url("@/assets/file-icons/folder_type_next_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_nginx::before {
+  content: url("@/assets/file-icons/folder_type_nginx.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_nginx::before {
+  content: url("@/assets/file-icons/folder_type_nginx_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_nix::before {
+  content: url("@/assets/file-icons/folder_type_nix.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_nix::before {
+  content: url("@/assets/file-icons/folder_type_nix_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_node::before {
+  content: url("@/assets/file-icons/folder_type_node.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_node::before {
+  content: url("@/assets/file-icons/folder_type_node_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_notification::before {
+  content: url("@/assets/file-icons/folder_type_notification.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_notification::before {
+  content: url("@/assets/file-icons/folder_type_notification_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_nuget::before {
+  content: url("@/assets/file-icons/folder_type_nuget.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_nuget::before {
+  content: url("@/assets/file-icons/folder_type_nuget_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_nuxt::before {
+  content: url("@/assets/file-icons/folder_type_nuxt.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_nuxt::before {
+  content: url("@/assets/file-icons/folder_type_nuxt_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_package::before {
+  content: url("@/assets/file-icons/folder_type_package.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_package::before {
+  content: url("@/assets/file-icons/folder_type_package_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_paket::before {
+  content: url("@/assets/file-icons/folder_type_paket.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_paket::before {
+  content: url("@/assets/file-icons/folder_type_paket_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_php::before {
+  content: url("@/assets/file-icons/folder_type_php.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_php::before {
+  content: url("@/assets/file-icons/folder_type_php_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_platformio::before {
+  content: url("@/assets/file-icons/folder_type_platformio.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_platformio::before {
+  content: url("@/assets/file-icons/folder_type_platformio_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_plugin::before {
+  content: url("@/assets/file-icons/folder_type_plugin.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_plugin::before {
+  content: url("@/assets/file-icons/folder_type_plugin_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_prisma::before {
+  content: url("@/assets/file-icons/folder_type_prisma.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_prisma::before {
+  content: url("@/assets/file-icons/folder_type_prisma_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_private::before {
+  content: url("@/assets/file-icons/folder_type_private.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_private::before {
+  content: url("@/assets/file-icons/folder_type_private_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_public::before {
+  content: url("@/assets/file-icons/folder_type_public.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_public::before {
+  content: url("@/assets/file-icons/folder_type_public_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_python::before {
+  content: url("@/assets/file-icons/folder_type_python.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_python::before {
+  content: url("@/assets/file-icons/folder_type_python_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_ravendb::before {
+  content: url("@/assets/file-icons/folder_type_ravendb.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_ravendb::before {
+  content: url("@/assets/file-icons/folder_type_ravendb_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_redis::before {
+  content: url("@/assets/file-icons/folder_type_redis.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_redis::before {
+  content: url("@/assets/file-icons/folder_type_redis_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_redux::before {
+  content: url("@/assets/file-icons/folder_type_redux.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_redux::before {
+  content: url("@/assets/file-icons/folder_type_redux_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_route::before {
+  content: url("@/assets/file-icons/folder_type_route.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_route::before {
+  content: url("@/assets/file-icons/folder_type_route_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_sass::before {
+  content: url("@/assets/file-icons/folder_type_sass.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_sass::before {
+  content: url("@/assets/file-icons/folder_type_sass_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_script::before {
+  content: url("@/assets/file-icons/folder_type_script.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_script::before {
+  content: url("@/assets/file-icons/folder_type_script_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_server::before {
+  content: url("@/assets/file-icons/folder_type_server.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_server::before {
+  content: url("@/assets/file-icons/folder_type_server_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_services::before {
+  content: url("@/assets/file-icons/folder_type_services.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_services::before {
+  content: url("@/assets/file-icons/folder_type_services_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_shared::before {
+  content: url("@/assets/file-icons/folder_type_shared.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_shared::before {
+  content: url("@/assets/file-icons/folder_type_shared_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_src::before {
+  content: url("@/assets/file-icons/folder_type_src.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_src::before {
+  content: url("@/assets/file-icons/folder_type_src_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_sso::before {
+  content: url("@/assets/file-icons/folder_type_sso.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_sso::before {
+  content: url("@/assets/file-icons/folder_type_sso_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_story::before {
+  content: url("@/assets/file-icons/folder_type_story.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_story::before {
+  content: url("@/assets/file-icons/folder_type_story_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_style::before {
+  content: url("@/assets/file-icons/folder_type_style.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_style::before {
+  content: url("@/assets/file-icons/folder_type_style_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_tauri::before {
+  content: url("@/assets/file-icons/folder_type_tauri.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_tauri::before {
+  content: url("@/assets/file-icons/folder_type_tauri_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_temp::before {
+  content: url("@/assets/file-icons/folder_type_temp.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_temp::before {
+  content: url("@/assets/file-icons/folder_type_temp_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_template::before {
+  content: url("@/assets/file-icons/folder_type_template.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_template::before {
+  content: url("@/assets/file-icons/folder_type_template_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_test::before {
+  content: url("@/assets/file-icons/folder_type_test.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_test::before {
+  content: url("@/assets/file-icons/folder_type_test_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_theme::before {
+  content: url("@/assets/file-icons/folder_type_theme.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_theme::before {
+  content: url("@/assets/file-icons/folder_type_theme_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_tools::before {
+  content: url("@/assets/file-icons/folder_type_tools.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_tools::before {
+  content: url("@/assets/file-icons/folder_type_tools_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_travis::before {
+  content: url("@/assets/file-icons/folder_type_travis.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_travis::before {
+  content: url("@/assets/file-icons/folder_type_travis_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_trunk::before {
+  content: url("@/assets/file-icons/folder_type_trunk.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_trunk::before {
+  content: url("@/assets/file-icons/folder_type_trunk_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_typescript::before {
+  content: url("@/assets/file-icons/folder_type_typescript.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_typescript::before {
+  content: url("@/assets/file-icons/folder_type_typescript_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_typings::before {
+  content: url("@/assets/file-icons/folder_type_typings.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_typings::before {
+  content: url("@/assets/file-icons/folder_type_typings_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_typings2::before {
+  content: url("@/assets/file-icons/folder_type_typings2.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_typings2::before {
+  content: url("@/assets/file-icons/folder_type_typings2_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_vagrant::before {
+  content: url("@/assets/file-icons/folder_type_vagrant.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_vagrant::before {
+  content: url("@/assets/file-icons/folder_type_vagrant_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_video::before {
+  content: url("@/assets/file-icons/folder_type_video.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_video::before {
+  content: url("@/assets/file-icons/folder_type_video_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_view::before {
+  content: url("@/assets/file-icons/folder_type_view.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_view::before {
+  content: url("@/assets/file-icons/folder_type_view_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_vs::before {
+  content: url("@/assets/file-icons/folder_type_vs.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_vs::before {
+  content: url("@/assets/file-icons/folder_type_vs_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_vs2::before {
+  content: url("@/assets/file-icons/folder_type_vs2.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_vs2::before {
+  content: url("@/assets/file-icons/folder_type_vs2_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_vscode::before {
+  content: url("@/assets/file-icons/folder_type_vscode.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_vscode::before {
+  content: url("@/assets/file-icons/folder_type_vscode_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_vscode2::before {
+  content: url("@/assets/file-icons/folder_type_vscode2.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_vscode2::before {
+  content: url("@/assets/file-icons/folder_type_vscode2_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_vscode3::before {
+  content: url("@/assets/file-icons/folder_type_vscode3.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_vscode3::before {
+  content: url("@/assets/file-icons/folder_type_vscode3_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_vscode_test::before {
+  content: url("@/assets/file-icons/folder_type_vscode_test.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_vscode_test::before {
+  content: url("@/assets/file-icons/folder_type_vscode_test_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_vscode_test2::before {
+  content: url("@/assets/file-icons/folder_type_vscode_test2.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_vscode_test2::before {
+  content: url("@/assets/file-icons/folder_type_vscode_test2_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_vscode_test3::before {
+  content: url("@/assets/file-icons/folder_type_vscode_test3.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_vscode_test3::before {
+  content: url("@/assets/file-icons/folder_type_vscode_test3_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_webpack::before {
+  content: url("@/assets/file-icons/folder_type_webpack.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_webpack::before {
+  content: url("@/assets/file-icons/folder_type_webpack_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_windows::before {
+  content: url("@/assets/file-icons/folder_type_windows.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_windows::before {
+  content: url("@/assets/file-icons/folder_type_windows_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_www::before {
+  content: url("@/assets/file-icons/folder_type_www.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_www::before {
+  content: url("@/assets/file-icons/folder_type_www_opened.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row .folder_type_yarn::before {
+  content: url("@/assets/file-icons/folder_type_yarn.svg") !important;
+  font-size: 150% !important;
+}
+
+.monaco-tree-row.expanded .folder_type_yarn::before {
+  content: url("@/assets/file-icons/folder_type_yarn_opened.svg") !important;
+  font-size: 150% !important;
+}
