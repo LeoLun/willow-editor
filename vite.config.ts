@@ -8,9 +8,6 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/willow-editor/',
-  build: {
-    outDir: 'docs',
-  },
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
