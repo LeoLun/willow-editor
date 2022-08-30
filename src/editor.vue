@@ -49,8 +49,7 @@ const setContent = (tabEntity: TabEntity) => {
   }
 };
 
-const openFile = async (file: TreeEntity) => {
-  console.log('openFile', file);
+const openFile = async (file: TreeEntity, preview = true) => {
   if (!(file instanceof FileTreeEntity)) {
     return;
   }
@@ -58,8 +57,19 @@ const openFile = async (file: TreeEntity) => {
   const operateTabEntity = tabs.value.find((item) => item.key === file.key);
 
   if (operateTabEntity) {
+    if (operateTabEntity.preview && !preview) {
+      operateTabEntity.preview = false;
+    }
     setContent(operateTabEntity);
     return;
+  }
+
+  if (preview) {
+    // 检查是否有 preview 如果存在则剔除
+    const index = tabs.value.findIndex((item) => item.preview);
+    if (index !== -1) {
+      tabs.value.splice(index, 1);
+    }
   }
 
   const ext = file.name.split('.').pop() || '';
@@ -77,15 +87,13 @@ const openFile = async (file: TreeEntity) => {
   }
 
   const md5 = SparkMD5.hash(content);
-  const tabEntity = new TabEntity(file, content, md5, md5, type);
+  const tabEntity = new TabEntity(file, content, md5, md5, type, preview);
   tabs.value.push(tabEntity);
 
   setContent(tabEntity);
 };
 
 const closeFile = async (file: TreeEntity, index: number) => {
-  console.log('close');
-  console.log('file', file);
   tabs.value.splice(index, 1);
   if (currentTab.value?.key === file.key) {
     if (tabs.value.length) {
@@ -113,6 +121,7 @@ defineExpose({
         :unsaved="item.oldMd5 !== item.newMd5"
         :old-md5="item.oldMd5"
         :new-md5="item.newMd5"
+        :preview="item.preview"
         @open="openFile(item)"
         @close="closeFile(item, index)"
       />
@@ -125,7 +134,10 @@ defineExpose({
     <div
       v-show="currentTab && currentTab.type === 'image'"
     >
-      <img :src="currentTab?.content">
+      <img
+        v-if="currentTab && currentTab.type === 'image'"
+        :src="currentTab?.content"
+      >
     </div>
   </div>
 </template>

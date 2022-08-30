@@ -26,7 +26,7 @@ const classes = computed(() => {
   <div :class="classes" />
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .splitter-pane-resizer {
   box-sizing: border-box;
   background: #000;

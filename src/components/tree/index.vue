@@ -76,9 +76,12 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['open-file']);
+const emit = defineEmits(['click-file', 'doubleclick-file']);
 
 let tree: any = null;
+
+let lastClickedTime = 0;
+let lastClickedFileKey = '';
 
 onMounted(() => {
   const { directory } = props;
@@ -90,7 +93,15 @@ onMounted(() => {
     if (e.selection.length) {
       const treeEntity = e.selection[0] as TreeEntity;
       if (!treeEntity.isDirectory) {
-        emit('open-file', treeEntity);
+        const isDoubleClick = Date.now() - lastClickedTime < 500;
+        const isSameFile = lastClickedFileKey === treeEntity.key;
+        if (isDoubleClick && isSameFile) {
+          emit('doubleclick-file', treeEntity);
+        } else {
+          emit('click-file', treeEntity);
+        }
+        lastClickedTime = Date.now();
+        lastClickedFileKey = treeEntity.key;
       }
     }
   });

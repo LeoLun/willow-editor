@@ -8,7 +8,7 @@ import FileTree from './file-tree.vue';
 import Editor from './editor.vue';
 
 const root = ref<DirTreeEntity>();
-const tabsElement = ref();
+const editorElement = ref();
 const isDrag = ref(false);
 const dragTitle = ref('拖拽文件夹 或 点击选择文件夹');
 
@@ -20,13 +20,11 @@ const handeleShowDirectoryPicker = async () => {
 };
 
 const handleDragover = () => {
-  console.log('handleDragover');
   isDrag.value = true;
   dragTitle.value = '松开鼠标';
 };
 
 const handleDrop = async (e: DragEvent) => {
-  console.log('handleDrop', e);
   if (e.dataTransfer && e.dataTransfer.items) {
     const items = e.dataTransfer.items as any;
     const fileHandlesPromises = [...items]
@@ -47,8 +45,12 @@ const handleDragleave = () => {
   dragTitle.value = '拖拽文件夹 或 点击选择文件夹';
 };
 
-const handleOpenFile = (file: FileTreeEntity) => {
-  tabsElement.value.openFile(file);
+const handleClickFile = (file: FileTreeEntity) => {
+  editorElement.value.openFile(file, true);
+};
+
+const handleDoubleClickFile = (file: FileTreeEntity) => {
+  editorElement.value.openFile(file, false);
 };
 
 </script>
@@ -79,11 +81,12 @@ const handleOpenFile = (file: FileTreeEntity) => {
           <FileTree
             class="dir-tree"
             :root="root"
-            @open-file="handleOpenFile"
+            @click-file="handleClickFile"
+            @doubleclick-file="handleDoubleClickFile"
           />
         </template>
         <template #pane-r>
-          <Editor ref="tabsElement" />
+          <Editor ref="editorElement" />
         </template>
       </split-pane>
     </div>
@@ -96,7 +99,7 @@ const handleOpenFile = (file: FileTreeEntity) => {
 .editor-container {
   display: flex;
   flex-direction: row;
-  background: #1d1d1d;
+  background: #1a1a1a;
   color: #fff;
   width: 100%;
   height: 100%;

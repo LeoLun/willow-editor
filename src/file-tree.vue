@@ -10,13 +10,17 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['open-file']);
+const emit = defineEmits(['click-file', 'doubleclick-file']);
 
 const root = props.root as DirTreeEntity;
 
-const handleOpenFile = (item: FileTreeEntity) => {
-  emit('open-file', item);
+const handleClickFile = (item: FileTreeEntity) => {
+  emit('click-file', item);
 };
+const handleDoubleClickFile = (item: FileTreeEntity) => {
+  emit('doubleclick-file', item);
+};
+
 </script>
 <template>
   <div class="files-tree-container">
@@ -26,7 +30,8 @@ const handleOpenFile = (item: FileTreeEntity) => {
     <div class="file-tree-content">
       <Tree
         :directory="root"
-        @open-file="handleOpenFile"
+        @click-file="handleClickFile"
+        @doubleclick-file="handleDoubleClickFile"
       />
     </div>
   </div>

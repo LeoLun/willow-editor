@@ -9,12 +9,15 @@ class TabEntity extends FileTreeEntity {
 
   type: 'file' | 'image';
 
+  preview: boolean;
+
   constructor(
     fileEntity: FileTreeEntity,
     content: string,
     oldMd5: string,
     newMd5: string,
     type: 'file' | 'image',
+    preview: boolean,
   ) {
     super(
       fileEntity.key,
@@ -27,6 +30,7 @@ class TabEntity extends FileTreeEntity {
     this.oldMd5 = oldMd5;
     this.newMd5 = newMd5;
     this.type = type;
+    this.preview = preview;
   }
 }
 

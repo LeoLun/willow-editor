@@ -15,11 +15,18 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  preview: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(['close', 'open']);
 
-const clazz = computed(() => (props.active ? 'active' : ''));
+const clazz = computed(() => ({
+  active: props.active,
+  preview: props.preview,
+}));
 
 const tabHover = ref(false);
 const iconHover = ref(false);
@@ -127,10 +134,15 @@ const handleClick = () => {
   background-color: rgb(48 48 48);
   color: rgb(255 255 255 / 50%);
   cursor: pointer;
+  white-space: nowrap;
 
   &.active {
     background-color: rgb(30 30 30);
     color: rgb(255 255 255);
+  }
+
+  &.preview {
+    font-style: italic;
   }
 
   .tab-icon {

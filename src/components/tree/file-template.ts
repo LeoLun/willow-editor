@@ -30,9 +30,6 @@ class FileTemplate extends Template {
     this.monacoIconLabel.classList.remove('file-icon');
 
     const icon = getFileIconLabel(file.name, file.isDirectory);
-    console.log('icon', icon);
-    console.log('');
-    console.log('');
     if (!file.isDirectory) {
       this.monacoIconLabel.classList.add('file-icon');
     }

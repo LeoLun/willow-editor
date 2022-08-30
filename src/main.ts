@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import './style.css';
+import './style.less';
 import App from './app.vue';
 import SvgIcon from './components/svg-icon.vue';
 import 'virtual:svg-icons-register';

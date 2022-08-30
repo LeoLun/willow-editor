@@ -8,11 +8,7 @@ export default function getFileIconLabel(_fileName: string, isDirectory = false)
   const baseFileName = base.join('.');
   const fileDefault = fileExtensions.default.file;
   const folderDefault = folderExtensions.default.folder;
-  console.log('--------------------------------');
-  console.log('isDirectory', isDirectory);
-  console.log('fileName', fileName);
-  console.log('baseFileName', baseFileName);
-  console.log('ext', ext);
+
   if (isDirectory) {
     let folder = folderDefault;
     // 根据文件名字匹配
@@ -57,7 +53,6 @@ export default function getFileIconLabel(_fileName: string, isDirectory = false)
 
     return false;
   });
-  console.log('findItem', findItem);
   if (findItem) {
     file = findItem;
     const { icon } = file;

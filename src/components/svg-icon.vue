@@ -40,7 +40,7 @@ const svgStyle = computed(() => ({
   </svg>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .svg-default {
   fill: currentcolor;
   vertical-align: middle;
