@@ -126,7 +126,7 @@ const root = () => {
 .w-tabs-container {
   display: flex;
   flex-direction: row;
+  min-height: 35px;
   background-color: rgb(37 37 38);
 }
-
 </style>
