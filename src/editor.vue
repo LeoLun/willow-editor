@@ -60,7 +60,9 @@ const openFile = async (file: TreeEntity, preview = true) => {
     if (operateTabEntity.preview && !preview) {
       operateTabEntity.preview = false;
     }
-    setContent(operateTabEntity);
+    if (currentTab.value?.key !== operateTabEntity.key) {
+      setContent(operateTabEntity);
+    }
     return;
   }
 
