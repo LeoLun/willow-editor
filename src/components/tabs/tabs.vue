@@ -4,20 +4,13 @@
 
 <script setup lang="ts">
 import {
-  h, isVNode, useSlots, ref,
+  h, isVNode, useSlots, ref, nextTick,
 } from 'vue';
 import type { VNode } from 'vue';
 import panel from './tab-panel.vue';
 
 let dragKey: string = '';
 
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: '',
-  },
-});
-console.log('props', props);
 const slots = useSlots();
 
 let sort: String[] = [];
@@ -61,7 +54,73 @@ const handleDragover = (e: DragEvent) => {
   e.preventDefault();
 };
 
+const tabsContent = ref<HTMLElement>();
+const scrollBarWidth = ref(0);
+const scrollBarOfferX = ref(0);
+const isDrag = ref(false);
+let maxDragWith = 0;
+let scrollWidth = 0;
+let contentWidth = 0;
+
+const setScroll = () => {
+  nextTick(() => {
+    const content = tabsContent.value as HTMLElement;
+    const contentRect = content.getBoundingClientRect();
+    contentWidth = contentRect.width;
+    scrollWidth = 0;
+    // 获取总长度
+    [].forEach.call(content.children, (item: HTMLElement) => {
+      const rect = item.getBoundingClientRect();
+      scrollWidth += rect.width;
+    });
+    // 计算进度条宽度
+    if (scrollWidth > contentWidth) {
+      const width = contentWidth * (contentWidth / scrollWidth);
+      if (scrollBarWidth.value !== width) {
+        scrollBarWidth.value = width;
+        maxDragWith = contentWidth - width;
+      }
+    } else if (scrollBarWidth.value !== 0) {
+      scrollBarWidth.value = 0;
+      maxDragWith = 0;
+    }
+  });
+};
+
+let startOfferX = 0;
+
+const handleMousemove = (event: MouseEvent) => {
+  let offerX = scrollBarOfferX.value + event.pageX - startOfferX;
+  offerX = offerX < 0 ? 0 : offerX;
+  offerX = offerX > maxDragWith ? maxDragWith : offerX;
+  scrollBarOfferX.value = offerX;
+  startOfferX = event.pageX;
+  if (tabsContent.value) {
+    tabsContent.value.scrollLeft = (scrollBarOfferX.value / contentWidth) * scrollWidth;
+  }
+};
+
+const handleMouseup = (event: MouseEvent) => {
+  isDrag.value = false;
+  if (event.target) {
+    document.removeEventListener('mousemove', handleMousemove);
+    document.removeEventListener('mouseup', handleMouseup);
+  }
+  document.onselectstart = () => null;
+};
+
+const handleMousedown = (event: MouseEvent) => {
+  isDrag.value = true;
+  if (event.target) {
+    startOfferX = event.pageX;
+    document.addEventListener('mousemove', handleMousemove);
+    document.addEventListener('mouseup', handleMouseup);
+  }
+  document.onselectstart = () => false;
+};
+
 const root = () => {
+  console.log('root');
   let children: VNode[] = [];
   if (slots.default) {
     const slotsDefault = slots.default();
@@ -109,24 +168,88 @@ const root = () => {
     children = slotsDefault;
   }
 
+  const content = [h('div', {
+    ref: tabsContent,
+    class: 'w-tabs-content',
+  }, children)];
+
+  if (scrollBarWidth.value) {
+    content.push(h('div', {
+      class: 'w-tabs-scroll',
+    }, [
+      h('div', {
+        class: 'w-tabs-scrollbar',
+        style: `width:${scrollBarWidth.value}px;left:${scrollBarOfferX.value}px`,
+        onMousedown: handleMousedown,
+      }),
+    ]));
+  }
+
+  setScroll();
+
   return h(
     'div',
     {
-      class: `w-tabs-container ${idx.value}`,
+      class: `w-tabs-container ${idx.value} ${isDrag.value ? 'drag' : ''}`,
       ondragover: handleDragover,
       ondrop: (e: DragEvent) => handleDrop(e, 'last'),
     },
-    children,
+    content,
   );
 };
-
 </script>
 
 <style lang="less">
 .w-tabs-container {
+  position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   min-height: 35px;
   background-color: rgb(37 37 38);
+
+  &.drag {
+    .w-tabs-content {
+      pointer-events: none;
+    }
+
+    .w-tabs-scrollbar {
+      opacity: 1 !important;
+      background: rgb(191 191 191 / 40%);
+    }
+  }
+
+  &:hover {
+    .w-tabs-scrollbar {
+      opacity: 1;
+    }
+  }
+
+  .w-tabs-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .w-tabs-scroll {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 3px;
+    z-index: 1;
+  }
+
+  .w-tabs-scrollbar {
+    position: absolute;
+    height: 100%;
+    cursor: auto;
+    background: rgb(121 121 121 / 40%);
+    opacity: 0;
+    transition: opacity 500ms;
+
+    &:active {
+      background: rgb(191 191 191 / 40%);
+    }
+  }
 }
 </style>
