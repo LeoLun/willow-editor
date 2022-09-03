@@ -90,6 +90,10 @@ const handleClick = () => {
   emit('open');
 };
 
+const handleClickMiddle = () => {
+  emit('close');
+};
+
 </script>
 <template>
   <div
@@ -97,6 +101,7 @@ const handleClick = () => {
     :class="clazz"
     @mouseenter="handleTabMouseEnter"
     @mouseleave="handleTabMouseLeave"
+    @click.middle.prevent="handleClickMiddle"
     @click="handleClick"
   >
     <div

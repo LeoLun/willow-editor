@@ -1,21 +1,25 @@
-<template>
-  <root />
-</template>
-
 <script setup lang="ts">
 import {
   h, isVNode, useSlots, ref, nextTick,
 } from 'vue';
 import type { VNode } from 'vue';
+import { useResizeObserver, useDebounceFn } from '@vueuse/core';
 import panel from './tab-panel.vue';
 
-let dragKey: string = '';
-
 const slots = useSlots();
-
-let sort: String[] = [];
-// const sort: Ref<String[]> = ref([]);
 const idx = ref(1);
+const tabsContent = ref<HTMLElement>();
+const scrollBarWidth = ref(0);
+const scrollBarOfferX = ref(0);
+const isDrag = ref(false);
+const tabsContainer = ref(null);
+
+let dragKey: string = '';
+let sort: String[] = [];
+let maxDragWith = 0;
+let scrollWidth = 0;
+let contentWidth = 0;
+let startOfferX = 0;
 
 const handleDragstart = (e: DragEvent, key: string) => {
   dragKey = key;
@@ -54,15 +58,7 @@ const handleDragover = (e: DragEvent) => {
   e.preventDefault();
 };
 
-const tabsContent = ref<HTMLElement>();
-const scrollBarWidth = ref(0);
-const scrollBarOfferX = ref(0);
-const isDrag = ref(false);
-let maxDragWith = 0;
-let scrollWidth = 0;
-let contentWidth = 0;
-
-const setScroll = () => {
+const setScroll = (activeNode?: VNode | undefined) => {
   nextTick(() => {
     const content = tabsContent.value as HTMLElement;
     const contentRect = content.getBoundingClientRect();
@@ -84,17 +80,21 @@ const setScroll = () => {
       scrollBarWidth.value = 0;
       maxDragWith = 0;
     }
+
+    if (tabsContent.value && activeNode && activeNode.el) {
+      activeNode.el.scrollIntoView();
+      const { scrollLeft } = tabsContent.value;
+      scrollBarOfferX.value = (scrollLeft / scrollWidth) * contentWidth;
+    }
   });
 };
-
-let startOfferX = 0;
 
 const handleMousemove = (event: MouseEvent) => {
   let offerX = scrollBarOfferX.value + event.pageX - startOfferX;
   offerX = offerX < 0 ? 0 : offerX;
   offerX = offerX > maxDragWith ? maxDragWith : offerX;
-  scrollBarOfferX.value = offerX;
   startOfferX = event.pageX;
+  scrollBarOfferX.value = offerX;
   if (tabsContent.value) {
     tabsContent.value.scrollLeft = (scrollBarOfferX.value / contentWidth) * scrollWidth;
   }
@@ -119,8 +119,28 @@ const handleMousedown = (event: MouseEvent) => {
   document.onselectstart = () => false;
 };
 
+const handleWheel = (event: WheelEvent) => {
+  const { deltaX, deltaY } = event;
+  let delta = 0;
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    delta = deltaX;
+  } else {
+    delta = deltaY;
+  }
+
+  if (tabsContent.value) {
+    const { scrollLeft } = tabsContent.value;
+    let offerX = scrollLeft - delta;
+    offerX = offerX < 0 ? 0 : offerX;
+    const maxWheelWidth = scrollWidth - contentWidth;
+    offerX = offerX > maxWheelWidth ? maxWheelWidth : offerX;
+    tabsContent.value.scrollLeft = offerX;
+    scrollBarOfferX.value = (offerX / scrollWidth) * contentWidth;
+  }
+};
+
 const root = () => {
-  console.log('root');
+  let activeNode;
   let children: VNode[] = [];
   if (slots.default) {
     const slotsDefault = slots.default();
@@ -132,6 +152,9 @@ const root = () => {
         tabs.forEach((item) => {
           if (!Array.isArray(item) && isVNode(item) && item.type === panel) {
             if (item.props) {
+              if (item.props.active) {
+                activeNode = item;
+              }
               // eslint-disable-next-line no-param-reassign
               item.props.draggable = 'true';
               // eslint-disable-next-line no-param-reassign
@@ -168,36 +191,46 @@ const root = () => {
     children = slotsDefault;
   }
 
-  const content = [h('div', {
+  setScroll(activeNode);
+
+  return h('div', {
     ref: tabsContent,
     class: 'w-tabs-content',
-  }, children)];
-
-  if (scrollBarWidth.value) {
-    content.push(h('div', {
-      class: 'w-tabs-scroll',
-    }, [
-      h('div', {
-        class: 'w-tabs-scrollbar',
-        style: `width:${scrollBarWidth.value}px;left:${scrollBarOfferX.value}px`,
-        onMousedown: handleMousedown,
-      }),
-    ]));
-  }
-
-  setScroll();
-
-  return h(
-    'div',
-    {
-      class: `w-tabs-container ${idx.value} ${isDrag.value ? 'drag' : ''}`,
-      ondragover: handleDragover,
-      ondrop: (e: DragEvent) => handleDrop(e, 'last'),
-    },
-    content,
-  );
+  }, children);
 };
+
+const debouncedFn = useDebounceFn(() => {
+  setScroll();
+}, 50);
+
+useResizeObserver(tabsContainer, () => {
+  debouncedFn();
+});
+
 </script>
+
+<template>
+  <div
+    ref="tabsContainer"
+    class="w-tabs-container"
+    :class="`${idx} ${isDrag ? 'drag' : ''}`"
+    @dragover="handleDragover"
+    @drop="(e: DragEvent) => handleDrop(e, 'last')"
+    @wheel="handleWheel"
+  >
+    <root />
+    <div
+      v-if="scrollBarWidth"
+      class="w-tabs-scroll"
+    >
+      <div
+        class="w-tabs-scrollbar"
+        :style="`width:${scrollBarWidth}px;left:${scrollBarOfferX}px`"
+        @mousedown="handleMousedown"
+      />
+    </div>
+  </div>
+</template>
 
 <style lang="less">
 .w-tabs-container {
@@ -205,7 +238,6 @@ const root = () => {
   display: flex;
   flex-direction: column;
   min-height: 35px;
-  background-color: rgb(37 37 38);
 
   &.drag {
     .w-tabs-content {
