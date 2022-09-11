@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import getFileIconLabel from '../file-icon/index';
+import { Action, showContextMenu } from '../content-menu/index';
 
 const props = defineProps({
   name: {
@@ -21,7 +22,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['close', 'open']);
+const emit = defineEmits(['close', 'open', 'close-other']);
 
 const clazz = computed(() => ({
   active: props.active,
@@ -86,12 +87,26 @@ const handleActionClick = (e: Event) => {
 };
 
 const handleClick = () => {
-  console.log('open');
   emit('open');
 };
 
 const handleClickMiddle = () => {
   emit('close');
+};
+
+const handleClickLeft = (event: MouseEvent) => {
+  const actions = [];
+  actions.push(new Action('close', '关闭', '', true, () => {
+    emit('close');
+  }));
+
+  actions.push(new Action('close_other', '关闭其他', '', true, () => {
+    emit('close-other');
+  }));
+
+  const anchorOffset = { x: 5, y: -5 };
+  const anchor = { x: event.pageX + anchorOffset.x, y: event.pageY + anchorOffset.y };
+  showContextMenu(anchor, actions);
 };
 
 </script>
@@ -102,6 +117,7 @@ const handleClickMiddle = () => {
     @mouseenter="handleTabMouseEnter"
     @mouseleave="handleTabMouseLeave"
     @click.middle.prevent="handleClickMiddle"
+    @click.right.prevent="handleClickLeft"
     @click="handleClick"
   >
     <div

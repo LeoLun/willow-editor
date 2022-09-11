@@ -95,7 +95,7 @@ const openFile = async (file: TreeEntity, preview = true) => {
   setContent(tabEntity);
 };
 
-const closeFile = async (file: TreeEntity, index: number) => {
+const closeFile = (file: TabEntity, index: number) => {
   tabs.value.splice(index, 1);
   if (currentTab.value?.key === file.key) {
     if (tabs.value.length) {
@@ -103,6 +103,13 @@ const closeFile = async (file: TreeEntity, index: number) => {
     } else {
       currentTab.value = undefined;
     }
+  }
+};
+
+const closeOther = (file: TabEntity) => {
+  tabs.value = [file];
+  if (currentTab.value?.key !== file.key) {
+    openFile(file);
   }
 };
 
@@ -126,6 +133,7 @@ defineExpose({
         :preview="item.preview"
         @open="openFile(item)"
         @close="closeFile(item, index)"
+        @close-other="closeOther(item)"
       />
     </w-tabs>
     <div
@@ -135,6 +143,7 @@ defineExpose({
     />
     <div
       v-show="currentTab && currentTab.type === 'image'"
+      class="image-content"
     >
       <img
         v-if="currentTab && currentTab.type === 'image'"
@@ -154,5 +163,14 @@ defineExpose({
 .editor {
   flex: 1;
   background: #1e1e1e;
+}
+
+.image-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 </style>

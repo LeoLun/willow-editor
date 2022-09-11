@@ -30,8 +30,10 @@ const handleDrop = (e: DragEvent, endKey: string) => {
     return;
   }
   e.preventDefault();
+  e.stopPropagation();
   const startIdx = sort.findIndex((item) => item === dragKey);
   if (endKey === 'last') {
+    sort.splice(startIdx, 1);
     // 直接放到最后面
     sort.push(dragKey);
   } else {
@@ -213,12 +215,12 @@ useResizeObserver(tabsContainer, () => {
   <div
     ref="tabsContainer"
     class="w-tabs-container"
-    :class="`${idx} ${isDrag ? 'drag' : ''}`"
+    :class="`${isDrag ? 'drag' : ''}`"
     @dragover="handleDragover"
     @drop="(e: DragEvent) => handleDrop(e, 'last')"
     @wheel="handleWheel"
   >
-    <root />
+    <root :class="`${idx}`" />
     <div
       v-if="scrollBarWidth"
       class="w-tabs-scroll"
