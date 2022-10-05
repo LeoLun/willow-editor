@@ -20,7 +20,7 @@ export function getController() {
         actions.push(new Action(CREATE_DIRECTORY, '新建文件夹', '', true, () => {
           alert('新建文件夹-实现中');
         }));
-        
+
         actions.push(new Separator(''));
       }
 
