@@ -18,7 +18,7 @@ const notificationService = StandaloneServices.get(INotificationService);
 const contextViewService = StandaloneServices.get(IContextViewService);
 const keybindingService = StandaloneServices.get(IKeybindingService);
 const themeService = StandaloneServices.get(IThemeService);
-themeService.setTheme('vs-dark');
+// themeService.setTheme('vs-dark');
 
 contextViewService.contextView.setContainer(document.documentElement, 1);
 
