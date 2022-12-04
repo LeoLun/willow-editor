@@ -1,0 +1,8 @@
+const enum ACTIONS {
+  CREATE_FILE = 'CREATE_FILE',
+  CREATE_DIRECTORY = 'CREATE_DIRECTORY',
+  RENAME = 'RENAME',
+  DELETE = 'DELETE',
+}
+
+export default ACTIONS;

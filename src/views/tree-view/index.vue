@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import { ref } from 'vue';
-import Tree from '@/components/tree/index.vue';
 import { DirTreeEntity, FileTreeEntity } from '@/entity/index';
+import Tree from './tree/index.vue';
 
 const props = defineProps({
   root: {

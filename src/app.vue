@@ -1,22 +1,31 @@
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref, computed, provide } from 'vue';
 import SplitPane from '@/components/split-pane/index.vue';
-import { FileTreeEntity, DirTreeEntity } from '@/entity/index';
-import { createDirTree } from './lib/file-system';
-
-import FileTree from './file-tree.vue';
-import Editor from './editor.vue';
+import {
+  FileTreeEntity, DirTreeEntity, TabNodeEntity, FileEntity,
+} from '@/entity/index';
+import { IEditorViewService, ITreeViewService, ITabsViewService } from './views/common/const';
+import TreeFactory from './lib/tree-factory';
+import FileTree from './views/tree-view/index.vue';
+import FileEditor from './views/editor-view/index.vue';
+import FileTabs from './views/tabs-view/index.vue';
 
 const root = ref<DirTreeEntity>();
-const editorElement = ref();
+const editorViewService = ref<InstanceType<typeof FileEditor>>();
+const treeViewService = ref<InstanceType<typeof FileTree>>();
+const tabsViewService = ref<InstanceType<typeof FileTabs>>();
+
+provide(IEditorViewService, editorViewService);
+provide(ITreeViewService, treeViewService);
+provide(ITabsViewService, tabsViewService);
+
 const isDrag = ref(false);
 const dragTitle = ref('拖拽文件夹 或 点击选择文件夹');
 
 const isEmpty = computed(() => !root.value);
 
 const handeleShowDirectoryPicker = async () => {
-  const dirHandle = await window.showDirectoryPicker();
-  root.value = await createDirTree(dirHandle);
+  root.value = await TreeFactory.createTree();
 };
 
 const handleDragover = () => {
@@ -34,7 +43,7 @@ const handleDrop = async (e: DragEvent) => {
     // eslint-disable-next-line no-restricted-syntax
     for await (const handle of fileHandlesPromises) {
       if (handle.kind === 'directory') {
-        root.value = await createDirTree(handle);
+        root.value = await TreeFactory.createTreeByHandle(handle);
       }
     }
   }
@@ -46,11 +55,19 @@ const handleDragleave = () => {
 };
 
 const handleClickFile = (file: FileTreeEntity) => {
-  editorElement.value.openFile(file, true);
+  if (tabsViewService.value) {
+    const fileEntidy = new FileEntity(file.key, file.name, file.handle);
+    const tabEntity = new TabNodeEntity(fileEntidy, true);
+    tabsViewService.value.openFile(tabEntity);
+  }
 };
 
 const handleDoubleClickFile = (file: FileTreeEntity) => {
-  editorElement.value.openFile(file, false);
+  if (tabsViewService.value) {
+    const fileEntidy = new FileEntity(file.key, file.name, file.handle);
+    const tabEntity = new TabNodeEntity(fileEntidy, false);
+    tabsViewService.value.openFile(tabEntity);
+  }
 };
 
 </script>
@@ -79,6 +96,7 @@ const handleDoubleClickFile = (file: FileTreeEntity) => {
       >
         <template #pane-l>
           <FileTree
+            ref="treeViewService"
             class="dir-tree"
             :root="root"
             @click-file="handleClickFile"
@@ -86,7 +104,16 @@ const handleDoubleClickFile = (file: FileTreeEntity) => {
           />
         </template>
         <template #pane-r>
-          <Editor ref="editorElement" />
+          <div class="editor-content">
+            <FileTabs
+              ref="tabsViewService"
+              class="editor-tabs-container"
+            />
+            <FileEditor
+              ref="editorViewService"
+              class="editor-view-container"
+            />
+          </div>
         </template>
       </split-pane>
     </div>
@@ -105,6 +132,22 @@ const handleDoubleClickFile = (file: FileTreeEntity) => {
   height: 100%;
   align-items: center;
   justify-content: center;
+}
+
+.editor-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.editor-tabs-container {
+  height: 35px;
+}
+
+.editor-view-container {
+  display: flex;
+  flex: 1;
 }
 
 .base-content {

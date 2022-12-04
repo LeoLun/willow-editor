@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-useless-constructor */
-import { TreeEntity } from '@/entity';
+import { TreeEntity, DirTreeEntity } from '@/entity';
 import Template from './template';
 
-import getFileIconLabel from '../file-icon/index';
+import getFileIconLabel from '../../../components/file-icon/index';
 
 class FileTemplate extends Template {
   /**
@@ -29,8 +29,8 @@ class FileTemplate extends Template {
     this.monacoIconLabel.className = 'monaco-icon-label';
     this.monacoIconLabel.classList.remove('file-icon');
 
-    const icon = getFileIconLabel(file.name, file.isDirectory);
-    if (!file.isDirectory) {
+    const icon = getFileIconLabel(file.name, DirTreeEntity.isDirectory(file));
+    if (DirTreeEntity.isDirectory(file)) {
       this.monacoIconLabel.classList.add('file-icon');
     }
 

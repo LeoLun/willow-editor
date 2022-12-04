@@ -1,18 +1,24 @@
-import TreeEntity from './tree-entity';
+import TreeEntity from './tree-node-entity';
 
-class DirTreeEntity extends TreeEntity {
+/** 目录树文件夹节点实体类 */
+export default class DirTreeEntity extends TreeEntity {
+  children: TreeEntity[];
+
+  /** 文件夹处理器 */
   handle: FileSystemDirectoryHandle;
 
   constructor(
     key: string,
-    parentKey: string | null,
     name: string,
     parent: TreeEntity | null,
     handle: FileSystemDirectoryHandle,
   ) {
-    super(key, parentKey, name, parent, true);
+    super(key, name, parent);
     this.handle = handle;
+    this.children = [];
+  }
+
+  static isDirectory(treeEntity: TreeEntity) {
+    return treeEntity instanceof DirTreeEntity;
   }
 }
-
-export default DirTreeEntity;

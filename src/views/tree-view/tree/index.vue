@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { TreeEntity } from '@/entity';
+import { onMounted, ref } from 'vue';
+import { TreeEntity, FileTreeEntity, DirTreeEntity } from '@/entity';
+import Dialog from '@/components/dialog/index.vue';
+import WButton from '@/components/button/index.vue';
+import WInput from '@/components/input/index.vue';
 import { Tree } from './moncao-tree/treeImpl';
 import TreeDnD from './tree-dnd';
 import FileTemplate from './file-template';
 import { createController } from './monaco-controller';
+import ACTIONS from './actions';
+
+const visible = ref(false);
 
 const treeConfig: {
   dataSource: any,
@@ -25,14 +31,18 @@ const treeConfig: {
     * Returns a boolean value indicating whether the element has children.
     */
     hasChildren(tree: any, element: TreeEntity) {
-      return element.isDirectory;
+      return DirTreeEntity.isDirectory(element);
     },
 
     /**
     * Returns the element's children as an array in a promise.
     */
     getChildren(tree: any, element: TreeEntity) {
-      return Promise.resolve(element.children);
+      if (DirTreeEntity.isDirectory(element)) {
+        const dir = element as DirTreeEntity;
+        return Promise.resolve(dir.children);
+      }
+      return [];
     },
 
     /**
@@ -78,6 +88,8 @@ const props = defineProps({
 
 const emit = defineEmits(['click-file', 'doubleclick-file']);
 
+let currentFile: TreeEntity | null;
+
 let tree: any = null;
 
 let lastClickedTime = 0;
@@ -85,14 +97,31 @@ let lastClickedFileKey = '';
 
 onMounted(() => {
   const { directory } = props;
-  treeConfig.controller = createController();
+
+  const onRename = (file: TreeEntity) => {
+    console.log('onRename', file);
+    // eslint-disable-next-line no-param-reassign
+    // file.name = 'abc.js';
+    // tree.setInput(directory);
+    currentFile = file;
+    visible.value = true;
+  };
+
+  treeConfig.controller = createController((type: ACTIONS, file: TreeEntity) => {
+    console.log('type', type);
+    console.log('file', file);
+    if (type === ACTIONS.RENAME) {
+      onRename(file);
+    }
+  });
   const container = document.getElementById('tree-container');
   tree = new Tree(container, treeConfig);
   tree.setInput(directory);
+  console.log('tree', tree);
   tree.model.onDidSelect((e: any) => {
     if (e.selection.length) {
       const treeEntity = e.selection[0] as TreeEntity;
-      if (!treeEntity.isDirectory) {
+      if (!DirTreeEntity.isDirectory(treeEntity)) {
         const isDoubleClick = Date.now() - lastClickedTime < 500;
         const isSameFile = lastClickedFileKey === treeEntity.key;
         if (isDoubleClick && isSameFile) {
@@ -107,12 +136,45 @@ onMounted(() => {
   });
 });
 
+const filename = ref('');
+const handleRename = async () => {
+  if (!filename.value) {
+    return;
+  }
+  try {
+    if (currentFile instanceof FileTreeEntity) {
+      const fsHandle: any = currentFile.handle;
+      await fsHandle.move(filename.value);
+      currentFile.name = filename.value;
+      tree.setInput(props.directory);
+      visible.value = false;
+      currentFile = null;
+      // @TODO 通知 tabs 更新名字
+    }
+  } catch (e: any) {
+    if (e.message && e.message === 'The user aborted a request.') {
+      console.log('开启实验性功能 打开 chreom://flags 中的 Experimental Web Platform features');
+    }
+  }
+};
+
 </script>
 <template>
   <div
     id="tree-container"
     class="tree-container"
   />
+  <Dialog
+    v-model:visible="visible"
+    :title="'提示'"
+  >
+    <WInput v-model="filename" />
+    <template #footer>
+      <WButton @click="handleRename">
+        确定
+      </WButton>
+    </template>
+  </Dialog>
 </template>
 <style lang="less">
 @import "./moncao-tree/browser/ui/iconLabel/iconlabel.css";

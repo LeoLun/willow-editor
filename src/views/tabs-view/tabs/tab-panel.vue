@@ -1,22 +1,15 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import getFileIconLabel from '../file-icon/index';
-import { Action, showContextMenu } from '../content-menu/index';
+import getFileIconLabel from '@/components/file-icon/index';
+import { Action, showContextMenu } from '@/views/content-menu/index';
+import { TabNodeEntity } from '@/entity';
 
 const props = defineProps({
-  name: {
-    type: String,
+  tabEntity: {
+    type: TabNodeEntity,
     required: true,
   },
   active: {
-    type: Boolean,
-    default: false,
-  },
-  unsaved: {
-    type: Boolean,
-    default: false,
-  },
-  preview: {
     type: Boolean,
     default: false,
   },
@@ -26,7 +19,7 @@ const emit = defineEmits(['close', 'open', 'close-other']);
 
 const clazz = computed(() => ({
   active: props.active,
-  preview: props.preview,
+  preview: props.tabEntity.preview,
 }));
 
 const tabHover = ref(false);
@@ -52,7 +45,8 @@ const statusMap = {
 };
 
 const status = computed(() => {
-  const { unsaved, active } = props;
+  const { active, tabEntity } = props;
+  const unsaved = !tabEntity.file.isChange();
   const unsavedKey = UnSavedEnum[unsaved ? 0 : 1];
   const activeKey = ActiveEnum[active ? 0 : 1];
   const tabHoverKey = TabHoverEnum[tabHover.value ? 0 : 1];
@@ -60,7 +54,7 @@ const status = computed(() => {
   return statusMap[unsavedKey + activeKey + tabHoverKey + iconHoverKey];
 });
 
-const icon = computed(() => getFileIconLabel(props.name, false));
+const icon = computed(() => getFileIconLabel(props.tabEntity.file.name, false));
 
 const handleTabMouseEnter = () => {
   tabHover.value = true;
@@ -94,6 +88,11 @@ const handleClickMiddle = () => {
   emit('close');
 };
 
+const handleDoubleClick = () => {
+  const { tabEntity } = props;
+  tabEntity.preview = false;
+};
+
 const handleClickLeft = (event: MouseEvent) => {
   const actions = [];
   actions.push(new Action('close', '关闭', '', true, () => {
@@ -119,12 +118,13 @@ const handleClickLeft = (event: MouseEvent) => {
     @click.middle.prevent="handleClickMiddle"
     @click.right.prevent="handleClickLeft"
     @click="handleClick"
+    @dblclick="handleDoubleClick"
   >
     <div
       class="tab-icon"
       :class="icon"
     />
-    <div>{{ name }}</div>
+    <div>{{ tabEntity.file.name }}</div>
     <div
       class="tab-action"
       @mouseenter="handleIconMouseEnter"

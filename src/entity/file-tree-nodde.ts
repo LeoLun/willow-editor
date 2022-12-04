@@ -1,18 +1,17 @@
-import TreeEntity from './tree-entity';
+import TreeEntity from './tree-node-entity';
 
-class FileTreeEntity extends TreeEntity {
+/** 目录树文件节点实体类 */
+export default class FileTreeEntity extends TreeEntity {
+  /** 文件处理器 */
   handle: FileSystemFileHandle;
 
   constructor(
     key: string,
-    parentKey: string | null,
     name: string,
     parent: TreeEntity | null,
     handle: FileSystemFileHandle,
   ) {
-    super(key, parentKey, name, parent, false);
+    super(key, name, parent);
     this.handle = handle;
   }
 }
-
-export default FileTreeEntity;

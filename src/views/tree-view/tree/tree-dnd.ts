@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { TreeEntity } from '@/entity';
+import { TreeEntity, DirTreeEntity } from '@/entity';
 
 class TreeDnD {
   /**
@@ -48,7 +48,7 @@ class TreeDnD {
     const treeEntity = data.elements[0];
 
     return {
-      accept: targetElement.isDirectory && treeEntity.parent !== targetElement
+      accept: DirTreeEntity.isDirectory(targetElement) && treeEntity.parent !== targetElement
         && !targetElement.isDescendantOf(treeEntity),
       autoExpand: true,
     };
@@ -64,24 +64,24 @@ class TreeDnD {
      * @param {Event} originalEvent original drag event
      */
   // drop(tree: any, data: any, targetElement: TreeEntity, originalEvent: DragEvent) {
-  drop(tree: any, data: any, targetElement: TreeEntity) {
+  drop(tree: any, data: any, targetElement: DirTreeEntity) {
     // first remove droppedNode  from immediate parent
     /**
-         * @type {TreeEntity}
-         */
+      * @type {TreeEntity}
+      */
     const droppedNode = data.elements[0] as TreeEntity;
 
     /**
-         * @type {TreeEntity}
-         */
-    const { parent } = droppedNode;
+      * @type {TreeEntity}
+      */
+    const parent = droppedNode!.parent as DirTreeEntity;
 
     /**
-         * @type {Array<TreeEntity>}
-         */
-    const oldParentNewChildren = parent!.children.filter((n: TreeEntity) => n !== droppedNode);
+      * @type {Array<TreeEntity>}
+      */
+    const oldParentNewChildren = parent.children.filter((n: TreeEntity) => n !== droppedNode);
 
-    parent!.children = oldParentNewChildren;
+    parent.children = oldParentNewChildren;
 
     // next add it as a child of the new parent
     targetElement.children.push(droppedNode);
@@ -89,9 +89,9 @@ class TreeDnD {
     // sort the children
     targetElement.children.sort((a, b) => {
       // directories have higher precedence
-      if (a.isDirectory && !b.isDirectory) return -1;
+      if (DirTreeEntity.isDirectory(a) && !DirTreeEntity.isDirectory(b)) return -1;
 
-      if (!a.isDirectory && b.isDirectory) return 1;
+      if (!DirTreeEntity.isDirectory(a) && DirTreeEntity.isDirectory(b)) return 1;
 
       const nameA = a.name.toLowerCase(); // ignore upper and lowercase
       const nameB = b.name.toLowerCase(); // ignore upper and lowercase
