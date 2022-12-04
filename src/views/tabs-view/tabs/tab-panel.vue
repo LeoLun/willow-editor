@@ -46,7 +46,7 @@ const statusMap = {
 
 const status = computed(() => {
   const { active, tabEntity } = props;
-  const unsaved = !tabEntity.file.isChange();
+  const unsaved = tabEntity.file.isChange();
   const unsavedKey = UnSavedEnum[unsaved ? 0 : 1];
   const activeKey = ActiveEnum[active ? 0 : 1];
   const tabHoverKey = TabHoverEnum[tabHover.value ? 0 : 1];
