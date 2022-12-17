@@ -84,6 +84,8 @@ const closeFile = () => {
   currentFile.value = undefined;
   const monacoEditor = getInstance('monaca-editor');
   monacoEditor.setValue('');
+  onChangeLanguage('');
+  onChangeCursorPosition(undefined);
 };
 
 defineExpose({
