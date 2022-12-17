@@ -5,7 +5,7 @@ import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
 import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
 import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker';
 import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
-
+import type { Position } from '../status-bar/status-bar-types';
 self.MonacoEnvironment = {
   getWorker(_, label) {
     if (label === 'json') {
@@ -44,7 +44,12 @@ const createEditor = (elementId: string) => {
   return editor;
 };
 
-export default (onSaveFile: (content: string) => void, onChangeFile: (content: string) => void) => {
+export default (
+  onChangeCursorPosition: (position: Position) => void,
+  onSaveFile: (content: string) => void,
+  onChangeFile: (content: string) => void,
+  onChangeLanguage: (langguage: string) => void,
+) => {
   let monacoEditor: monaco.editor.IStandaloneCodeEditor;
 
   const getInstance = (elementId: string) => {
@@ -70,8 +75,19 @@ export default (onSaveFile: (content: string) => void, onChangeFile: (content: s
     });
     // 显示行列
     monacoEditor.onDidChangeCursorPosition((e) => {
-      console.log(`行 ${e.position.lineNumber}，列 ${e.position.column}`);
+      onChangeCursorPosition({
+        column: e.position.column,
+        lineNumber: e.position.lineNumber
+      })
     });
+
+    monacoEditor.onDidChangeModelLanguage((e) => {
+      const languageId = e.newLanguage;
+      const language = monaco.languages.getLanguages().find(language => language.id === languageId)
+      if (language && language.aliases) {
+        onChangeLanguage(language.aliases[0]);
+      }
+    })
 
     return monacoEditor;
   };

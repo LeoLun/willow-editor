@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { FileEntity } from '@/entity/index';
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import * as monaco from 'monaco-editor';
+import type { Ref } from 'vue';
 import Monaco from './monaco';
 import { findLanguage } from './monaco-language';
+import { IStatusBarervice } from '../common/const';
+import type StatusBar from '../status-bar/index.vue';
+import type { Position } from '../status-bar/status-bar-types';
+
+type StatusBarerviceType = Ref<InstanceType<typeof StatusBar>>;
+// 注入 IStatusBarervice
+const statusBarervice = inject(IStatusBarervice) as StatusBarerviceType | undefined;
 
 const currentFile = ref<FileEntity>();
 
@@ -23,24 +31,45 @@ const onChangeFile = (content: string) => {
   }
 };
 
-const { getInstance } = Monaco(onSaveFile, onChangeFile);
+const onChangeCursorPosition = (postion: Position | undefined) => {
+  if (statusBarervice) {
+    statusBarervice.value.setCursorPostion(postion);
+  }
+};
+
+const onChangeLanguage = (language: string) => {
+  if (statusBarervice) {
+    statusBarervice.value.setLanguage(language);
+  }
+};
+
+const { getInstance } = Monaco(
+  onChangeCursorPosition,
+  onSaveFile,
+  onChangeFile,
+  onChangeLanguage,
+);
 
 const setContent = (fileEntity: FileEntity) => {
   currentFile.value = fileEntity;
-  const monacaEditor = getInstance('monaca-editor');
+  const monacoEditor = getInstance('monaca-editor');
   const match = fileEntity.name.match(/\.[^\\.]+$/);
   let suffix = match ? match[0] : '';
   suffix = findLanguage(suffix);
   const content = fileEntity.getContent();
-  monacaEditor.setValue(content);
-  const model = monacaEditor.getModel();
+  monacoEditor.setValue(content);
+  const model = monacoEditor.getModel();
   if (model) {
     monaco.editor.setModelLanguage(model, suffix);
+  }
+
+  if (fileEntity.type === 'image') {
+    onChangeLanguage('');
+    onChangeCursorPosition(undefined);
   }
 };
 
 const openFile = async (fileEntity: FileEntity) => {
-  // @TODO 如果没有变化则直接返回
   if (currentFile.value?.key === fileEntity.key) {
     return;
   }
@@ -51,13 +80,23 @@ const openFile = async (fileEntity: FileEntity) => {
   setContent(fileEntity);
 };
 
+const closeFile = () => {
+  currentFile.value = undefined;
+  const monacoEditor = getInstance('monaca-editor');
+  monacoEditor.setValue('');
+};
+
 defineExpose({
   openFile,
+  closeFile,
 });
 </script>
 
 <template>
-  <div class="editor-view-content">
+  <div
+    v-show="currentFile"
+    class="editor-view-content"
+  >
     <div
       v-show="currentFile && currentFile.type === 'file'"
       id="monaca-editor"
@@ -94,5 +133,6 @@ defineExpose({
   height: 100%;
   justify-content: center;
   align-items: center;
+  background: #1a1a1a;
 }
 </style>
