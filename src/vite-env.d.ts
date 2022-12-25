@@ -8,6 +8,13 @@ declare module '*.vue' {
   export default component;
 }
 
+declare module 'virtual:sw-plugin' {
+  // 声明一个变量，保存这个值的类型
+  declare const registerSW: (dist: string, options?: object) => Promise<ServiceWorkerRegistration>;
+  // 告诉 ts，这个模块默认导出的值就是这个 date 变量的类型
+  export { registerSW };
+}
+
 declare module 'monaco-editor/esm/vs/platform/contextview/browser/contextMenuService.js' {
   declare const ContextMenuService: any;
   export { ContextMenuService };

@@ -9,6 +9,8 @@ export default abstract class TreeNodeEntity {
   /** 父节点 */
   parent: TreeNodeEntity | null;
 
+  suffix: string;
+
   constructor(
     key: string,
     name: string,
@@ -17,6 +19,9 @@ export default abstract class TreeNodeEntity {
     this.key = key;
     this.name = name;
     this.parent = parent;
+
+    const match = name.match(/\.[^\\.]+$/);
+    this.suffix = match ? match[0] : '';
   }
 
   /** 获取文件路径 */

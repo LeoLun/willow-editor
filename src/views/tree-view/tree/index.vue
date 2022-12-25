@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, inject } from 'vue';
 import { TreeEntity, FileTreeEntity, DirTreeEntity } from '@/entity';
 import Dialog from '@/components/dialog/index.vue';
 import WButton from '@/components/button/index.vue';
@@ -10,6 +10,9 @@ import FileTemplate from './file-template';
 import { createController } from './monaco-controller';
 import ACTIONS from './actions';
 
+import { IToastService } from '../../common/const';
+
+const toastService = inject(IToastService);
 const visible = ref(false);
 
 const treeConfig: {
@@ -107,11 +110,26 @@ onMounted(() => {
     visible.value = true;
   };
 
+  const onOpenWishLiveServer = (file: TreeEntity) => {
+    console.log('onOpenWishLiveServer', file);
+    window.open(`/willow-editor/live${file.key}`, '_blank');
+  };
+
   treeConfig.controller = createController((type: ACTIONS, file: TreeEntity) => {
     console.log('type', type);
     console.log('file', file);
     if (type === ACTIONS.RENAME) {
       onRename(file);
+      return;
+    }
+
+    if (type === ACTIONS.OPEN_WISH_LIVE_SERVER) {
+      onOpenWishLiveServer(file);
+      return;
+    }
+
+    if (toastService) {
+      toastService.info('开发中');
     }
   });
   const container = document.getElementById('tree-container');

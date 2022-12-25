@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import eslint from 'vite-plugin-eslint';
 import stylelint from 'vite-plugin-stylelint';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import { nativeSW } from 'vite-plugin-native-sw';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,6 +29,12 @@ export default defineConfig({
       symbolId: 'icon-[dir]-[name]',
       inject: 'body-last',
       customDomId: '__svg__icons__dom__',
+    }),
+    nativeSW({
+      entries: [{
+        src: resolve(__dirname, 'src/service-worker.ts'),
+        dist: 'sw.js',
+      }],
     }),
   ],
 });

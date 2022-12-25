@@ -45,5 +45,11 @@ module.exports = {
         'vue/multi-word-component-names': 'off',
       },
     },
+    {
+      files: ['**/*-worker.ts'],
+      rules: {
+        'no-restricted-globals': 'off',
+      },
+    },
   ],
 };

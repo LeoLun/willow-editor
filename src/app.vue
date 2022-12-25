@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { ref, computed, provide } from 'vue';
 import SplitPane from '@/components/split-pane/index.vue';
+import ToastService from '@/components/toast/index';
 import {
   FileTreeEntity, DirTreeEntity, TabNodeEntity, FileEntity,
 } from '@/entity/index';
+
 import {
-  IEditorViewService, ITreeViewService, ITabsViewService, IStatusBarervice,
+  IEditorViewService, ITreeViewService, ITabsViewService, IStatusBarService, IToastService,
 } from './views/common/const';
 import TreeFactory from './lib/tree-factory';
 import FileTree from './views/tree-view/index.vue';
@@ -22,7 +24,8 @@ const statusBarService = ref<InstanceType<typeof FileTabs>>();
 provide(IEditorViewService, editorViewService);
 provide(ITreeViewService, treeViewService);
 provide(ITabsViewService, tabsViewService);
-provide(IStatusBarervice, statusBarService);
+provide(IStatusBarService, statusBarService);
+provide(IToastService, ToastService);
 
 const isDrag = ref(false);
 const dragTitle = ref('拖拽文件夹 或 点击选择文件夹');

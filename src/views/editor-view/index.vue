@@ -5,13 +5,13 @@ import * as monaco from 'monaco-editor';
 import type { Ref } from 'vue';
 import Monaco from './monaco';
 import { findLanguage } from './monaco-language';
-import { IStatusBarervice } from '../common/const';
+import { IStatusBarService } from '../common/const';
 import type StatusBar from '../status-bar/index.vue';
 import type { Position } from '../status-bar/status-bar-types';
 
 type StatusBarerviceType = Ref<InstanceType<typeof StatusBar>>;
-// 注入 IStatusBarervice
-const statusBarervice = inject(IStatusBarervice) as StatusBarerviceType | undefined;
+// 注入 IStatusBarService
+const statusBarervice = inject(IStatusBarService) as StatusBarerviceType | undefined;
 
 const currentFile = ref<FileEntity>();
 

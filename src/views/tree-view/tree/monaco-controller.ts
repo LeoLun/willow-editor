@@ -16,14 +16,20 @@ export function getController(
       const actions = [];
       if (DirTreeEntity.isDirectory(file)) {
         actions.push(new Action(ACTIONS.CREATE_FILE, '新建文件', '', true, () => {
-          alert('新建文件-实现中');
+          onEvent(ACTIONS.CREATE_FILE, file);
         }));
 
         actions.push(new Action(ACTIONS.CREATE_DIRECTORY, '新建文件夹', '', true, () => {
-          alert('新建文件夹-实现中');
+          onEvent(ACTIONS.CREATE_DIRECTORY, file);
         }));
 
         actions.push(new Separator(''));
+      }
+
+      if (file.suffix === '.html') {
+        actions.push(new Action(ACTIONS.OPEN_WISH_LIVE_SERVER, '用在线服务器打开', '', true, () => {
+          onEvent(ACTIONS.OPEN_WISH_LIVE_SERVER, file);
+        }));
       }
 
       actions.push(new Action(ACTIONS.RENAME, '重命名', '', true, () => {
@@ -31,7 +37,7 @@ export function getController(
       }));
 
       actions.push(new Action(ACTIONS.DELETE, '删除', '', true, () => {
-        alert('删除-实现中');
+        onEvent(ACTIONS.DELETE, file);
       }));
 
       const anchorOffset = { x: 5, y: -5 };
