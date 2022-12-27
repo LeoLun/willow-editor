@@ -22,7 +22,7 @@ const onSaveFile = async (content: string) => {
   if (!currentFile.value.isChange()) {
     return;
   }
-  await currentFile.value.writeFile(content);
+  await currentFile.value.write(content);
 };
 
 const onChangeFile = (content: string) => {

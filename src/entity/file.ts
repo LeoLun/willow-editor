@@ -2,7 +2,7 @@ import SparkMD5 from 'spark-md5';
 
 /** 文件实体类 */
 class FileEntity {
-  /** 文件唯一表示服 */
+  /** 文件唯一标识符 */
   key: string;
 
   /** 文件名 */
@@ -36,8 +36,8 @@ class FileEntity {
     this.handle = handle;
   }
 
-  /** 获取文件内容 */
-  private async getFileContent(utfLabel = 'utf-8') {
+  /** 获取文本内容 */
+  private async fetchTextContent(utfLabel = 'utf-8') {
     const file = await this.handle.getFile();
     const arrayBuffer = await file.arrayBuffer();
     const textDecoder = new TextDecoder(utfLabel);
@@ -45,7 +45,7 @@ class FileEntity {
   }
 
   /** 获取图片内容 */
-  private async getImageContent() {
+  private async fetchImageContent() {
     const file = await this.handle.getFile();
     const reader = new FileReader();
 
@@ -79,9 +79,9 @@ class FileEntity {
   async fetchContent() {
     let content = '';
     if (this.type === 'image') {
-      content = await this.getImageContent() as string;
+      content = await this.fetchImageContent() as string;
     } else {
-      content = await this.getFileContent();
+      content = await this.fetchTextContent();
     }
 
     const md5 = SparkMD5.hash(content);
@@ -96,7 +96,7 @@ class FileEntity {
    * 写入文件到磁盘, 如果没有传入文件内容则写入当前保存的
    * @param content 文件内容
    */
-  async writeFile(content?: string) {
+  async write(content?: string) {
     const hasContent = !!content;
     let isChange = this.isChange();
     const saveContent = content || this.content;
