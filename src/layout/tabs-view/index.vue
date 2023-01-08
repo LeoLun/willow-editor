@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue';
+import { ref } from 'vue';
+import { requireInjection } from '@/utils';
 import type { Ref } from 'vue';
 import { TabNodeEntity } from '@/entity/index';
-import { IEditorViewService } from '../common/const';
+import { IEditorViewService } from '@/common/const';
 
 import type FileEditor from '../editor-view/index.vue';
 import WTabs from './tabs/tabs.vue';
@@ -10,14 +11,14 @@ import WTabPanel from './tabs/tab-panel.vue';
 
 type FileEditorServiceType = Ref<InstanceType<typeof FileEditor>>;
 // 注入 editorViewService
-const editorViewService = inject(IEditorViewService) as FileEditorServiceType | undefined;
+const editorViewService = requireInjection(IEditorViewService) as FileEditorServiceType;
 
 const currentTab = ref<TabNodeEntity>();
 const tabs = ref<TabNodeEntity[]>([]);
 
 const setContent = (tabEntity: TabNodeEntity) => {
   currentTab.value = tabEntity;
-  editorViewService?.value.openFile(tabEntity.file);
+  editorViewService.value.openFile(tabEntity.file);
 };
 
 const openFile = async (tab: TabNodeEntity) => {
@@ -51,7 +52,7 @@ const closeFile = (tab: TabNodeEntity, index: number) => {
       openFile(tabs.value[tabs.value.length - 1] as TabNodeEntity);
     } else {
       currentTab.value = undefined;
-      editorViewService?.value.closeFile();
+      editorViewService.value.closeFile();
     }
   }
 };

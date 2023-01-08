@@ -1,28 +1,64 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import SvgIcon from '../svg-icon/index.vue';
 
 const props = defineProps({
   visible: {
     type: Boolean,
-    default: false,
+    required: true,
   },
   title: {
     type: String,
     default: '标题',
   },
+  content: {
+    type: Function,
+    required: true,
+  },
+  foot: {
+    type: Function,
+    default: null,
+  },
 });
 
-const emit = defineEmits(['update:visible']);
+const emits = defineEmits(['update:visible']);
 
-const visible = computed({
+const dialogVisible = computed({
   get: () => props.visible,
-  set: (value) => {
-    emit('update:visible', value);
+  set: (nValue) => {
+    emits('update:visible', nValue);
   },
 });
 
 const handleClose = () => {
-  visible.value = false;
+  emits('update:visible', false);
+};
+
+const contentRender = () => {
+  const { content } = props;
+  return content();
+};
+
+const footRender = () => {
+  console.log('footRender');
+  const { foot } = props;
+  return foot && foot();
+  // return h('div', {}, {
+  //   default: () => {
+  //     console.log('33333');
+  //     const cancalButton = h('div', {
+  //       onClick: () => {
+  //         console.log('123');
+  //       },
+  //     }, '取消');
+  //     const confirmButton = h('div', {
+  //       onClick: () => {
+  //         console.log('321');
+  //       },
+  //     }, '确定');
+  //     return [cancalButton, confirmButton];
+  //   },
+  // });
 };
 
 </script>
@@ -31,7 +67,7 @@ const handleClose = () => {
   <Teleport to="body">
     <Transition name="dialog-fade">
       <div
-        v-if="visible"
+        v-if="dialogVisible"
         class="w-dialog"
       >
         <div
@@ -50,10 +86,11 @@ const handleClose = () => {
             </div>
           </div>
           <div class="w-dialog-content">
-            <slot />
+            <!-- <slot /> -->
+            <contentRender />
           </div>
           <div class="w-dialog-footer">
-            <slot name="footer" />
+            <footRender />
           </div>
         </div>
       </div>

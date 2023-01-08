@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import getFileIconLabel from '@/components/file-icon/index';
-import { Action, showContextMenu } from '@/views/content-menu/index';
 import { TabNodeEntity } from '@/entity';
+import { Action, showContextMenu } from '@/layout/content-menu/index';
 
 const props = defineProps({
   tabEntity: {

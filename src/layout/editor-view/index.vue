@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { FileEntity } from '@/entity/index';
-import { ref, inject } from 'vue';
+import { ref } from 'vue';
+import { requireInjection } from '@/utils';
 import * as monaco from 'monaco-editor';
 import type { Ref } from 'vue';
+import { IStatusBarService } from '@/common/const';
 import Monaco from './monaco';
 import { findLanguage } from './monaco-language';
-import { IStatusBarService } from '../common/const';
 import type StatusBar from '../status-bar/index.vue';
 import type { Position } from '../status-bar/status-bar-types';
 
 type StatusBarerviceType = Ref<InstanceType<typeof StatusBar>>;
 // 注入 IStatusBarService
-const statusBarervice = inject(IStatusBarService) as StatusBarerviceType | undefined;
+const statusBarervice = requireInjection(IStatusBarService) as StatusBarerviceType;
 
 const currentFile = ref<FileEntity>();
 
@@ -32,15 +33,11 @@ const onChangeFile = (content: string) => {
 };
 
 const onChangeCursorPosition = (postion: Position | undefined) => {
-  if (statusBarervice) {
-    statusBarervice.value.setCursorPostion(postion);
-  }
+  statusBarervice.value.setCursorPostion(postion);
 };
 
 const onChangeLanguage = (language: string) => {
-  if (statusBarervice) {
-    statusBarervice.value.setLanguage(language);
-  }
+  statusBarervice.value.setLanguage(language);
 };
 
 const { getInstance } = Monaco(

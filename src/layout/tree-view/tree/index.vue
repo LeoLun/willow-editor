@@ -1,19 +1,17 @@
 <script setup lang="ts">
-import { onMounted, ref, inject } from 'vue';
-import { TreeEntity, FileTreeEntity, DirTreeEntity } from '@/entity';
-import Dialog from '@/components/dialog/index.vue';
-import WButton from '@/components/button/index.vue';
-import WInput from '@/components/input/index.vue';
+import { onMounted } from 'vue';
+import { requireInjection } from '@/utils';
+import { TreeEntity, DirTreeEntity, FileTreeEntity } from '@/entity';
+import { IToastService } from '@/common/const';
+import DialogFactory from '@/layout/dialog/dialog-factory';
 import { Tree } from './moncao-tree/treeImpl';
 import TreeDnD from './tree-dnd';
 import FileTemplate from './file-template';
 import { createController } from './monaco-controller';
 import ACTIONS from './actions';
 
-import { IToastService } from '../../common/const';
-
-const toastService = inject(IToastService);
-const visible = ref(false);
+const toastService = requireInjection(IToastService);
+// const visible = ref(false);
 
 const treeConfig: {
   dataSource: any,
@@ -102,12 +100,62 @@ onMounted(() => {
   const { directory } = props;
 
   const onRename = (file: TreeEntity) => {
-    console.log('onRename', file);
-    // eslint-disable-next-line no-param-reassign
-    // file.name = 'abc.js';
-    // tree.setInput(directory);
     currentFile = file;
-    visible.value = true;
+    console.log('currentFile', currentFile instanceof FileTreeEntity);
+    const dialog = DialogFactory.create({
+      type: 'RENAME',
+      props: {
+        fileName: currentFile.name,
+        onCancel: () => {
+          console.log('123');
+        },
+        onConfirm: async (filename: string) => {
+          console.log('filename', filename);
+          if (!filename) {
+            return;
+          }
+          try {
+            if (currentFile instanceof FileTreeEntity) {
+              console.log('111');
+              const fsHandle: any = currentFile.handle;
+              await fsHandle.move(filename);
+              currentFile.name = filename;
+              tree.setInput(props.directory);
+              currentFile = null;
+              // @TODO 通知 tabs 更新名字
+              console.log('22222');
+              // 关闭弹窗
+              dialog.close();
+            }
+          } catch (e: any) {
+            if (e.message && e.message === 'The user aborted a request.') {
+              toastService.info('开启实验性功能 打开 chreom://flags 中的 Experimental Web Platform features');
+            }
+          }
+        },
+      },
+    });
+
+    dialog.open();
+  };
+
+  const onDelete = (file: TreeEntity) => {
+    console.log('onDelete', file);
+
+    const dialog = DialogFactory.create({
+      type: 'DELETE',
+      props: {
+        fileName: file.name,
+        onConfirm: () => {
+          dialog.close();
+        },
+        onCancel: () => {
+          dialog.close();
+        },
+      },
+    });
+
+    dialog.open();
   };
 
   const onOpenWishLiveServer = (file: TreeEntity) => {
@@ -128,9 +176,12 @@ onMounted(() => {
       return;
     }
 
-    if (toastService) {
-      toastService.info('开发中');
+    if (type === ACTIONS.DELETE) {
+      onDelete(file);
+      return;
     }
+
+    toastService.info('开发中');
   });
   const container = document.getElementById('tree-container');
   tree = new Tree(container, treeConfig);
@@ -154,48 +205,15 @@ onMounted(() => {
   });
 });
 
-const filename = ref('');
-const handleRename = async () => {
-  if (!filename.value) {
-    return;
-  }
-  try {
-    if (currentFile instanceof FileTreeEntity) {
-      const fsHandle: any = currentFile.handle;
-      await fsHandle.move(filename.value);
-      currentFile.name = filename.value;
-      tree.setInput(props.directory);
-      visible.value = false;
-      currentFile = null;
-      // @TODO 通知 tabs 更新名字
-    }
-  } catch (e: any) {
-    if (e.message && e.message === 'The user aborted a request.') {
-      console.log('开启实验性功能 打开 chreom://flags 中的 Experimental Web Platform features');
-    }
-  }
-};
-
 </script>
 <template>
   <div
     id="tree-container"
     class="tree-container"
   />
-  <Dialog
-    v-model:visible="visible"
-    :title="'提示'"
-  >
-    <WInput v-model="filename" />
-    <template #footer>
-      <WButton @click="handleRename">
-        确定
-      </WButton>
-    </template>
-  </Dialog>
 </template>
 <style lang="less">
-@import "./moncao-tree/browser/ui/iconLabel/iconlabel.css";
+@import url("./moncao-tree/browser/ui/iconLabel/iconlabel.css");
 
 .tree-container {
   width: 100%;

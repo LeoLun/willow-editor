@@ -1,31 +1,36 @@
 <script lang="ts" setup>
 import { ref, computed, provide } from 'vue';
 import SplitPane from '@/components/split-pane/index.vue';
-import ToastService from '@/components/toast/index';
 import {
-  FileTreeEntity, DirTreeEntity, TabNodeEntity, FileEntity,
+  FileTreeEntity,
+  DirTreeEntity,
+  TabNodeEntity,
+  FileEntity,
 } from '@/entity/index';
 
 import {
-  IEditorViewService, ITreeViewService, ITabsViewService, IStatusBarService, IToastService,
-} from './views/common/const';
-import TreeFactory from './lib/tree-factory';
-import FileTree from './views/tree-view/index.vue';
-import FileEditor from './views/editor-view/index.vue';
-import FileTabs from './views/tabs-view/index.vue';
-import StatusBar from './views/status-bar/index.vue';
+  IEditorViewService,
+  ITreeViewService,
+  ITabsViewService,
+  IStatusBarService,
+} from '@/common/const';
+
+import TreeFactory from '@/lib/tree-factory';
+import FileTree from '@/layout/tree-view/index.vue';
+import FileEditor from '@/layout/editor-view/index.vue';
+import FileTabs from '@/layout/tabs-view/index.vue';
+import StatusBar from '@/layout/status-bar/index.vue';
 
 const root = ref<DirTreeEntity>();
 const editorViewService = ref<InstanceType<typeof FileEditor>>();
 const treeViewService = ref<InstanceType<typeof FileTree>>();
 const tabsViewService = ref<InstanceType<typeof FileTabs>>();
-const statusBarService = ref<InstanceType<typeof FileTabs>>();
+const statusBarService = ref<InstanceType<typeof StatusBar>>();
 
 provide(IEditorViewService, editorViewService);
 provide(ITreeViewService, treeViewService);
 provide(ITabsViewService, tabsViewService);
 provide(IStatusBarService, statusBarService);
-provide(IToastService, ToastService);
 
 const isDrag = ref(false);
 const dragTitle = ref('拖拽文件夹 或 点击选择文件夹');
@@ -139,7 +144,7 @@ const handleDoubleClickFile = (file: FileTreeEntity) => {
 </template>
 
 <style lang="less">
-@import "./components/file-icon/icons.css";
+@import url("./components/file-icon/icons.css");
 
 .editor-container {
   display: flex;

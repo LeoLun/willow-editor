@@ -3,7 +3,7 @@
 /* eslint-disable no-alert */
 /* eslint-disable class-methods-use-this */
 import { TreeEntity, DirTreeEntity } from '@/entity/index';
-import { Action, Separator, showContextMenu } from '@/views/content-menu/index';
+import { Action, Separator, showContextMenu } from '@/layout/content-menu/index';
 import { DefaultController } from './moncao-tree/treeDefaults.js';
 import ACTIONS from './actions';
 
