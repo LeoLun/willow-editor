@@ -41,7 +41,7 @@ defineExpose({
   align-items: center;
   height: 22px;
   width: 100%;
-  background: #007acc;
+  background: var(--w-status-bar-background);
   padding: 0 12px;
   box-sizing: border-box;
   font-size: 12px;

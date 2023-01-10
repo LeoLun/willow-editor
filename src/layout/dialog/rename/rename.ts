@@ -4,7 +4,7 @@ import Rename from './rename.vue';
 
 export type PropsOptions = {
   fileName: string,
-  onConfirm: Function,
+  onConfirm: (filename: string) => void,
   onCancel: () => void
 };
 

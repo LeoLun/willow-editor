@@ -77,7 +77,7 @@ const value = computed({
   line-height: 32px;
 
   &:focus + .w-input-border {
-    border-color: #007fd4;
+    border-color: var(--w-input-border-focus);
   }
 }
 

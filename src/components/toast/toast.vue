@@ -29,8 +29,8 @@ const clazz = computed(() => props.theme);
 <style lang="less" scoped>
 .w-toast {
   padding: 5px 16px;
-  background-color: #252526;
-  color: #ccc;
+  background-color: var(--w-toast-background);
+  color: var(--w-toast-text-color);
   box-shadow: rgb(0 0 0 / 36%) 0 0 8px 2px;
   margin-bottom: 5px;
 }

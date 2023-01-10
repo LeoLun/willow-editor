@@ -46,7 +46,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/*-worker.ts'],
+      files: ['**/*.worker.ts'],
       rules: {
         'no-restricted-globals': 'off',
       },

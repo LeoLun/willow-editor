@@ -158,10 +158,10 @@ onMounted(() => {
     dialog.open();
   };
 
-  const onOpenWishLiveServer = (file: TreeEntity) => {
-    console.log('onOpenWishLiveServer', file);
-    window.open(`/willow-editor/live${file.key}`, '_blank');
-  };
+  // const onOpenWishLiveServer = (file: TreeEntity) => {
+  //   console.log('onOpenWishLiveServer', file);
+  //   window.open(`/willow-editor/live${file.key}`, '_blank');
+  // };
 
   treeConfig.controller = createController((type: ACTIONS, file: TreeEntity) => {
     console.log('type', type);
@@ -171,10 +171,10 @@ onMounted(() => {
       return;
     }
 
-    if (type === ACTIONS.OPEN_WISH_LIVE_SERVER) {
-      onOpenWishLiveServer(file);
-      return;
-    }
+    // if (type === ACTIONS.OPEN_WISH_LIVE_SERVER) {
+    //   onOpenWishLiveServer(file);
+    //   return;
+    // }
 
     if (type === ACTIONS.DELETE) {
       onDelete(file);

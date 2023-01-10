@@ -122,7 +122,6 @@ defineExpose({
 
 .editor {
   flex: 1;
-  background: #1e1e1e;
 }
 
 .image-content {
@@ -132,6 +131,6 @@ defineExpose({
   height: 100%;
   justify-content: center;
   align-items: center;
-  background: #1a1a1a;
+  background: var(--w-background);
 }
 </style>

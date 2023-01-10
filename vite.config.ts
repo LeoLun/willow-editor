@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import eslint from 'vite-plugin-eslint';
 import stylelint from 'vite-plugin-stylelint';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
-import { nativeSW } from 'vite-plugin-native-sw';
+import { nativeSW } from './plugin/sw.plugin';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,7 +32,7 @@ export default defineConfig({
     }),
     nativeSW({
       entries: [{
-        src: resolve(__dirname, 'src/service-worker.ts'),
+        src: resolve(__dirname, 'src/service/index.worker.ts'),
         dist: 'sw.js',
       }],
     }),

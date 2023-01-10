@@ -149,8 +149,8 @@ const handleDoubleClickFile = (file: FileTreeEntity) => {
 .editor-container {
   display: flex;
   flex-direction: row;
-  background: #1a1a1a;
-  color: #fff;
+  background: var(--w-background);
+  color: var(--w-text-color);
   width: 100%;
   height: 100%;
   align-items: center;
@@ -198,7 +198,7 @@ const handleDoubleClickFile = (file: FileTreeEntity) => {
   width: 500px;
   height: 300px;
   border-radius: 5px;
-  border: 1px dashed #fff;
+  border: 1px dashed var(--w-border-color);
 
   &.is-drag {
     border-color: #db8742;
