@@ -4,8 +4,8 @@
 /* eslint-disable class-methods-use-this */
 import { TreeEntity, DirTreeEntity } from '@/entity/index';
 import { Action, Separator, showContextMenu } from '@/layout/content-menu/index';
+import { ACTIONS } from '@/common/const';
 import { DefaultController } from './moncao-tree/treeDefaults.js';
-import ACTIONS from './actions';
 
 export function getController(
   onEvent: (type: ACTIONS, file: TreeEntity) => void,

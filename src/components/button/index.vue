@@ -1,9 +1,21 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
+const props = defineProps<{
+  theme?: 'default' | 'primary'
+}>();
+
+const clazz = computed(() => ({
+  primary: props.theme === 'primary',
+}));
 
 </script>
 
 <template>
-  <button class="w-button">
+  <button
+    class="w-button"
+    :class="clazz"
+  >
     <slot />
   </button>
 </template>
@@ -17,13 +29,21 @@
   cursor: pointer;
   justify-content: center;
   align-items: center;
-  color: rgb(255 255 255);
-  background-color: rgb(14 99 156);
+  color: var(--w-button-color);
+  background-color: var(--w-button-background);
   border: none;
   height: 32px;
 
+  &:hover {
+    background-color: var(--w-button-background-hover);
+  }
+
   &.primary {
-    background-color: var(--w-primary);
+    background-color: var(--w-button-background-primary);
+
+    &:hover {
+      background-color: var(--w-button-background-primary-hover);
+    }
   }
 }
 

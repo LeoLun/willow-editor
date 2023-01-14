@@ -1,4 +1,4 @@
-import { DirTreeEntity, FileTreeEntity, TreeEntity } from '@/entity/index';
+import { DirTreeEntity, FileTreeEntity } from '@/entity/index';
 
 /** 目录树工厂类 */
 export default class TreeFactory {
@@ -39,18 +39,7 @@ export default class TreeFactory {
       }
     }
     // 针对 children 排序
-    root.children.sort((a: TreeEntity, b: TreeEntity) => {
-      if (DirTreeEntity.isDirectory(a) !== DirTreeEntity.isDirectory(b)) {
-        if (DirTreeEntity.isDirectory(a)) {
-          return -1;
-        }
-        return 1;
-      }
-      if (a.name > b.name) {
-        return -1;
-      }
-      return 1;
-    });
+    root.sortChildren();
     return root;
   }
 }

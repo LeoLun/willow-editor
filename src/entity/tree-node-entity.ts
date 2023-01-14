@@ -1,3 +1,5 @@
+import type DirTreeEntity from './dir-tree-node';
+
 /** 目录树节点实体抽象类 */
 export default abstract class TreeNodeEntity {
   /** key 节点唯一标识符 */
@@ -7,14 +9,15 @@ export default abstract class TreeNodeEntity {
   name: string;
 
   /** 父节点 */
-  parent: TreeNodeEntity | null;
+  parent: DirTreeEntity | null;
 
+  /** 文件后缀 */
   suffix: string;
 
   constructor(
     key: string,
     name: string,
-    parent: TreeNodeEntity | null,
+    parent: DirTreeEntity | null,
   ) {
     this.key = key;
     this.name = name;
@@ -48,4 +51,8 @@ export default abstract class TreeNodeEntity {
     }
     return false;
   }
+
+  abstract rename(name: string): void;
+
+  abstract remove(): void;
 }

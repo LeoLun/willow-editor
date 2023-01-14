@@ -1,12 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed, provide } from 'vue';
 import SplitPane from '@/components/split-pane/index.vue';
-import {
-  FileTreeEntity,
-  DirTreeEntity,
-  TabNodeEntity,
-  FileEntity,
-} from '@/entity/index';
+import { DirTreeEntity } from '@/entity/index';
 
 import {
   IEditorViewService,
@@ -67,22 +62,6 @@ const handleDragleave = () => {
   dragTitle.value = '拖拽文件夹 或 点击选择文件夹';
 };
 
-const handleClickFile = (file: FileTreeEntity) => {
-  if (tabsViewService.value) {
-    const fileEntidy = new FileEntity(file.key, file.name, file.handle);
-    const tabEntity = new TabNodeEntity(fileEntidy, true);
-    tabsViewService.value.openFile(tabEntity);
-  }
-};
-
-const handleDoubleClickFile = (file: FileTreeEntity) => {
-  if (tabsViewService.value) {
-    const fileEntidy = new FileEntity(file.key, file.name, file.handle);
-    const tabEntity = new TabNodeEntity(fileEntidy, false);
-    tabsViewService.value.openFile(tabEntity);
-  }
-};
-
 </script>
 
 <template>
@@ -112,8 +91,6 @@ const handleDoubleClickFile = (file: FileTreeEntity) => {
             ref="treeViewService"
             class="dir-tree"
             :root="root"
-            @click-file="handleClickFile"
-            @doubleclick-file="handleDoubleClickFile"
           />
         </template>
         <template #pane-r>

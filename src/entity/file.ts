@@ -103,22 +103,19 @@ class FileEntity {
     const md5 = SparkMD5.hash(saveContent);
 
     if (hasContent) {
-      isChange = md5 === this.oldMd5;
+      isChange = !(md5 === this.oldMd5);
     }
 
     if (!isChange) {
-      console.log('文件无修改');
       return;
     }
 
-    console.time('writeFile');
     // 写入文件
     const writable = await this.handle.createWritable();
     const textEncoder = new TextEncoder();
     const uint8Array = textEncoder.encode(saveContent);
     await writable.write(uint8Array.buffer);
     await writable.close();
-    console.timeEnd('writeFile');
 
     this.content = saveContent;
     this.oldMd5 = md5;

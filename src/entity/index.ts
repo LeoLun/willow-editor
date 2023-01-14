@@ -1,5 +1,5 @@
 import DirTreeEntity from './dir-tree-node';
-import FileTreeEntity from './file-tree-nodde';
+import FileTreeEntity from './file-tree-node';
 import TreeEntity from './tree-node-entity';
 import TabNodeEntity from './tab-node';
 import FileEntity from './file';

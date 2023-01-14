@@ -13,3 +13,11 @@ export const IStatusBarService = Symbol('IStatusBarService') as InjectionKey<Ref
 
 export const IToastService = Symbol('IToastService') as InjectionKey<typeof Toast>;
 export const IDialogService = Symbol('IToastService') as InjectionKey<typeof Dialog>;
+
+export const enum ACTIONS {
+  CREATE_FILE = 'CREATE_FILE',
+  CREATE_DIRECTORY = 'CREATE_DIRECTORY',
+  RENAME = 'RENAME',
+  DELETE = 'DELETE',
+  OPEN_WISH_LIVE_SERVER = 'OPEN_WISH_LIVE_SERVER',
+}

@@ -1,5 +1,7 @@
+import { ACTIONS } from '@/common/const';
 import RenameDialog from './rename';
 import type { PropsOptions as RenamePropsOptions } from './rename';
+
 import DeleteDialog from './delete';
 import type { PropsOptions as DeletePropsOptions } from './delete';
 
@@ -10,22 +12,22 @@ import CreateDirectoryDialog from './create-directory';
 import type { PropsOptions as CreateDirectoryPropsOptions } from './create-directory';
 
 type RenameDialogType = {
-  type: 'RENAME',
+  type: ACTIONS.RENAME,
   props: RenamePropsOptions
 };
 
 type DeleteDialogType = {
-  type: 'DELETE',
+  type: ACTIONS.DELETE,
   props: DeletePropsOptions
 };
 
 type NewFileDialogType = {
-  type: 'CREATE_FILE',
+  type: ACTIONS.CREATE_FILE,
   props: CreateFilePropsOptions
 };
 
 type NewDirectoryDialogType = {
-  type: 'CREATE_DIRECTORY',
+  type: ACTIONS.CREATE_DIRECTORY,
   props: CreateDirectoryPropsOptions
 };
 
@@ -33,19 +35,19 @@ type DialogType = RenameDialogType | DeleteDialogType | NewFileDialogType | NewD
 
 export default class DialogFactory {
   static create(type: DialogType) {
-    if (type.type === 'RENAME') {
+    if (type.type === ACTIONS.RENAME) {
       return new RenameDialog(type.props);
     }
 
-    if (type.type === 'DELETE') {
+    if (type.type === ACTIONS.DELETE) {
       return new DeleteDialog(type.props);
     }
 
-    if (type.type === 'CREATE_FILE') {
+    if (type.type === ACTIONS.CREATE_FILE) {
       return new CreateFileDialog(type.props);
     }
 
-    if (type.type === 'CREATE_DIRECTORY') {
+    if (type.type === ACTIONS.CREATE_DIRECTORY) {
       return new CreateDirectoryDialog(type.props);
     }
 

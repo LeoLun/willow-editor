@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import { ref } from 'vue';
-import { DirTreeEntity, FileTreeEntity } from '@/entity/index';
+import { DirTreeEntity } from '@/entity/index';
 import Tree from './tree/index.vue';
 
 const props = defineProps({
@@ -10,16 +10,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['click-file', 'doubleclick-file']);
-
 const root = props.root as DirTreeEntity;
-
-const handleClickFile = (item: FileTreeEntity) => {
-  emit('click-file', item);
-};
-const handleDoubleClickFile = (item: FileTreeEntity) => {
-  emit('doubleclick-file', item);
-};
 
 </script>
 <template>
@@ -30,8 +21,6 @@ const handleDoubleClickFile = (item: FileTreeEntity) => {
     <div class="file-tree-content">
       <Tree
         :directory="root"
-        @click-file="handleClickFile"
-        @doubleclick-file="handleDoubleClickFile"
       />
     </div>
   </div>

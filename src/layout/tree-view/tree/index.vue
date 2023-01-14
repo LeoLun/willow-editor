@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { requireInjection } from '@/utils';
-import { TreeEntity, DirTreeEntity, FileTreeEntity } from '@/entity';
-import { IToastService } from '@/common/const';
+import {
+  TreeEntity,
+  DirTreeEntity,
+  FileTreeEntity,
+  TabNodeEntity,
+  FileEntity,
+} from '@/entity';
+import { IToastService, ITabsViewService, ACTIONS } from '@/common/const';
 import DialogFactory from '@/layout/dialog/dialog-factory';
 import { Tree } from './moncao-tree/treeImpl';
 import TreeDnD from './tree-dnd';
 import FileTemplate from './file-template';
 import { createController } from './monaco-controller';
-import ACTIONS from './actions';
 
 const toastService = requireInjection(IToastService);
-// const visible = ref(false);
+const tabsViewService = requireInjection(ITabsViewService);
 
 const treeConfig: {
   dataSource: any,
@@ -87,136 +92,149 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['click-file', 'doubleclick-file']);
-
-let currentFile: TreeEntity | null;
-
 let tree: any = null;
 
 let lastClickedTime = 0;
 let lastClickedFileKey = '';
 
+const openFilePreview = (file: FileTreeEntity) => {
+  const fileEntidy = new FileEntity(file.key, file.name, file.handle);
+  const tabEntity = new TabNodeEntity(fileEntidy, true);
+  tabsViewService.value.openFile(tabEntity);
+};
+
+const openFile = (file: FileTreeEntity) => {
+  const fileEntidy = new FileEntity(file.key, file.name, file.handle);
+  const tabEntity = new TabNodeEntity(fileEntidy, false);
+  tabsViewService.value.openFile(tabEntity);
+};
+
+const closeFile = (file: FileTreeEntity) => {
+  tabsViewService.value.closeFile(file.key);
+};
+
+// const updateFile = (file: FileTreeEntity) => {
+//   const fileEntidy = new FileEntity(file.key, file.name, file.handle);
+//   const tabEntity = new TabNodeEntity(fileEntidy, false);
+//   tabsViewService.value.updateFile(tabEntity);
+// };
+
+const onRename = (file: TreeEntity) => {
+  if (DirTreeEntity.isDirectory(file)) {
+    toastService.info('文件夹不支持重命名');
+    return;
+  }
+
+  const dialog = DialogFactory.create({
+    type: ACTIONS.RENAME,
+    props: {
+      fileName: file.name,
+      onCancel: () => {
+        dialog.close();
+      },
+      onConfirm: async (filename: string) => {
+        if (!filename) {
+          return;
+        }
+        try {
+          await file.rename(filename);
+          tree.setInput(props.directory);
+          // 通知 tabs 更新名字
+          // updateFile(file as FileTreeEntity);
+
+          // 关闭弹窗
+          dialog.close();
+        } catch (e: any) {
+          if (e.message && e.message === 'The user aborted a request.') {
+            toastService.info('开启实验性功能 打开 chreom://flags 中的 Experimental Web Platform features');
+          }
+        }
+      },
+    },
+  });
+
+  dialog.open();
+};
+
+const onDelete = (file: TreeEntity) => {
+  const dialog = DialogFactory.create({
+    type: ACTIONS.DELETE,
+    props: {
+      fileName: file.name,
+      onConfirm: async () => {
+        await file.remove();
+        toastService.info(`文件「${file.name}」已删除`);
+        tree.setInput(props.directory);
+        // 通知 tabs 关闭文件
+        closeFile(file as FileTreeEntity);
+
+        dialog.close();
+      },
+      onCancel: () => {
+        dialog.close();
+      },
+    },
+  });
+
+  dialog.open();
+};
+
+const onCreateFile = (file: TreeEntity) => {
+  const dialog = DialogFactory.create({
+    type: ACTIONS.CREATE_FILE,
+    props: {
+      onConfirm: async (filename: string) => {
+        if (DirTreeEntity.isDirectory(file)) {
+          const dir = file as DirTreeEntity;
+          const fileNode = await dir.createFile(filename);
+          tree.setInput(props.directory);
+          console.log('fileNode', fileNode);
+          openFile(fileNode);
+        }
+        dialog.close();
+      },
+      onCancel: () => {
+        dialog.close();
+      },
+    },
+  });
+
+  dialog.open();
+};
+
+const onCreateDirectory = (file: TreeEntity) => {
+  const dialog = DialogFactory.create({
+    type: ACTIONS.CREATE_DIRECTORY,
+    props: {
+      onConfirm: async (dirName: string) => {
+        if (DirTreeEntity.isDirectory(file)) {
+          const dir = file as DirTreeEntity;
+          await dir.createDirectory(dirName);
+          tree.setInput(props.directory);
+        }
+
+        dialog.close();
+      },
+      onCancel: () => {
+        dialog.close();
+      },
+    },
+  });
+
+  dialog.open();
+};
+
+// const onOpenWishLiveServer = (file: TreeEntity) => {
+//   console.log('onOpenWishLiveServer', file);
+//   window.open(`/willow-editor/live${file.key}`, '_blank');
+// };
+
 onMounted(() => {
-  const { directory } = props;
-
-  const onRename = (file: TreeEntity) => {
-    currentFile = file;
-    console.log('currentFile', currentFile instanceof FileTreeEntity);
-    const dialog = DialogFactory.create({
-      type: 'RENAME',
-      props: {
-        fileName: currentFile.name,
-        onCancel: () => {
-          console.log('123444');
-          dialog.close();
-        },
-        onConfirm: async (filename: string) => {
-          console.log('filename', filename);
-          if (!filename) {
-            return;
-          }
-          try {
-            if (currentFile instanceof FileTreeEntity) {
-              console.log('111');
-              const fsHandle: any = currentFile.handle;
-              await fsHandle.move(filename);
-              currentFile.name = filename;
-              tree.setInput(props.directory);
-              currentFile = null;
-              // @TODO 通知 tabs 更新名字
-              console.log('22222');
-              // 关闭弹窗
-              dialog.close();
-            }
-          } catch (e: any) {
-            if (e.message && e.message === 'The user aborted a request.') {
-              toastService.info('开启实验性功能 打开 chreom://flags 中的 Experimental Web Platform features');
-            }
-          }
-        },
-      },
-    });
-
-    dialog.open();
-  };
-
-  const onDelete = (file: TreeEntity) => {
-    console.log('onDelete', file);
-
-    const dialog = DialogFactory.create({
-      type: 'DELETE',
-      props: {
-        fileName: file.name,
-        onConfirm: () => {
-          dialog.close();
-        },
-        onCancel: () => {
-          console.log('12333333333');
-          dialog.close();
-        },
-      },
-    });
-
-    dialog.open();
-  };
-
-  const onCreateFile = (file: TreeEntity) => {
-    console.log('CREATE_FILE', file);
-
-    const dialog = DialogFactory.create({
-      type: 'CREATE_FILE',
-      props: {
-        fileName: file.name,
-        onConfirm: () => {
-          dialog.close();
-        },
-        onCancel: () => {
-          console.log('12333333333');
-          dialog.close();
-        },
-      },
-    });
-
-    dialog.open();
-  };
-
-  const onCreateDirectory = (file: TreeEntity) => {
-    console.log('CREATE_DIRECTORY', file);
-
-    const dialog = DialogFactory.create({
-      type: 'CREATE_DIRECTORY',
-      props: {
-        fileName: file.name,
-        onConfirm: () => {
-          dialog.close();
-        },
-        onCancel: () => {
-          console.log('12333333333');
-          dialog.close();
-        },
-      },
-    });
-
-    dialog.open();
-  };
-
-  // const onOpenWishLiveServer = (file: TreeEntity) => {
-  //   console.log('onOpenWishLiveServer', file);
-  //   window.open(`/willow-editor/live${file.key}`, '_blank');
-  // };
-
   treeConfig.controller = createController((type: ACTIONS, file: TreeEntity) => {
-    console.log('type', type);
-    console.log('file', file);
     if (type === ACTIONS.RENAME) {
       onRename(file);
       return;
     }
-
-    // if (type === ACTIONS.OPEN_WISH_LIVE_SERVER) {
-    //   onOpenWishLiveServer(file);
-    //   return;
-    // }
 
     if (type === ACTIONS.DELETE) {
       onDelete(file);
@@ -233,12 +251,18 @@ onMounted(() => {
       return;
     }
 
+    // if (type === ACTIONS.OPEN_WISH_LIVE_SERVER) {
+    //   onOpenWishLiveServer(file);
+    //   return;
+    // }
+
     toastService.info('开发中');
   });
+
+  const { directory } = props;
   const container = document.getElementById('tree-container');
   tree = new Tree(container, treeConfig);
   tree.setInput(directory);
-  console.log('tree', tree);
   tree.model.onDidSelect((e: any) => {
     if (e.selection.length) {
       const treeEntity = e.selection[0] as TreeEntity;
@@ -246,9 +270,9 @@ onMounted(() => {
         const isDoubleClick = Date.now() - lastClickedTime < 500;
         const isSameFile = lastClickedFileKey === treeEntity.key;
         if (isDoubleClick && isSameFile) {
-          emit('doubleclick-file', treeEntity);
+          openFile(treeEntity as FileTreeEntity);
         } else {
-          emit('click-file', treeEntity);
+          openFilePreview(treeEntity as FileTreeEntity);
         }
         lastClickedTime = Date.now();
         lastClickedFileKey = treeEntity.key;

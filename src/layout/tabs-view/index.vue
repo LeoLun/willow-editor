@@ -42,9 +42,13 @@ const openFile = async (tab: TabNodeEntity) => {
   setContent(tab);
 };
 
-const closeFile = (tab: TabNodeEntity, index: number) => {
+const closeFile = (fileKey: string) => {
+  const index = tabs.value.findIndex((tab) => tab.file.key === fileKey);
+  if (index === -1) {
+    return;
+  }
   tabs.value.splice(index, 1);
-  if (currentTab.value?.file.key === tab.file.key) {
+  if (currentTab.value?.file.key === fileKey) {
     if (tabs.value.length) {
       openFile(tabs.value[tabs.value.length - 1] as TabNodeEntity);
     } else {
@@ -52,6 +56,11 @@ const closeFile = (tab: TabNodeEntity, index: number) => {
       editorViewService.value.closeFile();
     }
   }
+};
+
+const updateFile = (tab: TabNodeEntity) => {
+  // @TODO
+  console.log('tab', tab);
 };
 
 const closeOther = (tab: TabNodeEntity) => {
@@ -63,6 +72,8 @@ const closeOther = (tab: TabNodeEntity) => {
 
 defineExpose({
   openFile,
+  closeFile,
+  updateFile,
 });
 
 </script>
@@ -72,13 +83,13 @@ defineExpose({
     ref="TabsElement"
   >
     <w-tab-panel
-      v-for="(item, index) in tabs"
+      v-for="(item) in tabs"
       :key="item.file.key"
       :title="item.file.key"
       :tab-entity="(item as TabNodeEntity)"
       :active="item.file.key === currentTab?.file.key"
       @open="openFile(item as TabNodeEntity)"
-      @close="closeFile(item as TabNodeEntity, index)"
+      @close="closeFile(item.file.key)"
       @close-other="closeOther(item as TabNodeEntity)"
     />
   </w-tabs>

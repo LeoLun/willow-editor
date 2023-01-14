@@ -21,7 +21,10 @@ const filename = ref(props.fileName);
       <WButton @click="onCancel">
         取消
       </WButton>
-      <WButton @click="onConfirm(filename)">
+      <WButton
+        theme="primary"
+        @click="onConfirm(filename)"
+      >
         确定
       </WButton>
     </template>

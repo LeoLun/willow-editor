@@ -20,7 +20,10 @@ const name = computed(() => props.fileName);
       <WButton @click="onCancel">
         取消
       </WButton>
-      <WButton @click="onConfirm">
+      <WButton
+        theme="primary"
+        @click="onConfirm"
+      >
         确定
       </WButton>
     </template>

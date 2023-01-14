@@ -74,14 +74,14 @@ class TreeDnD {
     /**
       * @type {TreeEntity}
       */
-    const parent = droppedNode!.parent as DirTreeEntity;
+    const { parent } = droppedNode;
 
     /**
       * @type {Array<TreeEntity>}
       */
-    const oldParentNewChildren = parent.children.filter((n: TreeEntity) => n !== droppedNode);
+    const oldParentNewChildren = parent!.children.filter((n: TreeEntity) => n !== droppedNode);
 
-    parent.children = oldParentNewChildren;
+    parent!.children = oldParentNewChildren;
 
     // next add it as a child of the new parent
     targetElement.children.push(droppedNode);

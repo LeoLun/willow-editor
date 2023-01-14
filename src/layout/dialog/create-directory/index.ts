@@ -3,7 +3,6 @@ import DialogBase from '../dialog-base';
 import CreateDirectory from './create-directory.vue';
 
 export type PropsOptions = {
-  fileName: string,
   onConfirm: (filename: string) => void,
   onCancel: () => void
 };

@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import {
+  ref, computed, onMounted, nextTick,
+} from 'vue';
+import { useFocus } from '@vueuse/core';
 
 const props = defineProps({
   modelValue: {
     type: String,
     default: '',
+  },
+  autofocus: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -21,11 +28,23 @@ const value = computed({
   },
 });
 
+const input = ref();
+const { focused } = useFocus(input);
+
+onMounted(() => {
+  if (props.autofocus) {
+    nextTick(() => {
+      focused.value = true;
+    });
+  }
+});
+
 </script>
 
 <template>
   <div class="w-input">
     <input
+      ref="input"
       v-model="value"
       class="w-input-inner"
     >
