@@ -107,7 +107,8 @@ onMounted(() => {
       props: {
         fileName: currentFile.name,
         onCancel: () => {
-          console.log('123');
+          console.log('123444');
+          dialog.close();
         },
         onConfirm: async (filename: string) => {
           console.log('filename', filename);
@@ -150,6 +151,47 @@ onMounted(() => {
           dialog.close();
         },
         onCancel: () => {
+          console.log('12333333333');
+          dialog.close();
+        },
+      },
+    });
+
+    dialog.open();
+  };
+
+  const onCreateFile = (file: TreeEntity) => {
+    console.log('CREATE_FILE', file);
+
+    const dialog = DialogFactory.create({
+      type: 'CREATE_FILE',
+      props: {
+        fileName: file.name,
+        onConfirm: () => {
+          dialog.close();
+        },
+        onCancel: () => {
+          console.log('12333333333');
+          dialog.close();
+        },
+      },
+    });
+
+    dialog.open();
+  };
+
+  const onCreateDirectory = (file: TreeEntity) => {
+    console.log('CREATE_DIRECTORY', file);
+
+    const dialog = DialogFactory.create({
+      type: 'CREATE_DIRECTORY',
+      props: {
+        fileName: file.name,
+        onConfirm: () => {
+          dialog.close();
+        },
+        onCancel: () => {
+          console.log('12333333333');
           dialog.close();
         },
       },
@@ -178,6 +220,16 @@ onMounted(() => {
 
     if (type === ACTIONS.DELETE) {
       onDelete(file);
+      return;
+    }
+
+    if (type === ACTIONS.CREATE_FILE) {
+      onCreateFile(file);
+      return;
+    }
+
+    if (type === ACTIONS.CREATE_DIRECTORY) {
+      onCreateDirectory(file);
       return;
     }
 

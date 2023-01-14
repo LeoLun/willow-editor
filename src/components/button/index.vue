@@ -21,6 +21,10 @@
   background-color: rgb(14 99 156);
   border: none;
   height: 32px;
+
+  &.primary {
+    background-color: var(--w-primary);
+  }
 }
 
 .w-button-full {

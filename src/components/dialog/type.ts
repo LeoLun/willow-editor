@@ -1,5 +1,4 @@
 export type DialogOptions = {
-  title: string,
   content: () => any,
   foot?: () => any,
 };

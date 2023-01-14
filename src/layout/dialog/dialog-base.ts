@@ -5,12 +5,9 @@ import type { DialogInstance } from '@/components/dialog/type';
 let instance: DialogInstance;
 
 export default abstract class DialogBase<T> {
-  title: string;
-
   props: T;
 
-  constructor(title: string, props: T) {
-    this.title = title;
+  constructor(props: T) {
     this.props = props;
   }
 
@@ -18,13 +15,11 @@ export default abstract class DialogBase<T> {
     if (!instance) {
       instance = DialogService.show((
         {
-          title: this.title,
           content: this.content,
         }
       ));
     } else {
       instance.update({
-        title: this.title,
         content: this.content,
       });
       instance.show();

@@ -3,16 +3,13 @@ import { FileEntity } from '@/entity/index';
 import { ref } from 'vue';
 import { requireInjection } from '@/utils';
 import * as monaco from 'monaco-editor';
-import type { Ref } from 'vue';
 import { IStatusBarService } from '@/common/const';
 import Monaco from './monaco';
 import { findLanguage } from './monaco-language';
-import type StatusBar from '../status-bar/index.vue';
 import type { Position } from '../status-bar/status-bar-types';
 
-type StatusBarerviceType = Ref<InstanceType<typeof StatusBar>>;
 // 注入 IStatusBarService
-const statusBarervice = requireInjection(IStatusBarService) as StatusBarerviceType;
+const statusBarervice = requireInjection(IStatusBarService);
 
 const currentFile = ref<FileEntity>();
 

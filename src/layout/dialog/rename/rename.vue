@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import WButton from '@/components/button/index.vue';
 import WInput from '@/components/input/index.vue';
+import DialogBase from '@/components/dialog-template/dialog-base.vue';
 // 这里不能抽成类型，会报错
 // https://github.com/vuejs/core/issues/4294
 const props = defineProps<{
@@ -14,15 +15,17 @@ const filename = ref(props.fileName);
 
 </script>
 <template>
-  <div>
+  <DialogBase :title="'提示'">
     <WInput v-model="filename" />
-    <WButton @click="onCancel">
-      取消
-    </WButton>
-    <WButton @click="onConfirm(filename)">
-      确定
-    </WButton>
-  </div>
+    <template #footer>
+      <WButton @click="onCancel">
+        取消
+      </WButton>
+      <WButton @click="onConfirm(filename)">
+        确定
+      </WButton>
+    </template>
+  </DialogBase>
 </template>
 
 <style lang="less" scoped>

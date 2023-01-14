@@ -1,26 +1,27 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { ref } from 'vue';
 import WButton from '@/components/button/index.vue';
+import WInput from '@/components/input/index.vue';
 import DialogBase from '@/components/dialog-template/dialog-base.vue';
 // 这里不能抽成类型，会报错
 // https://github.com/vuejs/core/issues/4294
 const props = defineProps<{
   fileName: string,
-  onConfirm:() => void,
+  onConfirm:(filename: string) => void,
   onCancel: () => void
 }>();
 
-const name = computed(() => props.fileName);
+const filename = ref(props.fileName);
 
 </script>
 <template>
-  <DialogBase :title="'提示'">
-    <div>{{ name }}</div>
+  <DialogBase :title="'新建文件夹'">
+    <WInput v-model="filename" />
     <template #footer>
       <WButton @click="onCancel">
         取消
       </WButton>
-      <WButton @click="onConfirm">
+      <WButton @click="onConfirm(filename)">
         确定
       </WButton>
     </template>

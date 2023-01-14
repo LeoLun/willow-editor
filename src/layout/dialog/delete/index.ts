@@ -12,7 +12,8 @@ export default class DeleteDialog extends DialogBase<PropsOptions> {
   constructor(
     props: PropsOptions,
   ) {
-    super('提示', props);
+    console.log('props', props);
+    super(props);
   }
 
   content = () => h(Delete, {

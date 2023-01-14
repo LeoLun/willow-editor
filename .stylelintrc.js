@@ -13,10 +13,16 @@ module.exports = {
   ],
   rules: {
     'indentation': 2,
+    'selector-pseudo-class-no-unknown':[
+      true,
+      {
+        ignorePseudoClasses: ['deep']
+      }
+    ],
     'selector-pseudo-element-no-unknown': [
       true,
       {
-        ignorePseudoElements: ['v-deep']
+        ignorePseudoElements: ['v-deep'],
       }
     ],
     'no-descending-specificity': null

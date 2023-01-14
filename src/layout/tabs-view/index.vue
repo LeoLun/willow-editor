@@ -1,17 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { requireInjection } from '@/utils';
-import type { Ref } from 'vue';
 import { TabNodeEntity } from '@/entity/index';
 import { IEditorViewService } from '@/common/const';
 
-import type FileEditor from '../editor-view/index.vue';
 import WTabs from './tabs/tabs.vue';
 import WTabPanel from './tabs/tab-panel.vue';
 
-type FileEditorServiceType = Ref<InstanceType<typeof FileEditor>>;
 // 注入 editorViewService
-const editorViewService = requireInjection(IEditorViewService) as FileEditorServiceType;
+const editorViewService = requireInjection(IEditorViewService);
 
 const currentTab = ref<TabNodeEntity>();
 const tabs = ref<TabNodeEntity[]>([]);

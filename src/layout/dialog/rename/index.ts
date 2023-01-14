@@ -9,12 +9,6 @@ export type PropsOptions = {
 };
 
 export default class RenameDialog extends DialogBase<PropsOptions> {
-  constructor(
-    props: PropsOptions,
-  ) {
-    super('提示', props);
-  }
-
   content = () => h(Rename, {
     ...this.props,
   });
