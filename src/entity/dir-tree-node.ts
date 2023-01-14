@@ -50,7 +50,7 @@ export default class DirTreeEntity extends TreeEntity {
       if (!a.name.startsWith('.') && b.name.startsWith('.')) {
         return 1;
       }
-      if (a.name > b.name) {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
         return -1;
       }
       return 1;
