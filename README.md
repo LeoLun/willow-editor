@@ -10,7 +10,7 @@ willow-editor 是一个在线本地文件编辑器
 - [x] 新建文件/文件夹
 - [x] 删除文件/文件夹
 - [x] 文件重命名（需要开启 chrome 开启实验性功能 Experimental Web Platform features）
-- [] 文件夹重命名（暂无 API 支持）
+- [ ] 文件夹重命名（暂无 API 支持）
 ## 开发
 基于 vite + vue3 + less + monaco-editor 开发
 
