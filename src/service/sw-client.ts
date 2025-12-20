@@ -26,13 +26,20 @@ export function collectFileHandles(root: DirTreeEntity): FsMap {
 async function getWillowRegistration(): Promise<ServiceWorkerRegistration | null> {
   if (!('serviceWorker' in navigator)) return null;
 
+  const baseUrl = import.meta.env.BASE_URL; // 末尾带 '/'
+  const swUrlSuffix = `${baseUrl}sw.js`;
+
   // 1) 优先按 scope 精确找（页面未被 SW 控制时，ready/controller 可能不可用）
   const regs = await navigator.serviceWorker.getRegistrations();
-  const byScope = regs.find((r) => r.scope.endsWith('/willow-editor/'));
+  // scope 是绝对 URL（含 origin），这里用 endsWith(baseUrl) 做路径匹配即可
+  const byScope = regs.find((r) => r.scope.endsWith(baseUrl));
   if (byScope) return byScope;
 
-  // 2) 兜底：取任意一个 active 且 scope 含 /willow-editor 的注册
-  const fallback = regs.find((r) => r.scope.includes('/willow-editor'));
+  // 2) 兜底：按脚本 URL 匹配（避免 baseUrl === '/' 时 endsWith('/') 命中全部）
+  const fallback = regs.find((r) => {
+    const scriptURL = r.active?.scriptURL ?? r.waiting?.scriptURL ?? r.installing?.scriptURL ?? '';
+    return scriptURL.endsWith(swUrlSuffix);
+  });
   return fallback ?? null;
 }
 

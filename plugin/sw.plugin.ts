@@ -140,7 +140,14 @@ export const nativeSW = ({ entries }: Options): Plugin[] => {
       conf = config;
     },
     resolveId(source: string) {
-      return entries.find(({ dist }) => source === `/${dist}`)?.src;
+      // 在 dev 模式下同时支持：
+      // - 默认路径：/sw.js
+      // - 带 base 的路径：/willow-editor/sw.js（或任意 conf.base）
+      const base = (conf.base ?? '/');
+      const normalizedBase = base.endsWith('/') ? base : `${base}/`;
+      return entries.find(({ dist }) => (
+        source === `/${dist}` || source === `${normalizedBase}${dist}`
+      ))?.src;
     },
     async load(id: string) {
       for (const { src } of entries) {
@@ -180,8 +187,8 @@ export const nativeSW = ({ entries }: Options): Plugin[] => {
 
       return `
 export const packedSW = () => (${JSON.stringify(packed)})
-export const registerSW = (dist, options) => ('serviceWorker' in navigator &&
-								navigator.serviceWorker.register('/' + dist, {type: '${conf.mode === 'production' ? 'classic' : 'module'}', ...options}))`;
+export const registerSW = (url, options) => ('serviceWorker' in navigator &&
+								navigator.serviceWorker.register(url, {type: '${conf.mode === 'production' ? 'classic' : 'module'}', ...options}))`;
     },
   }];
 };
