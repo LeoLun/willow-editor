@@ -13,7 +13,7 @@ export default defineConfig(({ command }) => {
   const enableLint = command === 'serve';
 
   return {
-    base: '/weditor/',
+    base: '/willow-editor/',
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
