@@ -5,6 +5,20 @@
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>willow-editor</title>
+    <script>
+      // GitHub Pages SPA 深链接恢复（配合 public/404.html）
+      (function () {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var redirect = params.get('redirect');
+          if (!redirect) return;
+          // URLSearchParams.get 已经做了解码
+          window.history.replaceState(null, '', redirect);
+        } catch (e) {
+          // ignore
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>
