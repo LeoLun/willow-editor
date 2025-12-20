@@ -63,6 +63,21 @@ const updateFile = (tab: TabNodeEntity) => {
   console.log('tab', tab);
 };
 
+const applyExternalUpdate = async (fileKey: string, newContent: string) => {
+  const operateTabEntity = tabs.value.find((item) => item.file.key === fileKey);
+  if (!operateTabEntity) return false;
+
+  // 用 tab 内部持有的 FileEntity 进行写入，确保 md5 状态同步
+  await operateTabEntity.file.write(newContent);
+
+  // 若当前正在打开，刷新编辑器内容（editor 通过 expose 暴露 applyExternalUpdate）
+  if (currentTab.value?.file.key === fileKey) {
+    (editorViewService.value as any).applyExternalUpdate?.(fileKey, newContent);
+  }
+
+  return true;
+};
+
 const closeOther = (tab: TabNodeEntity) => {
   tabs.value = [tab];
   if (currentTab.value?.file.key !== tab.file.key) {
@@ -74,6 +89,8 @@ defineExpose({
   openFile,
   closeFile,
   updateFile,
+  applyExternalUpdate,
+  getOpenFiles: () => tabs.value.map((t) => t.file),
 });
 
 </script>

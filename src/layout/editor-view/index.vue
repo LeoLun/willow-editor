@@ -82,9 +82,18 @@ const closeFile = () => {
   onChangeCursorPosition(undefined);
 };
 
+const applyExternalUpdate = (fileKey: string, newContent: string) => {
+  if (!currentFile.value) return;
+  if (currentFile.value.key !== fileKey) return;
+  // 这里不直接写文件：写入由上层统一处理；这里只负责刷新编辑器视图
+  currentFile.value.setContent(newContent);
+  setContent(currentFile.value);
+};
+
 defineExpose({
   openFile,
   closeFile,
+  applyExternalUpdate,
 });
 </script>
 

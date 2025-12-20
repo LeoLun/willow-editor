@@ -36,6 +36,12 @@ export function getController(
         onEvent(ACTIONS.RENAME, file);
       }));
 
+      if (!DirTreeEntity.isDirectory(file)) {
+        actions.push(new Action(ACTIONS.AI_RENAME, 'AI 重命名', '', true, () => {
+          onEvent(ACTIONS.AI_RENAME, file);
+        }));
+      }
+
       actions.push(new Action(ACTIONS.DELETE, '删除', '', true, () => {
         onEvent(ACTIONS.DELETE, file);
       }));

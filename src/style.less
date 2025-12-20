@@ -1,3 +1,4 @@
+/* stylelint-disable custom-property-pattern */
 :root {
   font-family:
     -apple-system,
@@ -33,6 +34,21 @@
   --w-status-bar-background: var(--w-primary);
   --w-toast-background: var(--w-black-2);
   --w-toast-text-color: var(--w-text-color2);
+
+  /**
+   * Monaco/VSCode Web UI 依赖的 CSS 变量兜底（用于右键菜单、Hover、ActionWidget 等）。
+   * 说明：这些变量在“独立加载 content-menu”时可能不存在，导致颜色缺失（如 outline/border/background）。
+   * 这里给出暗色系默认值，并尽量复用现有 --w-* 变量。
+   */
+  --vscode-menu-background: var(--w-black-2, #252526);
+  --vscode-menu-foreground: var(--w-text-color2, #ccc);
+  --vscode-menu-border: rgb(255 255 255 / 12%);
+  --vscode-menu-separatorBackground: rgb(255 255 255 / 12%);
+  --vscode-menu-selectionBackground: var(--w-primary-2, #094771);
+  --vscode-menu-selectionForeground: var(--w-white, #fff);
+  --vscode-menu-selectionBorder: transparent;
+  --vscode-disabledForeground: rgb(255 255 255 / 40%);
+  --vscode-widget-shadow: rgb(0 0 0 / 36%);
 }
 
 html,

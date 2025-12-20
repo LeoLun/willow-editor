@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { DirTreeEntity } from '@/entity/index';
 import Tree from './tree/index.vue';
 
@@ -10,16 +10,27 @@ const props = defineProps({
   },
 });
 
-const root = props.root as DirTreeEntity;
+const root = computed(() => props.root as DirTreeEntity);
+
+const treeRef = ref<InstanceType<typeof Tree>>();
+
+const getRoot = () => root.value;
+const refresh = () => (treeRef.value as any)?.refresh?.();
+
+defineExpose({
+  getRoot,
+  refresh,
+});
 
 </script>
 <template>
   <div class="files-tree-container">
     <div class="file-tree-title">
-      {{ root.name }}
+      {{ root?.name }}
     </div>
     <div class="file-tree-content">
       <Tree
+        ref="treeRef"
         :directory="root"
       />
     </div>

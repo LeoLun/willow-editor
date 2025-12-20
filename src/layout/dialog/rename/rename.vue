@@ -13,10 +13,19 @@ const props = defineProps<{
 
 const filename = ref(props.fileName);
 
+const onEnter = (e: KeyboardEvent) => {
+  // 避免中文输入法/组合输入（IME composing）状态下按回车误触发确认
+  if ((e as unknown as { isComposing?: boolean }).isComposing) return;
+  props.onConfirm(filename.value);
+};
+
 </script>
 <template>
-  <DialogBase :title="'提示'">
-    <WInput v-model="filename" />
+  <DialogBase :title="'重命名'">
+    <WInput
+      v-model="filename"
+      @keydown.enter.prevent="onEnter"
+    />
     <template #footer>
       <WButton @click="onCancel">
         取消

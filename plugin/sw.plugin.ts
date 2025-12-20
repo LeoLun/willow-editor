@@ -102,7 +102,6 @@ export const nativeSW = ({ entries }: Options): Plugin[] => {
     },
     resolveId(source: string) {
       if (checkSWFile(source)) {
-        console.log('source', source)
         return source;
       }
       return undefined;
@@ -113,7 +112,6 @@ export const nativeSW = ({ entries }: Options): Plugin[] => {
       }
 
       id = id.slice(0, id.indexOf('?'));
-      console.log('id', id)
       return loadModule(conf.root, id);
     },
     transform(code: string, id: string) {

@@ -52,7 +52,7 @@ export default abstract class TreeNodeEntity {
     return false;
   }
 
-  abstract rename(name: string): void;
+  abstract rename(name: string): Promise<void>;
 
   abstract remove(): void;
 }

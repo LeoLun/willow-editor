@@ -2,6 +2,11 @@
 import { ref, computed, provide } from 'vue';
 import SplitPane from '@/components/split-pane/index.vue';
 import { DirTreeEntity } from '@/entity/index';
+import AiChat from '@/layout/ai-chat/index.vue';
+import { aiChatOpen, aiPanelWidth, setAiPanelWidth } from '@/services/ai/store';
+import TopBar from '@/layout/top-bar/index.vue';
+import { syncDirectoryToServiceWorker } from '@/service/sw-client';
+import { liveProxyEnabled } from '@/services/live-proxy/store';
 
 import {
   IEditorViewService,
@@ -31,9 +36,29 @@ const isDrag = ref(false);
 const dragTitle = ref('拖拽文件夹 或 点击选择文件夹');
 
 const isEmpty = computed(() => !root.value);
+const chatOpen = computed(() => aiChatOpen.value);
+
+const AI_PANEL_MIN_WIDTH = 280;
+const AI_PANEL_MAX_WIDTH = 720;
+const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
+
+const onMainSplitResize = (payload: any) => {
+  // 两栏模式 emit number；三栏模式 emit object（我们只关心右侧 pane 的宽度）
+  if (!payload || typeof payload !== 'object') return;
+  if (!chatOpen.value) return;
+  const containerPx = Number(payload.containerPx);
+  const rightPercent = Number(payload.rightPercent);
+  if (!Number.isFinite(containerPx) || !Number.isFinite(rightPercent) || containerPx <= 0) return;
+  const rightPx = Math.round((rightPercent / 100) * containerPx);
+  setAiPanelWidth(clamp(rightPx, AI_PANEL_MIN_WIDTH, AI_PANEL_MAX_WIDTH));
+};
 
 const handeleShowDirectoryPicker = async () => {
   root.value = await TreeFactory.createTree();
+  if (root.value && liveProxyEnabled.value) {
+    // 把文件句柄映射同步到 SW，供 /willow-editor/live/... 代理读取本地文件
+    syncDirectoryToServiceWorker(root.value).catch(console.warn);
+  }
 };
 
 const handleDragover = () => {
@@ -52,6 +77,9 @@ const handleDrop = async (e: DragEvent) => {
     for await (const handle of fileHandlesPromises) {
       if (handle.kind === 'directory') {
         root.value = await TreeFactory.createTreeByHandle(handle);
+        if (root.value && liveProxyEnabled.value) {
+          syncDirectoryToServiceWorker(root.value).catch(console.warn);
+        }
       }
     }
   }
@@ -81,40 +109,86 @@ const handleDragleave = () => {
       v-else
       class="base-content"
     >
-      <split-pane
-        :min-percent="10"
-        :default-percent="15"
-        split="vertical"
-      >
-        <template #pane-l>
-          <FileTree
-            ref="treeViewService"
-            class="dir-tree"
-            :root="root"
-          />
-        </template>
-        <template #pane-r>
-          <div class="editor-content">
-            <FileTabs
-              ref="tabsViewService"
-              class="editor-tabs-container"
+      <TopBar />
+      <div class="main-content">
+        <split-pane
+          v-if="chatOpen"
+          three
+          :min-percent="10"
+          :max-percent="40"
+          :default-percent="15"
+          :default-right-px="aiPanelWidth"
+          :min-right-px="280"
+          :max-right-px="720"
+          split="vertical"
+          @resize="onMainSplitResize"
+        >
+          <template #pane-l>
+            <FileTree
+              ref="treeViewService"
+              class="dir-tree"
+              :root="root"
             />
-            <FileEditor
-              ref="editorViewService"
-              class="editor-view-container"
-            />
-            <div
-              class="w-background"
-            >
-              <img
-                class="w-background-image"
-                src="@/assets/logo.svg"
-              >
-              <!-- <div>打开 功能介绍</div> -->
+          </template>
+          <template #pane-m>
+            <div class="editor-content">
+              <FileTabs
+                ref="tabsViewService"
+                class="editor-tabs-container"
+              />
+              <FileEditor
+                ref="editorViewService"
+                class="editor-view-container"
+              />
+              <div class="w-background">
+                <img
+                  class="w-background-image"
+                  src="@/assets/logo.svg"
+                >
+                <!-- <div>打开 功能介绍</div> -->
+              </div>
             </div>
-          </div>
-        </template>
-      </split-pane>
+          </template>
+          <template #pane-r>
+            <AiChat />
+          </template>
+        </split-pane>
+
+        <split-pane
+          v-else
+          :min-percent="10"
+          :max-percent="40"
+          :default-percent="15"
+          split="vertical"
+        >
+          <template #pane-l>
+            <FileTree
+              ref="treeViewService"
+              class="dir-tree"
+              :root="root"
+            />
+          </template>
+          <template #pane-r>
+            <div class="editor-content">
+              <FileTabs
+                ref="tabsViewService"
+                class="editor-tabs-container"
+              />
+              <FileEditor
+                ref="editorViewService"
+                class="editor-view-container"
+              />
+              <div class="w-background">
+                <img
+                  class="w-background-image"
+                  src="@/assets/logo.svg"
+                >
+                <!-- <div>打开 功能介绍</div> -->
+              </div>
+            </div>
+          </template>
+        </split-pane>
+      </div>
       <StatusBar ref="statusBarService" />
     </div>
   </div>
@@ -159,6 +233,11 @@ const handleDragleave = () => {
   flex-direction: column;
   width: 100%;
   height: 100%;
+}
+
+.main-content {
+  flex: 1;
+  min-height: 0;
 }
 
 .dir-tree {

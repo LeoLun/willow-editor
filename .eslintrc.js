@@ -46,6 +46,13 @@ module.exports = {
       },
     },
     {
+      files: ['**/*.d.ts'],
+      rules: {
+        // 在 declaration 文件里经常只有单个导出（或 module 内单个 class 导出），不强制 default export
+        'import/prefer-default-export': 'off',
+      },
+    },
+    {
       files: ['**/*.worker.ts'],
       rules: {
         'no-restricted-globals': 'off',

@@ -32,7 +32,7 @@ const classes = computed(() => {
   background: #000;
   position: absolute;
   opacity: 0.2;
-  z-index: 1;
+  z-index: 2;
   background-clip: padding-box;
 }
 
@@ -52,5 +52,16 @@ const classes = computed(() => {
   border-left: 5px solid rgb(255 255 255 / 0%);
   border-right: 5px solid rgb(255 255 255 / 0%);
   cursor: col-resize;
+
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--w-secondary-2);
+    z-index: 1;
+  }
 }
 </style>

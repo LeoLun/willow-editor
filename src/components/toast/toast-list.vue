@@ -9,7 +9,6 @@ const toastList = ref<Array<ToastItem>>([]);
 
 const add = (options: ToastOptions) => {
   toastList.value.push({ key, ...options });
-  console.log('duration', options.duration);
   setTimeout(() => {
     const itemKey = key;
     const index = toastList.value.findIndex((item) => item.key === itemKey);

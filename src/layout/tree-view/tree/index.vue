@@ -10,6 +10,9 @@ import {
 } from '@/entity';
 import { IToastService, ITabsViewService, ACTIONS } from '@/common/const';
 import DialogFactory from '@/layout/dialog/dialog-factory';
+import { aiSelectedEntities, requestAiRename, setAiChatOpen } from '@/services/ai/store';
+import { syncDirectoryToServiceWorker } from '@/service/sw-client';
+import { liveProxyEnabled } from '@/services/live-proxy/store';
 import { Tree } from './moncao-tree/treeImpl';
 import TreeDnD from './tree-dnd';
 import FileTemplate from './file-template';
@@ -82,7 +85,42 @@ const treeConfig: {
   // tree config requires a controller property but we would defer its initialisation
   // to be done by the MonacoTree component
   // controller: createController(this, this.getActions.bind(this), true),
-  dnd: new TreeDnD(),
+  dnd: new TreeDnD({
+    onDidMove: ({
+      node,
+      from,
+      to,
+      oldKey,
+      newKey,
+    }) => {
+      toastService.info(`已移动「${node.name}」到「${to.name}」`);
+      // tabs 目前没有 updateFile（key 变更会导致悬挂），先关闭旧 key 对应 tab
+      if (!DirTreeEntity.isDirectory(node)) {
+        tabsViewService.value.closeFile(oldKey);
+      }
+      console.log('tree move', {
+        from: from.key,
+        to: to.key,
+        oldKey,
+        newKey,
+      });
+    },
+    onMoveError: ({
+      node,
+      to,
+      oldKey,
+      error,
+    }) => {
+      const msg = error?.message || '移动失败';
+      toastService.info(msg);
+      console.warn('tree move error', {
+        node: node.key,
+        to: to.key,
+        oldKey,
+        error,
+      });
+    },
+  }),
 };
 
 const props = defineProps({
@@ -139,6 +177,10 @@ const onRename = (file: TreeEntity) => {
         try {
           await file.rename(filename);
           tree.setInput(props.directory);
+          // 重命名后刷新 SW 文件缓存（仅在开启 Go Live 时）
+          if (liveProxyEnabled.value) {
+            syncDirectoryToServiceWorker(props.directory as any).catch(console.warn);
+          }
           // 通知 tabs 更新名字
           // updateFile(file as FileTreeEntity);
 
@@ -179,6 +221,26 @@ const onDelete = (file: TreeEntity) => {
   dialog.open();
 };
 
+const onAiRename = (file: TreeEntity) => {
+  if (DirTreeEntity.isDirectory(file)) {
+    toastService.info('文件夹暂不支持 AI 重命名');
+    return;
+  }
+  // 把文件带入 AI 面板的文件选择区，并触发 agent
+  aiSelectedEntities.value = [file];
+  setAiChatOpen(true);
+  requestAiRename(file.key);
+};
+
+const refresh = () => {
+  if (!tree) return;
+  tree.setInput(props.directory);
+};
+
+defineExpose({
+  refresh,
+});
+
 const onCreateFile = (file: TreeEntity) => {
   const dialog = DialogFactory.create({
     type: ACTIONS.CREATE_FILE,
@@ -190,6 +252,10 @@ const onCreateFile = (file: TreeEntity) => {
           tree.setInput(props.directory);
           console.log('fileNode', fileNode);
           openFile(fileNode);
+          // 新建文件后刷新 SW 文件缓存（仅在开启 Go Live 时）
+          if (liveProxyEnabled.value) {
+            syncDirectoryToServiceWorker(props.directory as any).catch(console.warn);
+          }
         }
         dialog.close();
       },
@@ -224,15 +290,22 @@ const onCreateDirectory = (file: TreeEntity) => {
   dialog.open();
 };
 
-// const onOpenWishLiveServer = (file: TreeEntity) => {
-//   console.log('onOpenWishLiveServer', file);
-//   window.open(`/willow-editor/live${file.key}`, '_blank');
-// };
+const onOpenWishLiveServer = async (file: TreeEntity) => {
+  console.log('onOpenWishLiveServer', props.directory);
+  // 打开前同步一次（避免新建/重命名后映射过期）
+  await syncDirectoryToServiceWorker(props.directory as any).catch(console.warn);
+  window.open(`/willow-editor/live${file.key}`, '_blank');
+};
 
 onMounted(() => {
   treeConfig.controller = createController((type: ACTIONS, file: TreeEntity) => {
     if (type === ACTIONS.RENAME) {
       onRename(file);
+      return;
+    }
+
+    if (type === ACTIONS.AI_RENAME) {
+      onAiRename(file);
       return;
     }
 
@@ -251,10 +324,10 @@ onMounted(() => {
       return;
     }
 
-    // if (type === ACTIONS.OPEN_WISH_LIVE_SERVER) {
-    //   onOpenWishLiveServer(file);
-    //   return;
-    // }
+    if (type === ACTIONS.OPEN_WISH_LIVE_SERVER) {
+      onOpenWishLiveServer(file);
+      return;
+    }
 
     toastService.info('开发中');
   });
@@ -264,6 +337,7 @@ onMounted(() => {
   tree = new Tree(container, treeConfig);
   tree.setInput(directory);
   tree.model.onDidSelect((e: any) => {
+    aiSelectedEntities.value = (e?.selection || []) as TreeEntity[];
     if (e.selection.length) {
       const treeEntity = e.selection[0] as TreeEntity;
       if (!DirTreeEntity.isDirectory(treeEntity)) {

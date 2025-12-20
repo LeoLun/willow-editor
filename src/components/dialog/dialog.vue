@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onBeforeUnmount, onMounted } from 'vue';
 
 const props = defineProps({
   visible: {
@@ -26,9 +26,25 @@ const dialogVisible = computed({
 });
 
 const handleClose = () => {
-  console.log('handleClose');
   emits('update:visible', false);
 };
+
+const handleGlobalKeydown = (e: KeyboardEvent) => {
+  if (!props.visible) return;
+  if (e.key !== 'Escape' && e.code !== 'Escape') return;
+  e.preventDefault();
+  e.stopPropagation();
+  handleClose();
+};
+
+onMounted(() => {
+  // 使用捕获阶段，保证在内部组件（如编辑器/树控件）之前处理 ESC
+  window.addEventListener('keydown', handleGlobalKeydown, true);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', handleGlobalKeydown, true);
+});
 
 const contentRender = () => {
   const { content } = props;

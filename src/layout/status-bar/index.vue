@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import type { Position } from './status-bar-types';
 import CursorPosition from './cursor-position.vue';
 import Language from './language.vue';
+import LiveToggle from './live-toggle.vue';
 
 const cursorPositionService = ref<InstanceType<typeof CursorPosition>>();
 const setCursorPostion = (position: Position | undefined) => cursorPositionService.value
@@ -26,6 +27,7 @@ defineExpose({
       <div>codicon-warning</div> -->
     </div>
     <div class="status-bar-right">
+      <LiveToggle />
       <CursorPosition ref="cursorPositionService" />
       <Language ref="languageService" />
       <!-- <div>eol</div>
@@ -50,5 +52,6 @@ defineExpose({
 .status-bar-right {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 </style>

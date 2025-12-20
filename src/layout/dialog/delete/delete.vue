@@ -14,8 +14,8 @@ const name = computed(() => props.fileName);
 
 </script>
 <template>
-  <DialogBase :title="'提示'">
-    <div>{{ name }}</div>
+  <DialogBase :title="'确认删除'">
+    <div>{{ `确认删除「${name}」吗？` }}</div>
     <template #footer>
       <WButton @click="onCancel">
         取消

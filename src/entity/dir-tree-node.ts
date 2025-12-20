@@ -58,6 +58,22 @@ export default class DirTreeEntity extends TreeEntity {
   }
 
   /**
+   * 递归更新当前目录及子孙节点 key
+   * 注意：只会更新已加载到内存的 children
+   */
+  private updateKeyRecursive(nextKey: string) {
+    this.key = nextKey;
+    // eslint-disable-next-line no-restricted-syntax
+    for (const child of this.children || []) {
+      child.key = `${this.key}/${child.name}`;
+      child.parent = this;
+      if (DirTreeEntity.isDirectory(child)) {
+        (child as DirTreeEntity).updateKeyRecursive(child.key);
+      }
+    }
+  }
+
+  /**
    * 判断节点是否为子节点
    * @param treeEntity 节点
    */
@@ -111,12 +127,65 @@ export default class DirTreeEntity extends TreeEntity {
   }
 
   async rename(dirName: string) {
-    const fsHandle: any = this.handle;
-    await fsHandle.move(dirName);
-    this.name = dirName;
-    const keys = this.key.split('/');
-    keys[keys.length - 1] = this.name;
-    this.key = keys.join('/');
+    const next = (dirName || '').trim();
+    if (!next) throw new Error('文件夹名不能为空');
+    if (next.includes('/')) throw new Error('文件夹名不能包含 /');
+    if (!this.parent) throw new Error('无法重命名根节点');
+    if (next === this.name) return;
+
+    // 冲突检测（以目录树当前数据为准）
+    const exists = (this.parent.children || []).some((ch: any) => ch?.name === next);
+    if (exists) throw new Error(`同目录下已存在文件夹「${next}」`);
+
+    const fsHandle: any = this.handle as any;
+    if (typeof fsHandle?.move === 'function') {
+      await fsHandle.move(next);
+      this.name = next;
+      const nextKey = `${this.parent.key}/${this.name}`;
+      this.updateKeyRecursive(nextKey);
+      this.parent.sortChildren();
+      return;
+    }
+
+    throw new Error('开启实验性功能 打开 chreom://flags 中的 Experimental Web Platform features');
+  }
+
+  /**
+   * 移动文件夹（优先使用实验性 move；不支持则直接报错）
+   * @param targetDir 目标目录
+   * @param targetName 目标文件夹名（默认保持原名）
+   */
+  async moveTo(targetDir: DirTreeEntity, targetName?: string) {
+    const nextName = (targetName ?? this.name ?? '').trim();
+    if (!nextName) throw new Error('文件夹名不能为空');
+    if (nextName.includes('/')) throw new Error('文件夹名不能包含 /');
+    if (!this.parent) throw new Error('无法移动根节点');
+    if (!targetDir) throw new Error('目标目录不能为空');
+    if (targetDir === this.parent && nextName === this.name) return;
+
+    // 冲突检测（以目录树当前数据为准）
+    const exists = (targetDir.children || []).some((ch: any) => ch?.name === nextName);
+    if (exists) throw new Error(`目标目录下已存在文件夹「${nextName}」`);
+
+    const fsHandle: any = this.handle as any;
+    if (typeof fsHandle?.move === 'function') {
+      // 尝试跨目录 move（不同实现签名可能不一致）
+      try {
+        await fsHandle.move(targetDir.handle, { name: nextName });
+      } catch (e1) {
+        await fsHandle.move(targetDir.handle, nextName);
+      }
+
+      // 重新拿到移动后的目录 handle
+      this.handle = await targetDir.handle.getDirectoryHandle(nextName, { create: false });
+      this.parent = targetDir;
+      this.name = nextName;
+      const nextKey = `${targetDir.key}/${this.name}`;
+      this.updateKeyRecursive(nextKey);
+      return;
+    }
+
+    throw new Error('文件夹拖拽移动暂不支持：需要开启实验性功能（chreom://flags -> Experimental Web Platform features）');
   }
 
   async remove() {

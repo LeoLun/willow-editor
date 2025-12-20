@@ -1,7 +1,38 @@
 /* eslint-disable class-methods-use-this */
-import { TreeEntity, DirTreeEntity } from '@/entity';
+import {
+  TreeEntity,
+  DirTreeEntity,
+  FileTreeEntity,
+} from '@/entity';
+
+export type TreeDidMovePayload = {
+  node: TreeEntity;
+  from: DirTreeEntity;
+  to: DirTreeEntity;
+  oldKey: string;
+  newKey: string;
+};
+
+export type TreeMoveErrorPayload = {
+  node: TreeEntity;
+  from: DirTreeEntity;
+  to: DirTreeEntity;
+  oldKey: string;
+  error: any;
+};
+
+export type TreeDnDHooks = {
+  onDidMove?: (payload: TreeDidMovePayload) => void;
+  onMoveError?: (payload: TreeMoveErrorPayload) => void;
+};
 
 class TreeDnD {
+  private hooks: TreeDnDHooks;
+
+  constructor(hooks?: TreeDnDHooks) {
+    this.hooks = hooks || {};
+  }
+
   /**
      * Get the uri of the dragged node
      * @param {Tree} tree monaco tree
@@ -30,7 +61,7 @@ class TreeDnD {
 
   // }
   onDragStart() {
-
+    // TODO: implement
   }
 
   /**
@@ -65,52 +96,54 @@ class TreeDnD {
      */
   // drop(tree: any, data: any, targetElement: TreeEntity, originalEvent: DragEvent) {
   drop(tree: any, data: any, targetElement: DirTreeEntity) {
-    // first remove droppedNode  from immediate parent
-    /**
-      * @type {TreeEntity}
-      */
+    // 注意：treeView.js 不会 await drop，所以这里用异步任务执行真实 move
+    this.handleDrop(tree, data, targetElement);
+  }
+
+  private async handleDrop(tree: any, data: any, targetElement: DirTreeEntity) {
     const droppedNode = data.elements[0] as TreeEntity;
+    const from = droppedNode.parent;
+    if (!from) return;
+    const oldKey = droppedNode.key;
 
-    /**
-      * @type {TreeEntity}
-      */
-    const { parent } = droppedNode;
+    try {
+      // 真实移动（文件：moveTo 支持回退 copy+delete；文件夹：需要实验性 move）
+      if (DirTreeEntity.isDirectory(droppedNode)) {
+        await (droppedNode as DirTreeEntity).moveTo(targetElement);
+      } else {
+        await (droppedNode as FileTreeEntity).moveTo(targetElement);
+      }
+    } catch (error: any) {
+      this.hooks.onMoveError?.({
+        node: droppedNode,
+        from,
+        to: targetElement,
+        oldKey,
+        error,
+      });
+      return;
+    }
 
-    /**
-      * @type {Array<TreeEntity>}
-      */
-    const oldParentNewChildren = parent!.children.filter((n: TreeEntity) => n !== droppedNode);
+    // 成功后再更新内存树结构（避免失败需要回滚）
+    from.children = (from.children || []).filter((n: TreeEntity) => n !== droppedNode);
+    if (!(targetElement.children || []).includes(droppedNode)) {
+      targetElement.children.push(droppedNode);
+    }
+    targetElement.sortChildren();
 
-    parent!.children = oldParentNewChildren;
-
-    // next add it as a child of the new parent
-    targetElement.children.push(droppedNode);
-
-    // sort the children
-    targetElement.children.sort((a, b) => {
-      // directories have higher precedence
-      if (DirTreeEntity.isDirectory(a) && !DirTreeEntity.isDirectory(b)) return -1;
-
-      if (!DirTreeEntity.isDirectory(a) && DirTreeEntity.isDirectory(b)) return 1;
-
-      const nameA = a.name.toLowerCase(); // ignore upper and lowercase
-      const nameB = b.name.toLowerCase(); // ignore upper and lowercase
-
-      if (nameA < nameB) return -1;
-
-      if (nameA > nameB) return 1;
-
-      return 0;
-    });
-
-    // set targetElement as the new parent for droppedNode
     droppedNode.parent = targetElement;
 
     // finally refresh tree
-    tree.model.refresh(parent);
+    tree.model.refresh(from);
     tree.model.refresh(targetElement);
 
-    console.log(`moved ${data.elements[0].name} to ${targetElement.name}`);
+    this.hooks.onDidMove?.({
+      node: droppedNode,
+      from,
+      to: targetElement,
+      oldKey,
+      newKey: droppedNode.key,
+    });
   }
 }
 
