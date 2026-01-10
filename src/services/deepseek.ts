@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable no-continue */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
@@ -12,6 +13,15 @@ type DeepseekChatRole = 'system' | 'user' | 'assistant';
 export type DeepseekChatMessage = {
   role: DeepseekChatRole;
   content: string;
+};
+
+type DeepseekTool = {
+  type: 'function';
+  function: {
+    name: string;
+    description?: string;
+    parameters: any;
+  };
 };
 
 export type DeepseekChatCompletionResponse = {
@@ -44,6 +54,37 @@ function normalizeBaseUrl(baseUrl: string) {
   return v.replace(/\/+$/, '');
 }
 
+function normalizeDeepseekMessages(input: any[]) {
+  const msgs = Array.isArray(input) ? input : [];
+  const out: any[] = [];
+
+  msgs.forEach((raw) => {
+    if (!raw || !raw.role) return;
+
+    // DeepSeek thinking_mode + tool calls：所有 assistant 消息都必须带 reasoning_content 字段
+    const m = (raw.role === 'assistant' && !Object.prototype.hasOwnProperty.call(raw, 'reasoning_content'))
+      ? { reasoning_content: '', ...raw }
+      : raw;
+
+    const prev = out[out.length - 1];
+    const sameRole = prev && prev.role === m.role;
+    const mergeable = sameRole && m.role !== 'tool'
+      && !prev.tool_calls && !m.tool_calls;
+
+    if (mergeable) {
+      prev.content = [prev.content, m.content].filter(Boolean).join('\n\n');
+      if (m.role === 'assistant') {
+        prev.reasoning_content = [prev.reasoning_content, m.reasoning_content].filter(Boolean).join('\n\n');
+      }
+      return;
+    }
+
+    out.push(m);
+  });
+
+  return out;
+}
+
 async function deepseekFetch(path: string, init: RequestInit) {
   const key = aiApiKey.value.trim();
   const keyCheck = validateDeepseekApiKey(key);
@@ -71,7 +112,9 @@ async function deepseekFetch(path: string, init: RequestInit) {
     } catch {
       // ignore
     }
-    throw new Error(`DeepSeek 请求失败(${res.status})${detail}`);
+    const err: any = new Error(`DeepSeek 请求失败(${res.status})${detail}`);
+    err.status = res.status;
+    throw err;
   }
   return res;
 }
@@ -84,28 +127,59 @@ export async function testDeepseekKey() {
 }
 
 export async function deepseekChatCompletions(params: {
-  messages: DeepseekChatMessage[];
+  messages: any[];
   model?: string;
   temperature?: number;
+  tools?: DeepseekTool[];
+  tool_choice?: any;
+  signal?: AbortSignal;
+  retries?: number;
 }) {
   const {
     messages,
-    model = 'deepseek-chat',
+    model = 'deepseek-reasoner',
     temperature = 0.2,
+    tools,
+    tool_choice,
+    signal,
+    retries = 1,
   } = params;
 
-  const res = await deepseekFetch('/v1/chat/completions', {
-    method: 'POST',
-    body: JSON.stringify({
-      model,
-      temperature,
-      messages,
-      stream: false,
-    }),
-  });
-  const json = await res.json() as DeepseekChatCompletionResponse;
-  const content = json?.choices?.[0]?.message?.content ?? '';
-  return { raw: json, content };
+  const preparedMessages = normalizeDeepseekMessages(messages);
+
+  const sleep = (ms: number) => new Promise((r) => { setTimeout(r, ms); });
+  let lastErr: any;
+  for (let attempt = 0; attempt <= retries; attempt += 1) {
+    if (signal?.aborted) throw new Error('已取消');
+    try {
+      const res = await deepseekFetch('/v1/chat/completions', {
+        method: 'POST',
+        signal,
+        body: JSON.stringify({
+          model,
+          temperature,
+          messages: preparedMessages,
+          ...(tools ? { tools } : {}),
+          ...(tool_choice ? { tool_choice } : {}),
+          stream: false,
+        }),
+      });
+      const json = await res.json() as DeepseekChatCompletionResponse;
+      const message = json?.choices?.[0]?.message as any;
+      const content = message?.content ?? '';
+      return { raw: json, content, message };
+    } catch (e: any) {
+      lastErr = e;
+      if (signal?.aborted) throw new Error('已取消');
+      const status = Number(e?.status);
+      const msg = String(e?.message || '');
+      const transient = status === 429 || (status >= 500 && status <= 599) || msg.includes('Failed to fetch');
+      if (!transient || attempt >= retries) break;
+      // eslint-disable-next-line no-await-in-loop
+      await sleep(250 * (2 ** attempt));
+    }
+  }
+  throw lastErr || new Error('DeepSeek 请求失败');
 }
 
 function parseSseLineData(line: string) {
@@ -126,13 +200,14 @@ export async function deepseekChatCompletionsStream(params: {
 }) {
   const {
     messages,
-    model = 'deepseek-chat',
+    model = 'deepseek-reasoner',
     temperature = 0.2,
     signal,
     onDelta,
     onChunk,
   } = params;
 
+  const preparedMessages = normalizeDeepseekMessages(messages as any) as any;
   const res = await deepseekFetch('/v1/chat/completions', {
     method: 'POST',
     signal,
@@ -142,7 +217,7 @@ export async function deepseekChatCompletionsStream(params: {
     body: JSON.stringify({
       model,
       temperature,
-      messages,
+      messages: preparedMessages,
       stream: true,
     }),
   });

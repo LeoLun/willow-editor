@@ -22,10 +22,10 @@ import FileTabs from '@/layout/tabs-view/index.vue';
 import StatusBar from '@/layout/status-bar/index.vue';
 
 const root = ref<DirTreeEntity>();
-const editorViewService = ref<InstanceType<typeof FileEditor>>();
-const treeViewService = ref<InstanceType<typeof FileTree>>();
-const tabsViewService = ref<InstanceType<typeof FileTabs>>();
-const statusBarService = ref<InstanceType<typeof StatusBar>>();
+const editorViewService = ref<InstanceType<typeof FileEditor>>(null as any);
+const treeViewService = ref<InstanceType<typeof FileTree>>(null as any);
+const tabsViewService = ref<InstanceType<typeof FileTabs>>(null as any);
+const statusBarService = ref<InstanceType<typeof StatusBar>>(null as any);
 
 provide(IEditorViewService, editorViewService);
 provide(ITreeViewService, treeViewService);

@@ -1,3 +1,5 @@
+<!-- eslint-disable no-continue -->
+<!-- eslint-disable no-await-in-loop -->
 <script setup lang="ts">
 import {
   computed, nextTick, ref, watch,
@@ -23,10 +25,19 @@ import {
   aiRenameState,
   clearAiRename,
   setAiRenameState,
+  aiPermissionRules,
+  addAiPermissionRule,
+  setAiChatSummary,
+  aiChatSummary,
+  updateChatMessageContent,
+  updateChatMessageMeta,
 } from '@/services/ai/store';
 import { deepseekChatCompletions, deepseekChatCompletionsStream, extractFirstJsonObject } from '@/services/deepseek';
 import { flattenSelectedToFiles, readTextFileContent } from '@/services/ai/file-utils';
 import { readFileNameAndAssociations, readSelectedFileInfo, readTextSnippet } from '@/services/ai/rename-tools';
+import { globFiles, grepFiles } from '@/services/ai/search-tools';
+import { Agents, SessionPrompt } from '@/ai';
+import AiPermissionDialog from '@/layout/dialog/ai-permission';
 import { DirTreeEntity, FileEntity } from '@/entity';
 import type { FileTreeEntity } from '@/entity';
 
@@ -39,6 +50,32 @@ const getRootDir = () => (treeViewService.value as any)?.getRoot?.();
 const input = ref('');
 const textareaRef = ref<HTMLTextAreaElement>();
 const listRef = ref<HTMLDivElement>();
+const agentMode = ref(false);
+let agentAbort: AbortController | null = null;
+
+type StagedEdit =
+  | {
+    kind: 'modify';
+    path: string;
+    key: string;
+    name: string;
+    handle: FileSystemFileHandle;
+    before: string;
+    after: string;
+  }
+  | {
+    kind: 'create';
+    path: string;
+    // dialog 用的临时 key
+    key: string;
+    name: string;
+    parentPath: string;
+    fileName: string;
+    before: string;
+    after: string;
+  };
+
+const stagedEdits = ref<Map<string, StagedEdit>>(new Map());
 
 const visible = computed(() => aiChatOpen.value);
 
@@ -297,6 +334,7 @@ watch(() => visible.value, (v) => { if (v) scrollToBottom(); });
 
 const handleClear = () => {
   clearChatHistory();
+  setAiChatSummary('');
   toast.success('已清空对话记录');
 };
 
@@ -450,10 +488,16 @@ const buildMentionFileMap = () => {
   return map;
 };
 
-const buildMessages = (overrideLastUser?: { id: string; content: string }) => {
+const buildMessages = (
+  overrideLastUser?: { id: string; content: string },
+  options?: { excludeIDs?: string[] },
+) => {
   // 只发送最近 N 条，避免过长
   const MAX = 20;
-  const recent = aiChatHistory.value.slice(-MAX);
+  const exclude = new Set<string>((options?.excludeIDs || []).map((x) => String(x)));
+  const recent = aiChatHistory.value
+    .filter((m) => !exclude.has(m.id))
+    .slice(-MAX);
   return [
     {
       role: 'system' as const,
@@ -466,6 +510,493 @@ const buildMessages = (overrideLastUser?: { id: string; content: string }) => {
         : m.content,
     })),
   ];
+};
+
+const normalizeUserPath = (raw: string) => (raw || '')
+  .trim()
+  .replace(/\\/g, '/')
+  .replace(/^\.\/+/, '')
+  .replace(/^\/+/, '')
+  .replace(/\/+$/, '');
+
+const findNodeByPathInTree = (rawPath: string) => {
+  const root = getRootDir();
+  if (!root) return null;
+  const p = normalizeUserPath(rawPath);
+  if (!p) return root;
+  let found: any = null;
+  const walk = (node: any) => {
+    if (!node || found) return;
+    if ((node.path || '') === p) {
+      found = node;
+      return;
+    }
+    if (DirTreeEntity.isDirectory(node)) {
+      (node.children || []).forEach((ch: any) => walk(ch));
+    }
+  };
+  walk(root);
+  return found;
+};
+
+const applyAiEdits = async (files: Array<{
+  key: string;
+  name: string;
+  handle: FileSystemFileHandle;
+  before: string;
+  after: string;
+}>) => {
+  // 应用写入 + 入栈撤销
+  const opId = `op_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+  const op = {
+    id: opId,
+    ts: Date.now(),
+    files: files.map((f) => ({
+      key: f.key,
+      name: f.name,
+      handle: f.handle,
+      before: f.before,
+      after: f.after,
+    })),
+  };
+  await Promise.all(files.map(async (f) => {
+    const handled = await (tabsViewService.value as any).applyExternalUpdate?.(
+      f.key,
+      f.after,
+    );
+    if (handled) return;
+    const fe = new FileEntity(f.key, f.name, f.handle);
+    await fe.write(f.after);
+  }));
+
+  // 新建文件/目录结构变更后，刷新左侧文件树，确保立即可见
+  try { (treeViewService.value as any)?.refresh?.(); } catch { /* ignore */ }
+
+  aiUndoStack.value.push(op);
+};
+
+const clearStagedEdits = () => {
+  stagedEdits.value = new Map();
+};
+
+const openUnifiedApplyDialog = async () => {
+  const items = Array.from(stagedEdits.value.values());
+  if (!items.length) return;
+
+  const dialog: AiApplyPreviewDialog = new AiApplyPreviewDialog({
+    files: items.map((f) => ({
+      key: f.key,
+      path: f.path,
+      name: f.name,
+      before: f.before,
+      after: f.after,
+    })),
+    onCancel: () => {
+      clearStagedEdits();
+      dialog.close();
+      toast.info('已取消本次 AI 修改（未写入任何文件）');
+    },
+    onConfirm: async () => {
+      // 统一应用：先处理新建文件，再写入内容
+      const toApply: Array<{
+        key: string;
+        name: string;
+        handle: FileSystemFileHandle;
+        before: string;
+        after: string;
+      }> = [];
+
+      // eslint-disable-next-line no-restricted-syntax
+      for (const it of items) {
+        if (it.kind === 'modify') {
+          toApply.push({
+            key: it.key,
+            name: it.name,
+            handle: it.handle,
+            before: it.before,
+            after: it.after,
+          });
+          // eslint-disable-next-line no-continue
+          continue;
+        }
+
+        // create：此时才真正创建文件
+        const parentNode = findNodeByPathInTree(it.parentPath);
+        if (!parentNode || !DirTreeEntity.isDirectory(parentNode)) {
+          throw new Error(`未找到父目录：${it.parentPath || '(root)'}`);
+        }
+        // eslint-disable-next-line no-await-in-loop
+        const fileNode = await (parentNode as DirTreeEntity).createFile(it.fileName) as any;
+        toApply.push({
+          key: fileNode.key,
+          name: fileNode.name,
+          handle: fileNode.handle,
+          before: it.before,
+          after: it.after,
+        });
+      }
+
+      await applyAiEdits(toApply);
+      toast.success(`已应用 AI 修改：${toApply.length} 个文件`);
+      clearStagedEdits();
+      dialog.close();
+    },
+  });
+  dialog.open();
+};
+
+const toolListDirectory = async (args: any) => {
+  const node = findNodeByPathInTree(args?.path || '');
+  if (!node) throw new Error(`未找到路径：${args?.path || '(root)'}`);
+  if (!DirTreeEntity.isDirectory(node)) throw new Error(`不是目录：${args?.path}`);
+  const dir = node as any;
+  const entries = (dir.children || []).map((ch: any) => ({
+    kind: DirTreeEntity.isDirectory(ch) ? 'directory' : 'file',
+    name: ch.name,
+    path: (ch.path || '').toString(),
+  }));
+  return {
+    ok: true,
+    path: normalizeUserPath(args?.path || ''),
+    entries,
+  };
+};
+
+const toolReadFile = async (args: any) => {
+  const path = normalizeUserPath(args?.path || '');
+  if (!path) throw new Error('path 不能为空');
+  const node = findNodeByPathInTree(path);
+  if (!node) throw new Error(`未找到文件：${path}`);
+  if (DirTreeEntity.isDirectory(node)) throw new Error(`不是文件：${path}`);
+  const fileNode = node as FileTreeEntity;
+  const { fileEntity, content } = await readTextFileContent(fileNode);
+  if (fileEntity.type === 'image') {
+    return {
+      ok: false,
+      path,
+      type: 'image',
+      message: '目标是图片/二进制文件，read_file 仅支持文本内容。',
+    };
+  }
+  const maxChars = Number.isFinite(args?.maxChars)
+    ? Math.max(200, Math.floor(args.maxChars))
+    : 8000;
+  const text = (content ?? '').toString();
+  const truncated = text.length > maxChars;
+  return {
+    ok: true,
+    path,
+    truncated,
+    content: truncated ? `${text.slice(0, maxChars)}\n\n// ...已截断` : text,
+  };
+};
+
+const toolWriteFile = async (args: any) => {
+  const path = normalizeUserPath(args?.path || '');
+  if (!path) throw new Error('path 不能为空');
+  const node = findNodeByPathInTree(path);
+  const after = (args?.newContent ?? '').toString();
+
+  if (!node) {
+    const lastSlash = path.lastIndexOf('/');
+    const parentPath = lastSlash >= 0 ? path.slice(0, lastSlash) : '';
+    const fileName = lastSlash >= 0 ? path.slice(lastSlash + 1) : path;
+    if (!fileName) throw new Error(`非法路径：${path}`);
+
+    const parentNode = findNodeByPathInTree(parentPath);
+    if (!parentNode) throw new Error(`未找到父目录：${parentPath || '(root)'}`);
+    if (!DirTreeEntity.isDirectory(parentNode)) throw new Error(`父路径不是目录：${parentPath}`);
+    // 不立即创建，先暂存；统一确认后再创建+写入
+    const existed = stagedEdits.value.get(path);
+    const before = existed ? existed.before : '';
+    stagedEdits.value.set(path, {
+      kind: 'create',
+      path,
+      key: `__new__:${path}`,
+      name: fileName,
+      parentPath,
+      fileName,
+      before,
+      after,
+    });
+    return {
+      ok: true,
+      path,
+      created: true,
+      changed: before !== after,
+      status: 'staged',
+      note: '已暂存：将于本轮任务结束后统一预览并由用户确认应用',
+    };
+  }
+
+  if (DirTreeEntity.isDirectory(node)) throw new Error(`不是文件：${path}`);
+  const fileNode = node as FileTreeEntity;
+  const existed = stagedEdits.value.get(path);
+  let before = existed ? existed.before : '';
+  if (!existed) {
+    const { fileEntity, content: loadedBefore } = await readTextFileContent(fileNode);
+    if (fileEntity.type === 'image') {
+      return {
+        ok: false,
+        path,
+        type: 'image',
+        message: '目标是图片/二进制文件，write_file 仅支持文本文件。',
+      };
+    }
+    before = (loadedBefore ?? '').toString();
+  }
+
+  stagedEdits.value.set(path, {
+    kind: 'modify',
+    path,
+    key: fileNode.key,
+    name: fileNode.name,
+    handle: fileNode.handle,
+    before,
+    after,
+  });
+
+  return {
+    ok: true,
+    path,
+    created: false,
+    changed: before !== after,
+    status: 'staged',
+    note: '已暂存：将于本轮任务结束后统一预览并由用户确认应用',
+  };
+
+  /*
+  if (fileEntity.type === 'image') {
+    return {
+      ok: false,
+      path,
+      type: 'image',
+      message: '目标是图片/二进制文件，write_file 仅支持文本文件。',
+    };
+  }
+
+  const after = (args?.newContent ?? '').toString();
+  const previewFiles = [{
+    key: fileNode.key,
+    path,
+    name: fileNode.name,
+    before: (before ?? '').toString(),
+    after,
+    handle: fileNode.handle,
+  }];
+
+  const dialog: AiApplyPreviewDialog = new AiApplyPreviewDialog({
+    files: previewFiles.map((f) => ({
+      key: f.key,
+      path: f.path,
+      name: f.name,
+      before: f.before,
+      after: f.after,
+    })),
+    onCancel: () => dialog.close(),
+    onConfirm: async () => {
+      await applyAiEdits(previewFiles.map((f) => ({
+        key: f.key,
+        name: f.name,
+        handle: f.handle,
+        before: f.before,
+        after: f.after,
+      })));
+      toast.success('已应用 AI 修改：1 个文件');
+      dialog.close();
+    },
+  });
+  dialog.open();
+
+  return {
+    ok: true,
+    path,
+    changed: previewFiles[0].before !== previewFiles[0].after,
+    status: 'preview_opened',
+  };
+  */
+};
+
+const sendAgent = async () => {
+  if (aiIsLoading.value) return;
+  const content = input.value.trim();
+  if (!content) return;
+
+  closeMention();
+
+  if (!hasApiKey.value) {
+    toast.info('请先在“AI 设置”里配置 DeepSeek API Key');
+    openSettings();
+    return;
+  }
+
+  aiLastError.value = '';
+  pushChatMessage('user', content);
+  input.value = '';
+
+  aiIsLoading.value = true;
+  agentAbort = new AbortController();
+  let assistantMsg: any | null = null;
+  try {
+    // 注意：先构造要发送给模型的历史消息，再插入 UI 的 assistant 占位消息
+    // 否则会导致 messages 里出现连续 assistant（DeepSeek 会直接 400）
+    const runtimeMessages: any[] = buildMessages();
+    assistantMsg = pushChatMessage('assistant', '（工具模式执行中…）');
+    clearStagedEdits();
+    const agent = Agents.build();
+    // 合并用户持久化的权限规则（追加到末尾，保证覆盖默认）
+    if (Array.isArray(aiPermissionRules.value) && aiPermissionRules.value.length) {
+      agent.permission = [...agent.permission, ...aiPermissionRules.value as any];
+    }
+
+    const host = {
+      listDirectory: (args: any) => toolListDirectory(args),
+      readFile: (args: any) => toolReadFile(args),
+      writeFile: (args: any) => toolWriteFile(args),
+      glob: async (args: any) => {
+        const root = getRootDir();
+        if (!root) return { ok: false, error: '未打开任何项目目录' };
+        return globFiles(root, String(args?.pattern || ''), Number.isFinite(args?.limit) ? args.limit : undefined);
+      },
+      grep: async (args: any) => {
+        const root = getRootDir();
+        if (!root) return { ok: false, error: '未打开任何项目目录' };
+        return grepFiles(root, {
+          query: String(args?.query || ''),
+          filePattern: args?.filePattern ? String(args.filePattern) : undefined,
+          limit: args?.limit,
+          maxFileSize: args?.maxFileSize,
+        });
+      },
+      undo: async (args: any) => {
+        const count = Number.isFinite(args?.count) ? Math.max(1, Math.floor(args.count)) : 1;
+        for (let i = 0; i < count; i += 1) {
+          const op = aiUndoStack.value.pop();
+          if (!op) break;
+          // 复用现有撤销逻辑（但不走 UI toast）
+          // eslint-disable-next-line no-await-in-loop
+          await Promise.all(op.files.map(async (f) => {
+            const handled = await (tabsViewService.value as any).applyExternalUpdate?.(
+              f.key,
+              f.before,
+            );
+            if (handled) return;
+            const fe = new FileEntity(f.key, f.name, f.handle);
+            await fe.write(f.before);
+          }));
+        }
+        return { ok: true, undone: count };
+      },
+    };
+
+    const { text, summary } = await SessionPrompt.prompt({
+      agent,
+      host,
+      messages: runtimeMessages as any,
+      model: 'deepseek-reasoner',
+      temperature: 0.2,
+      maxSteps: 20,
+      abort: agentAbort.signal,
+      onEvent: (evt) => {
+        if (!assistantMsg) return;
+        if (evt.type === 'tool-call') {
+          updateChatMessageMeta(assistantMsg.id, (meta) => {
+            const next = meta || {};
+            const tools = (next.tools || []).slice();
+            tools.push({
+              callID: evt.callID,
+              tool: String(evt.tool || ''),
+              pattern: String(evt.pattern || ''),
+              status: 'running',
+              startedAt: Date.now(),
+            });
+            return { ...next, tools };
+          });
+          return;
+        }
+        if (evt.type === 'tool-result') {
+          updateChatMessageMeta(assistantMsg.id, (meta) => {
+            const next = meta || {};
+            const tools = (next.tools || []).slice();
+            const idx = tools.findIndex((t) => t.callID && t.callID === evt.callID);
+            const ok = !!evt.result && !String(evt.result?.metadata?.error || '').trim();
+            const status: any = ok ? 'completed' : 'error';
+            const error = ok ? '' : String(evt.result?.metadata?.error || evt.result?.output || 'tool failed');
+            const item = {
+              callID: evt.callID,
+              tool: String(evt.tool || ''),
+              pattern: String(evt.pattern || ''),
+              status,
+              startedAt: idx >= 0 ? tools[idx].startedAt : undefined,
+              completedAt: Date.now(),
+              error: error ? error.slice(0, 300) : undefined,
+            };
+            if (idx >= 0) tools[idx] = item;
+            else tools.push(item);
+            return { ...next, tools };
+          });
+        }
+      },
+      askPermission: async (payload) => new Promise<'allow' | 'deny'>((resolve, reject) => {
+        const dialog: AiPermissionDialog = new AiPermissionDialog({
+          title: 'AI 权限请求',
+          permission: payload.permission,
+          pattern: payload.pattern,
+          onCancel: () => {
+            dialog.close();
+            reject(new Error('用户取消了权限请求'));
+          },
+          onAllow: (remember) => {
+            if (remember) {
+              const rule = { permission: payload.permission, pattern: payload.pattern, action: 'allow' } as any;
+              addAiPermissionRule(rule);
+              // 立刻注入到本次 agent 里，避免同一轮请求反复弹窗
+              agent.permission.push(rule);
+            }
+            dialog.close();
+            resolve('allow');
+          },
+          onDeny: (remember) => {
+            if (remember) {
+              const rule = { permission: payload.permission, pattern: payload.pattern, action: 'deny' } as any;
+              addAiPermissionRule(rule);
+              agent.permission.push(rule);
+            }
+            dialog.close();
+            resolve('deny');
+          },
+        });
+        dialog.open();
+      }),
+    });
+    if (summary) setAiChatSummary(summary);
+    if (assistantMsg) {
+      const extra = stagedEdits.value.size
+        ? `\n\n（已生成 ${stagedEdits.value.size} 个文件修改，等待你确认应用）`
+        : '';
+      updateChatMessageContent(assistantMsg.id, `${(text || '(空响应)').toString()}${extra}`);
+    }
+    persistChatHistory();
+    await scrollToBottom();
+
+    // 统一弹窗确认（仅当存在暂存修改）
+    if (stagedEdits.value.size) {
+      await openUnifiedApplyDialog();
+    }
+  } catch (e: any) {
+    const msg = e?.message || '发送失败';
+    aiLastError.value = msg;
+    if (assistantMsg) updateChatMessageContent(assistantMsg.id, `（失败）${msg}`);
+    toast.error(msg);
+  } finally {
+    agentAbort = null;
+    aiIsLoading.value = false;
+  }
+};
+
+const cancelAgent = () => {
+  if (!aiIsLoading.value) return;
+  agentAbort?.abort();
 };
 
 const send = async () => {
@@ -579,7 +1110,8 @@ const send = async () => {
     }
 
     const { content: reply } = await deepseekChatCompletionsStream({
-      messages: buildMessages(override),
+      // 关键：排除“正在流式输出的 assistant 占位消息”，否则最后一条会变成 assistant，DeepSeek 会 400
+      messages: buildMessages(override, { excludeIDs: [assistantMsg.id] }),
       signal: ac.signal,
       onDelta: (delta) => {
         streamedText += delta;
@@ -601,6 +1133,14 @@ const send = async () => {
     stopTyping?.();
     aiIsLoading.value = false;
   }
+};
+
+const sendDispatch = async () => {
+  if (agentMode.value) {
+    await sendAgent();
+    return;
+  }
+  await send();
 };
 
 const buildEditPrompt = (instruction: string, files: Array<{ path: string; content: string }>) => ({
@@ -741,30 +1281,13 @@ const handleGenerateEdits = async () => {
       })),
       onCancel: () => dialog.close(),
       onConfirm: async () => {
-        // 应用写入 + 入栈撤销
-        const opId = `op_${Date.now()}_${Math.random().toString(16).slice(2)}`;
-        const op = {
-          id: opId,
-          ts: Date.now(),
-          files: previewFiles.map((f) => ({
-            key: f.key,
-            name: f.name,
-            handle: f.handle,
-            before: f.before,
-            after: f.after,
-          })),
-        };
-        await Promise.all(previewFiles.map(async (f) => {
-          const handled = await (tabsViewService.value as any).applyExternalUpdate?.(
-            f.key,
-            f.after,
-          );
-          if (handled) return;
-          const fe = new FileEntity(f.key, f.name, f.handle);
-          await fe.write(f.after);
-        }));
-
-        aiUndoStack.value.push(op);
+        await applyAiEdits(previewFiles.map((f) => ({
+          key: f.key,
+          name: f.name,
+          handle: f.handle,
+          before: f.before,
+          after: f.after,
+        })));
         toast.success(`已应用 AI 修改：${previewFiles.length} 个文件`);
         dialog.close();
       },
@@ -837,7 +1360,7 @@ const handleKeydown = (e: KeyboardEvent) => {
   }
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
-    send();
+    sendDispatch();
   }
 };
 </script>
@@ -917,6 +1440,18 @@ const handleKeydown = (e: KeyboardEvent) => {
         class="ai-selected-empty"
       >
         在左侧文件树中点击（支持 Ctrl/Cmd 多选）即可把文件带入 AI。
+      </div>
+    </div>
+
+    <div
+      v-if="aiChatSummary"
+      class="ai-summary"
+    >
+      <div class="ai-summary-title">
+        会话摘要（自动压缩）
+      </div>
+      <div class="ai-summary-content">
+        {{ aiChatSummary }}
       </div>
     </div>
 
@@ -1010,6 +1545,34 @@ const handleKeydown = (e: KeyboardEvent) => {
           <div class="ai-msg-role">
             {{ m.role === 'user' ? '你' : (m.role === 'assistant' ? 'AI' : '系统') }}
           </div>
+          <div
+            v-if="m.role === 'assistant' && m.meta && m.meta.tools && m.meta.tools.length"
+            class="ai-tools"
+          >
+            <div
+              v-for="(t, idx) in m.meta.tools"
+              :key="`${t.callID || t.tool}_${idx}`"
+              class="ai-tool"
+              :class="`st-${t.status}`"
+            >
+              <span class="ai-tool-dot" />
+              <span class="ai-tool-name">{{ t.tool }}</span>
+              <span
+                v-if="t.pattern"
+                class="ai-tool-pattern"
+                :title="t.pattern"
+              >
+                {{ t.pattern }}
+              </span>
+              <span
+                v-if="t.error"
+                class="ai-tool-error"
+                :title="t.error"
+              >
+                {{ t.error }}
+              </span>
+            </div>
+          </div>
           <div class="ai-msg-content">
             {{ m.content }}
           </div>
@@ -1073,6 +1636,19 @@ const handleKeydown = (e: KeyboardEvent) => {
       </div>
       <div class="ai-send">
         <WButton
+          :theme="agentMode ? 'primary' : 'default'"
+          :disabled="aiIsLoading"
+          @click="agentMode = !agentMode"
+        >
+          工具模式
+        </WButton>
+        <WButton
+          v-if="aiIsLoading && agentMode"
+          @click="cancelAgent"
+        >
+          取消
+        </WButton>
+        <WButton
           :disabled="!selectedFiles.length || aiIsLoading"
           @click="handleGenerateEdits"
         >
@@ -1087,7 +1663,7 @@ const handleKeydown = (e: KeyboardEvent) => {
         <WButton
           theme="primary"
           :disabled="aiIsLoading"
-          @click="send"
+          @click="sendDispatch"
         >
           发送
         </WButton>
@@ -1288,6 +1864,29 @@ const handleKeydown = (e: KeyboardEvent) => {
   opacity: 0.85;
 }
 
+.ai-summary {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ai-border);
+  background: rgb(0 0 0 / 10%);
+  flex: 0 0 auto;
+  max-height: min(180px, 22vh);
+  overflow: auto;
+}
+
+.ai-summary-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--w-text-color);
+  margin-bottom: 6px;
+}
+
+.ai-summary-content {
+  font-size: 12px;
+  color: var(--w-text-color2);
+  white-space: pre-wrap;
+  line-height: 18px;
+}
+
 .ai-rename {
   padding: 10px 12px;
   border-bottom: 1px solid var(--ai-border);
@@ -1433,6 +2032,68 @@ const handleKeydown = (e: KeyboardEvent) => {
   white-space: pre-wrap;
   word-break: break-word;
   line-height: 20px;
+}
+
+.ai-tools {
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid rgb(255 255 255 / 10%);
+  background: rgb(255 255 255 / 3%);
+}
+
+.ai-tool {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--w-text-color2);
+  line-height: 18px;
+  margin-bottom: 4px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.ai-tool-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgb(120 120 120);
+  flex: none;
+}
+
+.ai-tool.st-running .ai-tool-dot {
+  background: rgb(38 132 255);
+}
+
+.ai-tool.st-completed .ai-tool-dot {
+  background: rgb(80 200 120);
+}
+
+.ai-tool.st-error .ai-tool-dot {
+  background: #f48771;
+}
+
+.ai-tool-name {
+  color: var(--w-text-color);
+}
+
+.ai-tool-pattern {
+  color: var(--w-text-color2);
+  opacity: 0.9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 340px;
+}
+
+.ai-tool-error {
+  color: #f48771;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ai-loading {

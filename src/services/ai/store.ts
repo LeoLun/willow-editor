@@ -8,6 +8,17 @@ export type AiChatMessage = {
   role: AiRole;
   content: string;
   ts: number;
+  meta?: {
+    tools?: Array<{
+      callID?: string;
+      tool: string;
+      pattern?: string;
+      status: 'running' | 'completed' | 'error';
+      startedAt?: number;
+      completedAt?: number;
+      error?: string;
+    }>;
+  };
 };
 
 export type AiApplyFilePatch = {
@@ -30,6 +41,8 @@ const STORAGE = {
   chatHistory: 'willow.ai.chat.history',
   chatOpen: 'willow.ai.chat.open',
   panelWidth: 'willow.ai.chat.panelWidth',
+  permissionRules: 'willow.ai.permission.rules',
+  sessionSummary: 'willow.ai.chat.summary',
 } as const;
 
 function safeJsonParse<T>(raw: string | null, fallback: T): T {
@@ -72,12 +85,24 @@ export const aiChatHistory = ref<AiChatMessage[]>(
   safeJsonParse<AiChatMessage[]>(localStorage.getItem(STORAGE.chatHistory), []),
 );
 
+export const aiChatSummary = ref<string>(loadString(STORAGE.sessionSummary, ''));
+
 export const aiSelectedEntities = ref<TreeEntity[]>([]);
 
 export const aiIsLoading = ref(false);
 export const aiLastError = ref<string>('');
 
 export const aiUndoStack = ref<AiApplyOperation[]>([]);
+
+export type AiPermissionRule = {
+  permission: string;
+  pattern: string;
+  action: 'allow' | 'deny' | 'ask';
+};
+
+export const aiPermissionRules = ref<AiPermissionRule[]>(
+  safeJsonParse<AiPermissionRule[]>(localStorage.getItem(STORAGE.permissionRules), []),
+);
 
 export type AiRenameSuggestion = {
   name: string;
@@ -136,8 +161,39 @@ export function pushChatMessage(role: AiRole, content: string) {
   return msg;
 }
 
+export function updateChatMessageMeta(id: string, updater: (meta: AiChatMessage['meta']) => AiChatMessage['meta']) {
+  const msg = aiChatHistory.value.find((m) => m.id === id);
+  if (!msg) return false;
+  msg.meta = updater(msg.meta);
+  return true;
+}
+
 export function persistChatHistory() {
   localStorage.setItem(STORAGE.chatHistory, JSON.stringify(aiChatHistory.value));
+}
+
+export function setAiChatSummary(summary: string) {
+  aiChatSummary.value = (summary || '').toString();
+  localStorage.setItem(STORAGE.sessionSummary, aiChatSummary.value);
+}
+
+export function persistAiPermissionRules() {
+  localStorage.setItem(STORAGE.permissionRules, JSON.stringify(aiPermissionRules.value || []));
+}
+
+export function addAiPermissionRule(rule: AiPermissionRule) {
+  aiPermissionRules.value.push(rule);
+  // 控制长度，避免无限增长
+  const MAX = 100;
+  if (aiPermissionRules.value.length > MAX) {
+    aiPermissionRules.value.splice(0, aiPermissionRules.value.length - MAX);
+  }
+  persistAiPermissionRules();
+}
+
+export function clearAiPermissionRules() {
+  aiPermissionRules.value = [];
+  persistAiPermissionRules();
 }
 
 export function updateChatMessageContent(id: string, content: string) {
