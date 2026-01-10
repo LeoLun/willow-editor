@@ -1,6 +1,8 @@
 export type DialogOptions = {
   content: () => any,
   foot?: () => any,
+  containerClass?: string,
+  containerStyle?: Record<string, any>,
 };
 
 export interface DialogInstance {

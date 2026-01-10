@@ -18,7 +18,7 @@ const createDialog = (options: DialogOptions) => {
 
       const update = (newOptions: DialogOptions) => {
         dialogOptions.value = {
-          ...options,
+          ...dialogOptions.value,
           ...newOptions,
         };
       };

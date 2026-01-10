@@ -14,6 +14,14 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  containerClass: {
+    type: String,
+    default: '',
+  },
+  containerStyle: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 
 const emits = defineEmits(['update:visible']);
@@ -60,7 +68,11 @@ const contentRender = () => {
         v-if="dialogVisible"
         class="w-dialog"
       >
-        <div class="w-dialog-container">
+        <div
+          class="w-dialog-container"
+          :class="containerClass"
+          :style="containerStyle"
+        >
           <contentRender @close="handleClose" />
         </div>
       </div>

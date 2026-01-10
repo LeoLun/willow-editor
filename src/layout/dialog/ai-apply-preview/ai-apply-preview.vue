@@ -172,14 +172,14 @@ onBeforeUnmount(() => {
 
 .content {
   display: flex;
-  height: 420px;
+  height: min(72vh, 760px);
   border: 1px solid rgb(60 60 60);
   border-radius: 8px;
   overflow: hidden;
 }
 
 .left {
-  width: 210px;
+  width: 260px;
   border-right: 1px solid rgb(60 60 60);
   background: rgb(25 25 25);
   display: flex;

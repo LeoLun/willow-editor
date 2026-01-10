@@ -848,6 +848,8 @@ const sendAgent = async () => {
     if (Array.isArray(aiPermissionRules.value) && aiPermissionRules.value.length) {
       agent.permission = [...agent.permission, ...aiPermissionRules.value as any];
     }
+    // write_file 只暂存：不再弹“权限确认”
+    agent.permission.push({ permission: 'write_file', pattern: '*', action: 'allow' } as any);
 
     const host = {
       listDirectory: (args: any) => toolListDirectory(args),
@@ -938,6 +940,11 @@ const sendAgent = async () => {
         }
       },
       askPermission: async (payload) => new Promise<'allow' | 'deny'>((resolve, reject) => {
+        // write_file 已强制 allow，不应走到这里；兜底直接允许
+        if (payload.permission === 'write_file') {
+          resolve('allow');
+          return;
+        }
         const dialog: AiPermissionDialog = new AiPermissionDialog({
           title: 'AI 权限请求',
           permission: payload.permission,

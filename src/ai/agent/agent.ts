@@ -8,9 +8,8 @@ const Agents = {
       mode: 'primary',
       native: true,
       permission: [
-        // 默认允许读取/搜索；写入默认询问（UI 仍会走 diff 预览确认）
+        // 默认允许读取/搜索；write_file 仅暂存，最终仍需在“AI 修改预览”里确认应用
         { permission: '*', pattern: '*', action: 'allow' },
-        { permission: 'write_file', pattern: '*', action: 'ask' },
       ],
       temperature: 0.2,
       steps: 20,
